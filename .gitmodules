@@ -1,4 +1,0 @@
-[submodule "modules/FBNeo"]
-	path = modules/FBNeo
-	url = https://github.com/raz0red/FBNeo.git
-	branch = webrcade
