@@ -9,8 +9,6 @@ import {
   LOG  
 } from "@webrcade/app-common"
 
-import NEOGEO_HASHES from './neogeo-lookup.json';
-
 window.audioCallback = null;
 
 export class Emulator extends AppWrapper {
@@ -33,7 +31,7 @@ export class Emulator extends AppWrapper {
 
   TYPE_BIOS = 0;
   TYPE_PRIMARY = 1;
-  TYPE_OTHER = 2;
+  TYPE_PARENT = 2;
 
   setRoms(roms) {
     this.roms = roms;
@@ -293,10 +291,6 @@ export class Emulator extends AppWrapper {
       found: loaded === 0 ? true : false,
       essential: essential
     });
-  }
-
-  getNameForHash(md5) {
-    return NEOGEO_HASHES[md5];
   }
 
   addArchive(name, path, found) {

@@ -50,8 +50,6 @@ class App extends WebrcadeApp {
         if (f.name) {
           name = f.name;
         } else {
-          // name via hash
-          name = emulator.getNameForHash(md5Hash);
           // name via url
           if (!name) {
             let fname = UrlUtil.getFileName(url);
@@ -131,6 +129,14 @@ class App extends WebrcadeApp {
         type: emulator.TYPE_PRIMARY,          
         url: rom,
       })      
+
+      const parentRom = appProps.parentRom;
+      if (parentRom) {
+        files.push({
+          type: emulator.TYPE_PARENT,          
+          url: parentRom,
+        })      
+      }
 
       // Load Emscripten and ROMs
       emulator.loadEmscriptenModule()
