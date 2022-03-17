@@ -21688,386 +21688,1736 @@
     "6b9d6872961b22de6b1b0cced65d8e3f": "Zaku (USA) (Unl)",
     "d008f41ec119e2c5c6a0782aebf148a8": "Zarlor Mercenary (USA, Europe)"
   },
-  "ng": {
-    "22b7bb3a213dd4072d0375c539b10c63": "2020 Super Baseball (set 1)",
-    "aa9d00529bcbe916ebb708e2ab8f6515": "2020 Super Baseball (set 2)",
-    "9439f1dfca5e4cfc98cfef1f7dc0e414": "2020 Super Baseball (set 3)",
-    "5c48f03442ffd700cb3d619feb022b70": "3 Count Bout / Fire Suplex (NGM-043)",
-    "faed71b8e34c2b0f8da2d6fb44184e68": "3 Count Bout / Fire Suplex (NGM-043)(NGH-043)",
-    "acf71f8725ecf2b6dffa5ad19e7d8b9a": "4 player input test [Demo, 4 player  input test cartridge]",
-    "96fdfcb2d4f8105b06e593b6b534a9e5": "Aero Fighters 2 / Sonic Wings 2",
-    "297c641d1cf03abfe0fefb5fccc82af8": "Aero Fighters 3 / Sonic Wings 3",
-    "72c0271a7b34b9da155765e3d4cf3102": "Aggressors of Dark Kombat / Tsuukai GANGAN Koushinkyoku (ADM-008)(ADH-008)",
-    "db1aa6fc388cc61c16c51ca3145334b9": "Alpha Mission II / ASO II - Last Guardian (NGM-007)(NGH-007)",
-    "6fc04e3a6e2b8a9d9dda47955cd1a190": "Alpha Mission II / ASO II - Last Guardian (prototype) [Prototype]",
-    "6fc148cf334de80f3d6f792a49b072ff": "Andro Dunos (NGM-049)(NGH-049)",
-    "1e4956057ab61e040d4ea89358005deb": "Art of Fighting / Ryuuko no Ken (NGM-044)(NGH-044)",
-    "ff8f6b48c176f51b69fe68eb735af7cc": "Art of Fighting 2 / Ryuuko no Ken 2 (NGH-056)",
-    "b98a1638454b31426fdd6caf773a8e22": "Art of Fighting 2 / Ryuuko no Ken 2 (NGM-056)",
-    "4f53286886668e6a8a3f1985e3add739": "Art of Fighting 3 - The Path of the Warrior (Korean release)",
-    "1296a91b381af63a43354d4fb1697a4a": "Art of Fighting 3 - The Path of the Warrior / Art of Fighting - Ryuuko no Ken Gaiden",
-    "1d58523b6556b17f7a5b7458c96094b1": "Bad Apple Demo [Demo]",
-    "780e7387939f2573b452704f5ebb5881": "Bakatonosama Mahjong Manyuuki (MOM-002)(MOH-002)",
-    "a76379f47b349b748a70ceffb0cfc737": "Bang Bang Busters (2010 NCI release) [Prototype]",
-    "2558c293d7538c1d4f7748d9a6ff84d5": "Bang Bead",
-    "b8e228179b6a959e550a89f81942c95e": "Bang Bead (Prototype?) [Prototype]",
-    "4b5b48684237ffca67bba7d3c7d6135d": "Baseball Stars 2",
-    "8a8cf257ce27c4b37fa8d5e736e619f5": "Baseball Stars Professional (NGH-002)",
-    "01d4efa3c62b2bc65f881884078f0c33": "Baseball Stars Professional (NGM-002)",
-    "73b76b9c3415a550429915b18ada3f4b": "Battle Flip Shot",
-    "fe8087667dc4cc4465eeff4ba4f50dd6": "Blazing Star",
-    "8974b9c798b4673396747dc8da8635be": "Blue's Journey / Raguy (ALH-001)",
-    "784c7246c300a9ce652450ead2c0b3d2": "Blue's Journey / Raguy (ALM-001)(ALH-001)",
-    "0139bfa9cf33977a4537178952fbbb8a": "Breakers",
-    "95d63f0311be00b45144d682ecb88473": "Breakers Revenge",
-    "ef960edef492bff4e6ee763cb187f26f": "Burning Fight (NGH-018)(US)",
-    "04727115898607cad131d34dc5263e4d": "Burning Fight (NGM-018)(NGH-018)",
-    "9c2b65bd2d9f23dd16f087d009f7ef30": "Burning Fight (prototype, older) [Prototype]",
-    "34ef228bc356106894b2ca5046d883d2": "Burning Fight (prototype, ver 23.3, 910326) [Prototype]",
-    "2a89a7400b39125453745fa2fcbc39f7": "Captain Tomaday",
-    "fab7194782e6f58dbc3fa8cc78f5b7ee": "Chaos Demo (Neo Geo) [Demo]",
-    "dce50285e1cb114b7ce4ad7f160ff096": "Chibi Marukochan Deluxe Quiz",
-    "8a13aea0e7321252cebf87ba817eaa46": "Chip n Dale (Intro demo) [Demo, You must use the Universe BIOS and set region to Japan AES]",
-    "4e96dc9e92a9dd7927f23108360e2fda": "Choutetsu Brikin'ger - Iron clad (Prototype) [Prototype]",
-    "124eec9ff5e2b5c2f4faa4c2d1dac9a7": "Choutetsu Brikin'ger - Iron clad (Prototype, older) [Prototype]",
-    "2fff0fb6213c811db536e9f76535a10d": "Codename - Blut Engel (2006-01-19) [Homebrew]",
-    "e2c7fc2f294a2225f17052d4298ba572": "Columns (Neo Geo) [Homebrew]",
-    "35220fa05a4a520cd93b2422447b660d": "Crossed Swords (ALM-002)(ALH-002)",
-    "55081e4c0fa5780fe37e2e818e4b3500": "Crossed Swords 2 (bootleg CD to cartridge conversion)",
-    "ff2407658b2c35ff10e7d2afc4104a70": "Crouching Poney Hidden Dragon (DEMO) [Homebrew]",
-    "72c53738315b1fb095dd2af4add42a76": "Crouching Tiger Hidden Dragon 2003 (set 1) [Bootleg, Hack of \"The King of Fighters 2001\"]",
-    "dcbb4c1fd840cad756a3cb5189fcefcb": "Crouching Tiger Hidden Dragon 2003 (set 2) [Bootleg]",
-    "0fe0d67aca28ef6452576811f36e2f3d": "Crouching Tiger Hidden Dragon 2003 Super Plus [Bootleg]",
-    "e66222a3d2a8e2f0f9972db985a66bda": "Crouching Tiger Hidden Dragon 2003 Super Plus alternate [Bootleg]",
-    "3a2c84ff1c8a9a265ba119cabdca7df3": "Cyber-Lip (NGM-010)",
-    "dcdb7251a37ba03e93d83aac1762506f": "DarkWing Duck (Intro demo) [Demo, You must use the Universe BIOS and set region to Japan AES]",
-    "7a0c8ace25b38cba899e6cef44a731a6": "DarkWing Duck (Intro demo, alt) [Demo, You must use the Universe BIOS and set region to Japan AES]",
-    "53b87a20a85e385996b03242de4356b3": "Digger Man [Homebrew]",
-    "57ed77568940d259142558f8914c7aab": "Double Dragon (Neo-Geo)",
-    "78389d8fd253fc251d5c0c8f14bed0e8": "Dragon's Heaven (development board)",
-    "40605b8714fb8920a76263fca5ce8462": "Duck Tales (Intro demo) [Demo, You must use the Universe BIOS and set region to Japan AES]",
-    "41e208e320c90bfb4cffa9d35719cda1": "Eight Man (NGM-025)(NGH-025)",
-    "f4090525452f156129970ee0e79f6f0b": "Far East of Eden - Kabuki Klash / Tengai Makyou - Shin Den",
-    "dd9e31512445ceea93aed41cdc1aa652": "Fatal Fury - King of Fighters / Garou Densetsu - shukumei no tatakai (NGM-033)(NGH-033)",
-    "b9f1beb60601fbd7b83d3084cc467205": "Fatal Fury 2 / Garou Densetsu 2 - arata-naru tatakai (NGM-047)",
-    "9e225be02ac5b4d06acf15075f99ad31": "Fatal Fury 2 / Garou Densetsu 2 - arata-naru tatakai (NGM-047)(NGH-047)",
-    "3aaa4850210217421166c0ed4837a9cb": "Fatal Fury 3 - Road to the Final Victory / Garou Densetsu 3 - haruka-naru tatakai (NGM-069)(NGH-069)",
-    "3465d40ded554abe95ba5e0bbb4b2713": "Fatal Fury 3 - Road to the Final Victory / Garou Densetsu 3 - haruka-naru tatakai (NGM-069)(NGH-069) (alternate set)",
-    "a62d9be63f43427136ffda44211ef126": "Fatal Fury Special / Garou Densetsu Special (set 1)(NGM-058)(NGH-058)",
-    "e8f9720ece9ae139e5e7285af0ea9eca": "Fatal Fury Special / Garou Densetsu Special (set 2)(NGM-058)(NGH-058)",
-    "27072239191ee568b495ad2b06c6d9e5": "Fight Fever (set 1)",
-    "fad43c40a145d353e4a6f6a4e4510520": "Fight Fever (set 2)",
-    "ec4a3a4fe866aeb8f15ee8d4d399c717": "Fighters Swords (Korean release of Samurai Shodown III)",
-    "42dd7658a207ec6a4c28a8832162f231": "Football Frenzy (NGM-034)(NGH-034)",
-    "08f55f1f7f19e66363d7ba4ec9460108": "Frog Feast (Neo Geo) [Homebrew]",
-    "0546467a6079859a643631d789fe7566": "Galaga Demo (set 1) [Homebrew]",
-    "fb7b448567fdfc23e680f1e7627c8b76": "Galaga Demo (set 2) [Homebrew]",
-    "5b4e785d0cce39f4a6883b7b2c9904bc": "Galaxy Fight - Universal Warriors",
-    "418e30a4ad64722b1b5b389b9609ffa1": "Ganryu / Musashi Ganryuki",
-    "675e7475e36e28aa81c7af20946f4ed6": "Garou - Mark of the Wolves (NGH-2530)",
-    "8c10bec884e527fe953dfc64b9c1117f": "Garou - Mark of the Wolves (NGM-2530)",
-    "8da32eea108415a6a6f71b09931ae82a": "Garou - Mark of the Wolves (NGM-2530) (NGH-2530)",
-    "03ae7edef31bd740d7557105d81eeb2a": "Garou - Mark of the Wolves (bootleg) [Bootleg]",
-    "bd45db0b9770aa97f7c1e9d68af4b7db": "Garou - Mark of the Wolves (prototype) [Prototype]",
-    "76949d107c9c3b079de0153adcbc4a84": "Ghost Busters (Intro demo) [Demo, You must use the Universe BIOS and set region to Japan AES]",
-    "f4ff949619d2dd5512304ad559df5d8a": "Ghost Pilots (NGH-020)(US)",
-    "f9547d4261d0b4beadc10cab7ba09c99": "Ghost Pilots (NGM-020)(NGH-020)",
-    "a6a9e7ce5a2d2da8412cf6ae3a0d0ac8": "Ghost Pilots (prototype) [Prototype]",
-    "97a1304835464b8bb676c8b80f70f3cd": "Ghostlop (prototype) [Prototype]",
-    "b079f33dd7ad94fdacc3cf3a1e8ba5ba": "Goal! Goal! Goal!",
-    "03e8fb4712b2ef207a4a43abe7067813": "Gururin",
-    "78e0b49e8a5d89ab4d2307e8f986e632": "Idol Mahjong - final romance 2 (Neo CD Conversion) [Hack]",
-    "d92f49749075beb294b70258fd34b66d": "Jockey Grand Prix (set 1)",
-    "9a899dd77e0c4da756ffb3c5289d3b32": "Jockey Grand Prix (set 2)",
-    "f87161c43a2446d19d1cf52acd430995": "Jonas Indiana and the Lost Temple of RA (20050717) [Homebrew]",
-    "7ca0a370f3a04a562f69348361999f2c": "Jyanshin Densetsu - Quest of Jongmaster",
-    "14a9488f3ac62bb51d4d88f06aced521": "Karnov's Revenge / Fighter's History Dynamite",
-    "e76331f2701d2c9b9d67f1258b364421": "King of Gladiator (The King of Fighters '97 bootleg) [Bootleg]",
-    "77c81c38e65c5287b6b830c245cc0ff4": "King of Gladiator Plus (The King of Fighters '97 bootleg) [Bootleg]",
-    "9cc5b67eed69ced58ed18c853a6fee47": "King of the Monsters (set 1)",
-    "a820fe15736e6b60e545f3718461075e": "King of the Monsters (set 2)",
-    "86a713847c732d911fb78ee2759ee2c6": "King of the Monsters 2 - The Next Thing (NGM-039)(NGH-039)",
-    "975c5bc610a31229ec55a54fd110fc97": "King of the Monsters 2 - The Next Thing (older)",
-    "4ffc4c554e7d0098b7e826654d56e8d2": "King of the Monsters 2 - The Next Thing (prototype) [Prototype]",
-    "42c4ed150613a1f5f263ddc6aa6f39e4": "Kizuna Encounter - Super Tag Battle / Fu'un Super Tag Battle",
-    "b92c57b41d1977c15862d0445b6e9913": "Kof 10th Anniversary (The King of Fighters 2002 bootleg / Fully Decrypted) [Hack]",
-    "d0c5e4572f5a3e8a5a4a0a4264faa409": "Kof'98 (Plus Final Edition)(2017-07-23)(Korean board) [Hack]",
-    "5d64144a3813ada5e7e936c980801c6d": "Kof'98 Mix (2011-10-01)",
-    "1e58c68b657e7418a42e3a1e6392c335": "Kof2002 (Omega v0.8) [Bootleg]",
-    "194dc2dccdb7150e0265fc44f2ae0e58": "Kof2002 (Omega v0.9 beta) [Bootleg]",
-    "0c5b1b70b095a32f242979be49775a4e": "Kof2002 (Omega v0.9) [Bootleg]",
-    "83f0736d01f2197c4c48b6ade90c8e4b": "Kof2002 (hack omg) [Bootleg]",
-    "714ca971aaf3027c57dfe2faadd1e5f7": "Lansquenet 2004 (Shock Troopers - 2nd Squad bootleg) [Bootleg]",
-    "4b914ec374e7677f63c32f9054e8488c": "Last Hope (bootleg AES to MVS conversion, no coin support)",
-    "d5de0bc81cd3fabc5263739066edfe11": "Last Hope CD Beta (Neo CD conversion) [Hack, Imperfect graphics]",
-    "5e3398fe8551b2210abdb848f48ded9f": "Last Resort",
-    "b2a824c1ec2667c960e30c4472441b37": "Last Resort (prototype) [Prototype]",
-    "fdd6244afc70cfbc8a9dd37efb9f3668": "League Bowling (NGM-019)(NGH-019)",
-    "5ddf500a390fbe5cfb1c685fdcf72992": "Legend of Success Joe / Ashitano Joe Densetsu",
-    "4212f892a9ee1892be37aa9b807ddcda": "Magical Drop II",
-    "5181c70729fbd05e530c3c0cb0b9ce19": "Magical Drop III",
-    "6f393a9b8f6f0fb3403a85b89799a05c": "Magician Lord (NGH-005)",
-    "86cef5d62d699b50713885b3532f672c": "Magician Lord (NGM-005)",
-    "874a5285c2da9a6ff093e7aeee105dd1": "Mahjong Kyo Retsuden (NGM-004)(NGH-004)",
-    "f3a93378458b0c6204ba9ca9cbf9b4f1": "Matrimelee / Shin Gouketsuji Ichizoku Toukon (NGM-2660) (NGH-2660)",
-    "a3f4d3d878bec3fe759b4c8b8aea5718": "Matrimelee / Shin Gouketsuji Ichizoku Toukon (bootleg) [Bootleg]",
-    "7250505a0a2c98855b62ed9e211d5e64": "Metal Slug (Multifunction Hack)",
-    "e378b15e0e287bb484454e489181c71d": "Metal Slug - Super Vehicle-001",
-    "0b105b84a524bee83be402179329c546": "Metal Slug 2 - Super Vehicle-001/II (Multifunction Hack)",
-    "a4a0dce6d2e54c9c4f2e3e8d4c8cc249": "Metal Slug 2 - Super Vehicle-001/II (NGM-2410) (NGH-2410)",
-    "9c6d133a4850d1a33acaf654f12bd496": "Metal Slug 2 Turbo (NGM-9410)",
-    "cc4332d65cd534bd67e58e083eb55926": "Metal Slug 3 (Multifunction Hack)",
-    "26e30fefa2d03e932ec4287220be3681": "Metal Slug 3 (NGH-2560)",
-    "6b0374525c2a93bc0535c07f7a0bd348": "Metal Slug 3 (NGH-2560) (Enhanced Violence Version hack by EEZEZY)",
-    "011e479c1f2b2dc99540c77b3825b357": "Metal Slug 3 (NGM-2560)",
-    "55666ff31f5cefe3792985404780f603": "Metal Slug 3 (NGM-2560, earlier)",
-    "e75af30ee2f0e4ba04122c791665ed20": "Metal Slug 4 (Multifunction Hack)",
-    "77d75c9b4fe774b2790c4a12fe348dc5": "Metal Slug 4 (NGH-2630)",
-    "2c6ffbfaae186f414a1ac77777990cd6": "Metal Slug 4 (NGM-2630)",
-    "37d86572cce3cd9770883e6bc4cb7bde": "Metal Slug 4 Plus (bootleg) [Bootleg]",
-    "d52271e8ee66e10a93ede5f23c6a0e0e": "Metal Slug 5 (JAMMA PCB)",
-    "538249557f51707d7c9781494a8fa22b": "Metal Slug 5 (Multifunction Hack) [Hack]",
-    "4c7da355f7a938747e375ea3e175a660": "Metal Slug 5 (NGH-2680)",
-    "b91ab0c462cf8f7c2f8db953c5cdecb6": "Metal Slug 5 (NGM-2680)",
-    "5b77e349f28588fd3887bf12482e1dff": "Metal Slug 5 (W)",
-    "92b4933117e2b2137e82c6dda09ed144": "Metal Slug 5 (bootleg)",
-    "ad6938b4ee23b5f5b850d3743662f4e1": "Metal Slug 5 Plus (bootleg) [Bootleg]",
-    "7abceafea4bf1629ba7836e89291545a": "Metal Slug 6 (Metal Slug 3 bootleg) [Bootleg]",
-    "eaac17b225b66c4bc1f051228b49d790": "Metal Slug X - Super Vehicle-001 (NGM-2500)(NGH-2500)",
-    "262c69f27a65b719367b69a2a71f21cd": "Minasanno Okagesamadesu! Daisugorokutaikai (MOM-001)(MOH-001)",
-    "b7e4e1809f3242cd7874ce52ffb4ea42": "Money Puzzle Exchanger / Money Idol Exchanger",
-    "7d379c2ff0237185d3987baf4ca8e65e": "Mutation Nation (NGM-014)(NGH-014)",
-    "bdef42f65dc84751973763b50d92bf06": "NAM-1975 (NGM-001)(NGH-001)",
-    "5856a009b3c4b7a5daf2ee70ea74a254": "NGEM2K (beta 2006-01-18) [Homebrew]",
-    "44256c90b38c1e0b6e8db11085d9cf0b": "NGF Transparency Demo [Homebrew, redarmor.net]",
-    "127840e4da82408f7b5e195cbb06233a": "Neo 2500 Demo [Demo]",
-    "4d7a21551ff441f1c565af443b20b529": "Neo Bomberman",
-    "b5e58329f00dd247d8c18637a443f0c6": "Neo CastleVania Demo [Homebrew]",
-    "36214a70cb951f01a5428c031ed2ce01": "Neo Drift Out - New Technology",
-    "62d56b126e78f3d82faa4ee8a92c3e82": "Neo Geo CDZ system [System - media selected seperately]",
-    "d46f973c51c58c5cb9ba474661588e1d": "Neo Geo [BIOS only]",
-    "11b1ec7bc835732884d61093e28b9067": "Neo Mr. Do!",
-    "9a8f7e03f90a1fe805e0fa15e08bb454": "Neo No Panepon (beta) [Homebrew]",
-    "5885595efa374a1b1f5fafb44e0daec7": "Neo Pong (ver 1.0) [Homebrew]",
-    "9d2a379cb0ed1660c361b5018f6feb31": "Neo Pong (ver 1.1) [Homebrew]",
-    "a2cd46ca2892d4e887ab10927550b42b": "Neo System Check (ver 1.0b) [Demo]",
-    "f94f51df66c9caea9da4267b0bfc04ce": "Neo Thunder [Homebrew, sebastianmihai.com]",
-    "94592ad1126ac22f3767c46ad06dbe19": "Neo Turf Masters / Big Tournament Golf",
-    "256f4f68c41890cffcee15a3e9815c28": "Neo-Geo Cup '98 - The Road to the Victory",
-    "ea90a946071f6754c200e5841348d4d7": "NeoGeo 2-Player Tetris [Homebrew]",
-    "1dad50ef5e468583aab2422b5e9357ac": "NeoGeo 3D! Demo [Homebrew]",
-    "b3b60dfbcb0b00bf6f3ea902ef7a91a2": "Nightmare in the Dark",
-    "0b5370b63647eb87412665bace386e62": "Nightmare in the Dark (bootleg) [Bootleg]",
-    "097af3014e4567f50c1f803051af740a": "Ninja Combat (NGH-009)",
-    "84763c67bd09cef94f532079c612e43f": "Ninja Combat (NGM-009)",
-    "2858ce4b67b7261a350b881c43cfbb7e": "Ninja Commando",
-    "9330b0611d352856e0cd2240563e0df9": "Ninja Master's - haoh-ninpo-cho",
-    "e3b8599bebc52258afbada40335149fe": "Over Top",
-    "ca6c05d53a37f58e6e88e873efec22aa": "Pae Wang Jeon Seol / Legend of a Warrior (Korean censored Samurai Shodown IV)",
-    "590c1a19c4200a42d98fe1c1431a60d4": "Panic Bomber",
-    "07b285c65b418406e40a211ea55fd380": "Pleasure Goal / Futsal - 5 on 5 Mini Soccer (NGM-219)",
-    "52b6958ccb58ca46377127b2415d61b1": "Pochi and Nyaa (Ver 2.00)",
-    "996a16f4a3b072a0bb676b5e7076b697": "Pochi and Nyaa (Ver 2.02)",
-    "fb8d38a9fea747f4f6935c6051f3a404": "Poker Night [Homebrew]",
-    "3d7b3013d9265833ebd3ebc8ac910b1a": "Pop 'n Bounce / Gapporin",
-    "a697cbd3bae0cda1966dfd27daff577d": "Power Spikes II (NGM-068)",
-    "1876d75972acb8df0f711cadd866c3a4": "Prehistoric Isle 2",
-    "0f93aed878dbb3d44390805a61098083": "Primo Demo [Homebrew]",
-    "b97989f6332886266867dcd3e6217003": "Pulstar",
-    "37e4470fb3457a533b40f38456117fc3": "Puzzle Bobble / Bust-A-Move (Neo-Geo) (NGM-083)",
-    "daa25a160a5cf61063321f5219918c93": "Puzzle Bobble / Bust-A-Move (Neo-Geo) (bootleg) [Bootleg]",
-    "e1974956f47cfa208ab827a6f15048b2": "Puzzle Bobble 2 / Bust-A-Move Again (Neo-Geo)",
-    "8e46df62d18ffb6ab6f0a28c75d3c07f": "Puzzle De Pon!",
-    "99258b9555200df7af8dc54c0b16538e": "Puzzle De Pon! R!",
-    "d794feeb597f9a51485894b7c620070b": "Puzzled / Joy Joy Kid (NGM-021)(NGH-021)",
-    "9fac4c7a2fa855fe4ba1dddc2c9d4544": "Quiz Daisousa Sen - The Last Count Down (Korean release)",
-    "8fca159271a8e6f2673964c81000c973": "Quiz Daisousa Sen - The Last Count Down (NGM-023)(NGH-023)",
-    "7621096bbcdae45a6e3e47ae782768e9": "Quiz King of Fighters (Korean release)",
-    "f779e5f7f27aef68d0324b976c837344": "Quiz King of Fighters (SAM-080)(SAH-080)",
-    "092fb9625c7535fd2d460a4bdd28904b": "Quiz Meitantei Neo & Geo - Quiz Daisousa Sen part 2 (NGM-042)(NGH-042)",
-    "bff5a69d3f0cddadfaca2b0881a6573b": "Rage of the Dragons (NGH-2640)",
-    "febe75f47b862fd4d708c72f720f0537": "Rage of the Dragons (NGM-264?)",
-    "e5c3bfc0dea9179214cbc3937ca33349": "Ragnagard / Shin-Oh-Ken",
-    "e8e18d0e95129ffe98684d0b330f8956": "Real Bout Fatal Fury / Real Bout Garou Densetsu (Korean release)",
-    "6b6df261371284ddabf050f939194649": "Real Bout Fatal Fury / Real Bout Garou Densetsu (Korean release, bug fix revision)",
-    "e7aac43997ec759ab30a39750baf5586": "Real Bout Fatal Fury / Real Bout Garou Densetsu (NGM-095)(NGH-095)",
-    "dd315322b379cfa8e246ad88f2f9c562": "Real Bout Fatal Fury / Real Bout Garou Densetsu (bug fix revision)",
-    "b5086940717f3b318e1b88485265a634": "Real Bout Fatal Fury 2 - The Newcomers (Korean release)",
-    "d9810d67b41261983119fbd808095628": "Real Bout Fatal Fury 2 - The Newcomers / Real Bout Garou Densetsu 2 - the newcomers (NGH-2400)",
-    "a79d463c561aed86f0437b119d643fc2": "Real Bout Fatal Fury 2 - The Newcomers / Real Bout Garou Densetsu 2 - the newcomers (NGM-2400)",
-    "255524bacab0a7bf4a63373c6e5230aa": "Real Bout Fatal Fury Special / Real Bout Garou Densetsu Special",
-    "d70a88ee67cad7de01ca2c753202b599": "Real Bout Fatal Fury Special / Real Bout Garou Densetsu Special (Korean release)",
-    "5843b1fc198cd933ee173c04635a8d87": "Riding Hero (NGM-006)(NGH-006)",
-    "f0fd96eaf90b0122e4ed2da9c349efd9": "Riding Hero (set 2)",
-    "7f6680ec485734082e8c9502a541441b": "Robo Army (set 1)",
-    "ac06c8f69bac4b51b7c96d9f4ec27762": "Robo Army (set 2)",
-    "e4b123667d0c3df653fb17261a4eca17": "Robocop (Intro demo) [Demo, You must use the Universe BIOS and set region to Japan AES]",
-    "b5add03314347d91a647c18c7f67931b": "SNK vs. Capcom - SVC Chaos (JAMMA PCB, set 1)",
-    "f6f22628af988aa9bb25b0fca2464e6b": "SNK vs. Capcom - SVC Chaos (JAMMA PCB, set 2)",
-    "7710f3906dc2df7e412aafe6287a012f": "SNK vs. Capcom - SVC Chaos (NGM-2690)(NGH-2690)",
-    "8a2fad33455927a1d855da8bb7b61e3d": "SNK vs. Capcom - SVC Chaos (bootleg) [Bootleg]",
-    "c929309ce5a9ac9e2231f6a6002d5213": "SNK vs. Capcom - SVC Chaos Plus (bootleg set 1) [Bootleg]",
-    "fef804465c857fac77fdcea3fef576ca": "SNK vs. Capcom - SVC Chaos Plus (bootleg set 2) [Bootleg]",
-    "38eacde1adc1cd2ae1c95ed14da6ba8c": "SNK vs. Capcom - SVC Chaos Super Plus (bootleg) [Bootleg]",
-    "d117efbaa7cf84afe544093d3e98304b": "Samurai Shodown / Samurai Spirits (NGH-045)",
-    "2d114c8d03417e51cb1609e6b67415cc": "Samurai Shodown / Samurai Spirits (NGM-045)",
-    "ae7cf716b7d11d8ba15405cecc17bce1": "Samurai Shodown / Samurai Spirits (NGM-045, alternate board)",
-    "bc6d83397d41c0db7cf6dc5829e9de10": "Samurai Shodown II / Shin Samurai Spirits - Haohmaru jigokuhen (NGM-063)(NGH-063)",
-    "0f3632f28e3f82cd0f61c864ab50c257": "Samurai Shodown II / Shin Samurai Spirits - Haohmaru jigokuhen (Special 2017, hack) [Hack]",
-    "bf5a3394bad5319aeded8a0642e4e6db": "Samurai Shodown III / Samurai Spirits - Zankurou Musouken (NGH-087)",
-    "0046d621f064995f73ea15a9eaddc8ce": "Samurai Shodown III / Samurai Spirits - Zankurou Musouken (NGM-087)",
-    "5bacc8c957bb0c831682fe93950e902b": "Samurai Shodown IV - Amakusa's Revenge / Samurai Spirits - Amakusa Kourin (NGM-222)(NGH-222)",
-    "e673198bb9324b83bddae1e7d0c5ec2b": "Samurai Shodown IV - Amakusa's Revenge / Samurai Spirits - Amakusa Kourin (Special 2017, hack) [Hack]",
-    "0d464853b8265acf0891548bddbc9dd9": "Samurai Shodown V / Samurai Spirits Zero (NGH-2700)",
-    "1ac56ea0361a35bc5ccca0a182e4b54e": "Samurai Shodown V / Samurai Spirits Zero (NGM-2700, set 1)",
-    "e743f9a549fa0ad35d80300ea08fedf7": "Samurai Shodown V / Samurai Spirits Zero (NGM-2700, set 2)",
-    "a1de9b60d5e2468e7aa8f60ddf6c2df3": "Samurai Shodown V / Samurai Spirits Zero (bootleg) [Bootleg]",
-    "29ff9d9f5994ba3727dcd8d6bb13aa6a": "Samurai Shodown V / Samurai Spirits Zero (hack of XBOX version) [Hack]",
-    "d4f19a0e802dad7987b29084de4798f2": "Samurai Shodown V Special / Samurai Spirits Zero Special (NGH-2720) (1st release, censored)",
-    "43ff9af98996059123ba2ee586c7f8b0": "Samurai Shodown V Special / Samurai Spirits Zero Special (NGH-2720) (2nd release, less censored)",
-    "be510bb77f704376d0f58b56659a2cc6": "Samurai Shodown V Special / Samurai Spirits Zero Special (NGM-2720)",
-    "460ed4147c2d6f0595ef79d0f76134d5": "Saulabi Spirits / Jin Saulabi Tu Hon (Korean release of Samurai Shodown II)",
-    "db6100985b8ee7ce8c044cf5b102d4f2": "Saulabi Spirits / Jin Saulabi Tu Hon (Korean release of Samurai Shodown II, set 2)",
-    "b269f98eae5811bcf38f51a7c7bcb5e8": "Savage Reign / Fu'un Mokushiroku - kakutou sousei",
-    "7b3ddfb89ce692ca70f37f5d7e574a23": "Sengoku / Sengoku Denshou (NGH-017)(US)",
-    "6ca0c96326fea8267e23008724ecacb6": "Sengoku / Sengoku Denshou (NGM-017)(NGH-017)",
-    "ec8ef4af4d660d8f7afae5f96c52974f": "Sengoku 2 / Sengoku Denshou 2",
-    "da906050edf62ca451780678ff145e5c": "Sengoku 3 / Sengoku Densho 2001 (Evolution 1.0, FCHT hack) [Hack]",
-    "70ae8ebf99461ae41bdbd997a9f11e08": "Sengoku 3 / Sengoku Densho 2001 (Set 2)",
-    "1f7c6e9669b98e7951fcd8d7b4b54d85": "Sengoku 3 / Sengoku Densho 2001 (set 1)",
-    "f026ef275a99d5fdd8f97a144704e381": "Shadow of the Beast (Neo Geo demo) [Demo]",
-    "c41f6542ed99a1d76769d22bdb7dcb43": "Shock Troopers (set 1)",
-    "fc9c4d984feff31f0fd0751002b73db5": "Shock Troopers (set 2)",
-    "692e13eb37f127041b8d240f8605329c": "Shock Troopers - 2nd Squad",
-    "8404dbb6ed7f9a3220c72c8301a574da": "Soccer Brawl (NGH-031)",
-    "b10b3727720fd43ebd4fdc79138ea610": "Soccer Brawl (NGM-031)",
-    "2346353f7361b9a88a91ee1104f7f271": "Spiderman (Intro demo) [Demo, You must use the Universe BIOS and set region to Japan AES]",
-    "f0a698071dec1465cd91e6dd428e73a5": "Spin Master / Miracle Adventure",
-    "a056a514f37d840fd73689cc0fedb9dc": "Stakes Winner / Stakes Winner - GI kinzen seiha e no michi",
-    "90152e901db6c844d3ab73c92242f216": "Stakes Winner 2",
-    "59541225335b610ce223be7266a566f2": "Street Hoop / Street Slam / Dunk Dream (DEM-004) (DEH-004)",
-    "d6b27bb961d6a120fca1bc905d1e6838": "Strikers 1945 Plus",
-    "73d98b15b053a1fdeed2117576a2d408": "Super Dodge Ball / Kunio no Nekketsu Toukyuu Densetsu",
-    "f7da6b534f41fa65575577d76716cd77": "Super Sidekicks / Tokuten Ou",
-    "d454f1c7d25a95153b7cd0e6300cfbc7": "Super Sidekicks 2 - The World Championship / Tokuten Ou 2 - real fight football (NGM-061)(NGH-061)",
-    "dac8a413a3045306012332afef0105f0": "Super Sidekicks 3 - The Next Glory / Tokuten Ou 3 - eikou e no michi",
-    "1403c156ebbd875c1cae1dd1d3a93a56": "Syougi No Tatsujin - Master of Shougi",
-    "5f60d8bdb36f57ef879719a92de29001": "Tecmo World Soccer '96",
-    "2fec1cdd3423175c920b505f4e768507": "Teenage Mutant Ninja Turtles (Intro demo) [Demo, You must use the Universe BIOS and set region to Japan AES]",
-    "ee2b8075f97347caf0ef5df89e79c2b9": "Teenage Mutant Ninja Turtles (Intro demo, alt) [Demo, You must use the Universe BIOS and set region to Japan AES]",
-    "0e369df30a70e45547cef9e4078dc511": "The Irritating Maze / Ultra Denryu Iraira Bou",
-    "b9e0a02df53322a2e6d915850d96dcb4": "The King of Fighters '94 (NGM-055)(NGH-055)",
-    "30776bca68e8918ba7bc1068025856bf": "The King of Fighters '95 (NGH-084)",
-    "9bb27851590099097a172f2f9510d64e": "The King of Fighters '95 (NGH-084, alternate board)",
-    "c2cdf06349e770135b890441bcc33322": "The King of Fighters '95 (NGM-084)",
-    "d315748aa0aec257ed9f503d32ddad0e": "The King of Fighters '95 (Special 2017, hack) [Hack]",
-    "fd4e14a77cbcec8b0ebc3aee4a79c964": "The King of Fighters '96 (Anniversary Edition, EGHT hack) [Hack]",
-    "a5a3aea5f92e845d6395321f16c6073f": "The King of Fighters '96 (Chinese Edition ver 1.0, hack) [Hack]",
-    "a72ea6528400612bf01ae43361e48045": "The King of Fighters '96 (NGH-214)",
-    "a5e81a1c1d51d6fd9b40d317885a8413": "The King of Fighters '96 (NGM-214)",
-    "d1dcf1d3c3693372b2e19004972a98f6": "The King of Fighters '96 (NGM-214, alternate board)",
-    "5d7da598b9a67e1df1b9ff92c5d090c5": "The King of Fighters '96 (The Aniversary Edition 2.0 Final Version 2019-05-30) [Hack]",
-    "6dd3371e918c41334fe0432a5afcdda5": "The King of Fighters '96 (bootleg / hack) [Bootleg]",
-    "2a41fe132df84eac752f3dd061b63b2a": "The King of Fighters '97 (10th Anniversary Chinese Edition, EGHT hack) [Hack]",
-    "31a8dd92f32b67977aba656d2f132c7c": "The King of Fighters '97 (Korean release)",
-    "37220504be77340d1f6ee7c048e1d4d6": "The King of Fighters '97 (NGH-2320)",
-    "05825a8230e5c3d2d6f38dd6caf3da62": "The King of Fighters '97 (NGM-2320)",
-    "1d8fa880c8f6790c6c0073b2bf082358": "The King of Fighters '97 - Combo Training (Hack, Ver. 2018) [Hack]",
-    "56461572dafabb9dc019891bc4718336": "The King of Fighters '97 - Final Battle (hack) [Hack]",
-    "04201709ed396d6834d6228b6d8495c1": "The King of Fighters '97 - Random Combo (Hack, Ver. 2010) [Hack]",
-    "f57f65f486bfc0deee75bc6959683e30": "The King of Fighters '97 Plus (bootleg) [Bootleg]",
-    "a1999d006e2dab599697684271339261": "The King of Fighters '97 Plus 2003 (bootleg / hack) [Bootleg]",
-    "1300cbeae386e48c9319f210ae46d800": "The King of Fighters '97 oroshi plus 2003 [Bootleg]",
-    "2a6c6150cc2dad43947c4dbc60aa8504": "The King of Fighters '98 (Anniversary Edition build 1.2.0827) [Hack]",
-    "68224ae898f15719f258589d9154b274": "The King of Fighters '98 (Anniversary Edition, EGHT hack) [Hack]",
-    "53c90f611675937d6c76ee6a9eff9147": "The King of Fighters '98 (Combo, hack) [Hack]",
-    "ebf9b9d4791102dd12ed6576c85c8457": "The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (Korean board, set 1)",
-    "17c4494c3f1d494a522a5825328c7238": "The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (Korean board, set 2)",
-    "15185a1974e2275df77325a48d53508a": "The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (NGH-2420)",
-    "60344e3c402ff52ef37e2917f7c30619": "The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (NGM-2420)",
-    "5070cf1476106ff9b2636a65f306ef5f": "The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (NGM-2420, alternate board)",
-    "89539bf28a3b6c61f215641fe2924c94": "The King of Fighters '98 Easy Combo King 2014 (Versus Version, Hack) [Hack]",
-    "674542573e2f5553b284af2d73114a0f": "The King of Fighters '99 - Millennium Battle (Korean release)",
-    "f7b3716b766a7670f85035d33eb7f6e4": "The King of Fighters '99 - Millennium Battle (Korean release, non-encrypted program)",
-    "560e219f30909722fb9ce4f45ea48af9": "The King of Fighters '99 - Millennium Battle (NGH-2510)",
-    "1ca0c402bb83882f988f048f5e5a2206": "The King of Fighters '99 - Millennium Battle (NGM-2510)",
-    "c305cf3dd5a269e5f6f9e07ef1834e87": "The King of Fighters '99 - Millennium Battle (earlier)",
-    "76548478f2d74c2756cfd8a20e301ca2": "The King of Fighters '99 - Millennium Battle (prototype) [Prototype]",
-    "7f4e02c47083ac111d827a040178c6b1": "The King of Fighters '99 Anniversary Edition (hack) [Prototype]",
-    "0711cf93c4bb209ee9fe55a3bf3b4501": "The King of Fighters '99 Evolution Ultra Remix (Hack By Yashional) [Hack]",
-    "bb9f16535d2d7c6fcc5842af354069bf": "The King of Fighters '99 Remix Pro V2.0 Final (Hack By FCHT) [Hack]",
-    "55e629ca70128e6ab865910e61089989": "The King of Fighters '99 Summer Revolution (Hack By FCHT) [Hack]",
-    "b603d626410ec8b9c162f5c17cca753e": "The King of Fighters 10th Anniversary (bootleg) [Bootleg]",
-    "151dac45566a381ca2f28eb1bbdc7f46": "The King of Fighters 10th Anniversary 2005 Unique (bootleg) [Bootleg]",
-    "fe4546cf1c7e6798b027326a7f624848": "The King of Fighters 10th Anniversary 2019 (Optimized, Hack) [Hack]",
-    "418aa42f671e27a4fe1efdde4d1e1ae9": "The King of Fighters 10th Anniversary Extra Plus (bootleg) [Bootleg]",
-    "a70f603c87e725bc8ff299deeebf5a56": "The King of Fighters 2000 (NGM-2570) (NGH-2570)",
-    "9c7e2710a6515a9af54d4355d2fb0f56": "The King of Fighters 2000 (Playstation 2 ver. , EGHT hack) [hack only enable in AES mode]",
-    "fec7d78710c8a522427f13902616adaa": "The King of Fighters 2000 (not encrypted)",
-    "afb604a8eaa831c49316660047f82f83": "The King of Fighters 2001 (NGH-2621)",
-    "e741a11313806ce2e91c12a6ac1a5d71": "The King of Fighters 2001 (NGM-262?)",
-    "fca348e18b27e748b0b189d0d8dd41b5": "The King of Fighters 2001 Plus (set 1, bootleg / hack) [Bootleg]",
-    "f5d6275fa153475f2939a4013cc2ffd7": "The King of Fighters 2001 Plus (set 2, bootleg / hack) [Bootleg]",
-    "fb1aa9feadf1f89e86e63d336a9eb8ff": "The King of Fighters 2002 (NGM-2650)(NGH-2650)",
-    "677425cd0ac7c6ac0ee60f391aec5bde": "The King of Fighters 2002 (PlayStation 2 ver 0.4, EGHT hack) [Hack]",
-    "667b7fc4a79b9182adf649a95a1cf617": "The King of Fighters 2002 (bootleg) [Bootleg]",
-    "0b12f66dccfa31e7e7c596d4f5b910b2": "The King of Fighters 2002 - 3rd Strike of Orochi (Hack by EGCG/EGHT) [Hack]",
-    "32160a62a9bc12ac01d71af6166e09f3": "The King of Fighters 2002 Magic Plus (bootleg) [Bootleg]",
-    "5ef5d85479cf27ad5c109f59fc3c9057": "The King of Fighters 2002 Magic Plus II (bootleg) [Bootleg]",
-    "a3d041099607ad001bce1d8bb95ead2e": "The King of Fighters 2002 Plus (bootleg set 1) [Bootleg]",
-    "eb5017df895de83d0950b339fc13dcb5": "The King of Fighters 2002 Plus (bootleg set 2) [Bootleg]",
-    "a1104b07223b1f8415256b08642b306f": "The King of Fighters 2002 Plus (bootleg set 3) [Bootleg]",
-    "7a29925cb28c326c10f3add97214595a": "The King of Fighters 2002 Remix Ultra 3.5 (Hack By FCHT) [Hack]",
-    "7ab11422512d87f435a298dc5a93ae42": "The King of Fighters 2002 Super (bootleg) [Bootleg]",
-    "e911c18df78cf568fa2edea3ea8a481a": "The King of Fighters 2003 (Japan, JAMMA PCB)",
-    "bd58ecb40261094098c137453afb2595": "The King of Fighters 2003 (NGH-2710)",
-    "74bb96a7a017de8208ddc7de6960c815": "The King of Fighters 2003 (NGM-2710)",
-    "a27a130ed5c2788294f887fad03a3798": "The King of Fighters 2003 (bootleg set 1) [Bootleg]",
-    "46053dcf7d0e0bb479b66bb3d946518e": "The King of Fighters 2003 (bootleg set 2) [Bootleg]",
-    "da4771c10e964abf75562deb3608b5aa": "The King of Fighters 2003 PlayStation 2 (Hack By EGCG) [Hack, Use AES (Console) mode!]",
-    "45bcb397dcb56b3f8c80b870ce74c784": "The King of Fighters 2004 Plus / Hero (bootleg) [Bootleg]",
-    "c4a9213717d5ad4be3017cd5a7638b71": "The King of Fighters 2004 Ultra Plus (bootleg) [Bootleg]",
-    "d085e17574b5176bc800c88207d9f985": "The King of Fighters Special Edition 2004 (bootleg) [Bootleg]",
-    "33e169ad618a44ccc62969ffdf3e0ef2": "The King of Fighters Special Edition 2004 Plus (bootleg) [Bootleg]",
-    "da9482e37d5ac43307eda6fe923425c0": "The Last Blade / Bakumatsu Roman - Gekka no Kenshi (NGH-2340)",
-    "83c03a7e32c03eccd6233ede57c7edeb": "The Last Blade / Bakumatsu Roman - Gekka no Kenshi (NGM-2340)",
-    "9938344a80ed580b7ca3f02ea0d994f6": "The Last Blade / Bakumatsu Roman - Gekka no Kenshi (NGM-2340, alternate board)",
-    "99f4ef309718c3973c9ae873183e5494": "The Last Blade / Bakumatsu Roman - Gekka no Kenshi (Special 2017, hack)",
-    "3208238e735b398f3c4b6690a755fac7": "The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka no Kenshi (Enhanced Hack)",
-    "2b3f34ad69cfb02d9e2ab87b639e8c0f": "The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka no Kenshi (NGM-2430)(NGH-2430)",
-    "a5170e54e5eeb25b7c56ad9c3859f72d": "The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka no Kenshi (Team Edition Hack)",
-    "a9ad9a7e9db41868a7b89f965bf3bc59": "The Last Soldier (Korean release of The Last Blade)",
-    "344f1401d33a4435e2284269a615cd89": "The Super Spy (NGM-011)(NGH-011)",
-    "fc7088d10dbc9202a7f6777a97cd229b": "The Ultimate 11 - The SNK Football Championship / Tokuten Ou - Honoo no Libero",
-    "fbc2c0a1a93cdbd5b5b94134379d78ac": "Thrash Rally (ALM-003)(ALH-003)",
-    "15e0a840bb10203d08da38ef750264c7": "Time's Up Demo [Homebrew]",
-    "35050c5579ac95fbbcc2a78bbdb89b7a": "Top Hunter - Roddy & Cathy (NGH-046)",
-    "72a2169918b4f4934542da50c39f8cb4": "Top Hunter - Roddy & Cathy (NGM-046)",
-    "ddf9840ab2ab01ced9e5e6577ae809f7": "Top Player's Golf (NGM-003)(NGH-003)",
-    "84f16a8c76830ae2f29ad1a13a031364": "Treasure of the Caribbean",
-    "9c2f52aed5a185e8e19fab591d444da5": "Twinkle Star Sprites",
-    "d8830f336a0d6a31c1f79dc943a0e5d4": "V-Liner (v0.53)",
-    "abd001f2c7c38b10f32ac86d975d77c3": "V-Liner (v0.54)",
-    "86da4e6110804aa4c235350ff05ed53b": "V-Liner (v0.6e)",
-    "098f8a7d77dcdb795ed588053f69378c": "V-Liner (v0.7a)",
-    "aa7efe28fc015d0c0c184813d0f0c287": "V-Liner (v0.7e)",
-    "d958b71c5aa132258880668143f23972": "Viewpoint",
-    "9db8c21613aeca2cfbde469a90c6b0c3": "Viewpoint (prototype) [Prototype]",
-    "081e054de20c75e54208bfe2d16ce12a": "Voltage Fighter - Gowcaizer / Choujin Gakuen Gowcaizer",
-    "46e38f3a98304b153a72cffc6e86539f": "WW2 Demo - Arcade Development Project [Homebrew]",
-    "6e12eb749c206523847c74fc850fcd3e": "Waku Waku 7",
-    "33852eead43a21fc1ac328bf2bf16ad7": "Windjammers / Flying Power Disc",
-    "04681340528a875e32ea67a210eb373b": "World Heroes (ALH-005)",
-    "f04d6bdd73cdc200aa42f65f5e24e0de": "World Heroes (ALM-005)",
-    "9629958347ee9ada9e2bdb60d6ad1a95": "World Heroes (set 3)",
-    "3608375c3d6cf1730969a9510f93dabb": "World Heroes 2 (ALH-006)",
-    "ba9e1a5bcd3cb7c7e2aaf1cac03af092": "World Heroes 2 (ALM-006)(ALH-006)",
-    "e299325e78bc8f69953e8b76348ec504": "World Heroes 2 Jet (ADM-007)",
-    "f3d8651db423a7f4304cea027fe07f33": "World Heroes 2 Jet (ADM-007)(ADH-007)",
-    "ebda270423154e632033bbb33233b30a": "World Heroes Perfect",
-    "c9824ceb9aa2745ad88d89fb792133d3": "Zed Blade / Operation Ragnarok",
-    "738c638f1e558f7a9dd3b09c89fdfe30": "Zintrick / Oshidashi Zentrix (Neo CD conversion) [Hack]",
-    "fb38821b2cd5736f7033e8562fa3d3c8": "Zintrick / Oshidashi Zentrix (hack / bootleg) [Bootleg]",
-    "cd0a12ab3ef9e4f18f69ca36af6f2fba": "Zupapa!"
+  "_by_name": {
+    "neogeo": {
+      "2020bb.zip": [
+        "030-p1.p1",
+        "2020 Super Baseball (set 1)"
+      ],
+      "2020bba.zip": [
+        "030-epr.p1",
+        "2020 Super Baseball (set 2)"
+      ],
+      "2020bbh.zip": [
+        "030-pg1.p1",
+        "2020 Super Baseball (set 3)"
+      ],
+      "3countba.zip": [
+        "043-epr.ep1",
+        "3 Count Bout / Fire Suplex (NGM-043)"
+      ],
+      "3countb.zip": [
+        "043-p1.p1",
+        "3 Count Bout / Fire Suplex (NGM-043)(NGH-043)"
+      ],
+      "4play.zip": [
+        "4play_p1.rom",
+        "4 player input test"
+      ],
+      "sonicwi2.zip": [
+        "075-p1.p1",
+        "Aero Fighters 2 / Sonic Wings 2"
+      ],
+      "sonicwi3.zip": [
+        "097-p1.p1",
+        "Aero Fighters 3 / Sonic Wings 3"
+      ],
+      "aodk.zip": [
+        "074-p1.p1",
+        "Aggressors of Dark Kombat / Tsuukai GANGAN Koushinkyoku (ADM-008)(ADH-008)"
+      ],
+      "alpham2.zip": [
+        "007-p1.p1",
+        "Alpha Mission II / ASO II - Last Guardian (NGM-007)(NGH-007)"
+      ],
+      "alpham2p.zip": [
+        "007_p1_faac.p1",
+        "Alpha Mission II / ASO II - Last Guardian (prototype)"
+      ],
+      "androdun.zip": [
+        "049-p1.p1",
+        "Andro Dunos (NGM-049)(NGH-049)"
+      ],
+      "aof.zip": [
+        "044-p1.p1",
+        "Art of Fighting / Ryuuko no Ken (NGM-044)(NGH-044)"
+      ],
+      "aof2bh.zip": [
+        "056-p1bh.p1",
+        "Art of Fighting 2 / Ryuuko no Ken 2 (Enable hidden characters V2)"
+      ],
+      "aof2a.zip": [
+        "056-p1.p1",
+        "Art of Fighting 2 / Ryuuko no Ken 2 (NGH-056)"
+      ],
+      "aof2.zip": [
+        "056-p1.p1",
+        "Art of Fighting 2 / Ryuuko no Ken 2 (NGM-056)"
+      ],
+      "aof3k.zip": [
+        "196-p1k.p1",
+        "Art of Fighting 3 - The Path of the Warrior (Korean release)"
+      ],
+      "aof3.zip": [
+        "096-p1.p1",
+        "Art of Fighting 3 - The Path of the Warrior / Art of Fighting - Ryuuko no Ken Gaiden"
+      ],
+      "aof3bh.zip": [
+        "096-p1bh.p1",
+        "Art of Fighting 3 - The Path of the Warrior / Art of Fighting - Ryuuko no Ken Gaiden (Enable Hidden Characters V2)"
+      ],
+      "badapple.zip": [
+        "bada-p1.bin",
+        "Bad Apple Demo"
+      ],
+      "bakatono.zip": [
+        "036-p1.p1",
+        "Bakatonosama Mahjong Manyuuki (MOM-002)(MOH-002)"
+      ],
+      "b2b.zip": [
+        "071.p1",
+        "Bang Bang Busters (2010 NCI release)"
+      ],
+      "bangbead.zip": [
+        "259-p1.p1",
+        "Bang Bead"
+      ],
+      "bangbedp.zip": [
+        "259-p1.bin",
+        "Bang Bead (Prototype?)"
+      ],
+      "bstars2.zip": [
+        "041-p1.p1",
+        "Baseball Stars 2"
+      ],
+      "bstarsh.zip": [
+        "002-p1.p1",
+        "Baseball Stars Professional (NGH-002)"
+      ],
+      "bstars.zip": [
+        "002-pg.p1",
+        "Baseball Stars Professional (NGM-002)"
+      ],
+      "flipshot.zip": [
+        "247-p1.p1",
+        "Battle Flip Shot"
+      ],
+      "blazstar.zip": [
+        "239-p1.p1",
+        "Blazing Star"
+      ],
+      "bjourneyh.zip": [
+        "022-hp1.p1",
+        "Blue's Journey / Raguy (ALH-001)"
+      ],
+      "bjourney.zip": [
+        "022-p1.p1",
+        "Blue's Journey / Raguy (ALM-001)(ALH-001)"
+      ],
+      "breakers.zip": [
+        "230-p1.p1",
+        "Breakers"
+      ],
+      "breakrev.zip": [
+        "245-p1.p1",
+        "Breakers Revenge"
+      ],
+      "breakrevbh.zip": [
+        "245-p1bh.p1",
+        "Breakers Revenge (Boss Hack)"
+      ],
+      "brkrevext.zip": [
+        "245-p1ext.p1",
+        "Breakers Revenge - Extra Mode (Hack)"
+      ],
+      "burningfh.zip": [
+        "018-hp1.p1",
+        "Burning Fight (NGH-018)(US)"
+      ],
+      "burningf.zip": [
+        "018-p1.p1",
+        "Burning Fight (NGM-018)(NGH-018)"
+      ],
+      "burningfpa.zip": [
+        "018_p1_1f28.podd",
+        "Burning Fight (prototype, near final, ver 23.3, 910326)"
+      ],
+      "burningfpb.zip": [
+        "p1.bin",
+        "Burning Fight (prototype, newer, V07)"
+      ],
+      "burningfp.zip": [
+        "018_p1_9397.p1",
+        "Burning Fight (prototype, older)"
+      ],
+      "cabalng.zip": [
+        "cabal-p1.bin",
+        "Cabal (Neo-Geo Unfinished Conversion)"
+      ],
+      "ctomaday.zip": [
+        "249-p1.p1",
+        "Captain Tomaday"
+      ],
+      "neodemo.zip": [
+        "demo-p1.bin",
+        "Chaos Demo (Neo Geo)"
+      ],
+      "marukodq.zip": [
+        "206-p1.p1",
+        "Chibi Marukochan Deluxe Quiz"
+      ],
+      "cndi.zip": [
+        "cnd-p1.bin",
+        "Chip n Dale (Intro demo)"
+      ],
+      "ironclad.zip": [
+        "proto_220-p1.p1",
+        "Choutetsu Brikin'ger - Iron clad (Prototype)"
+      ],
+      "ironclado.zip": [
+        "proto_220-p1o.p1",
+        "Choutetsu Brikin'ger - Iron clad (Prototype, older)"
+      ],
+      "cnbe.zip": [
+        "cnbe-p1.bin",
+        "Codename - Blut Engel (2006-01-19)"
+      ],
+      "columnsn.zip": [
+        "2000-p1.bin",
+        "Columns (Neo Geo)"
+      ],
+      "crsword.zip": [
+        "037-p1.p1",
+        "Crossed Swords (ALM-002)(ALH-002)"
+      ],
+      "crswd2bl.zip": [
+        "054-p1.p1",
+        "Crossed Swords 2 (bootleg CD to cartridge conversion)"
+      ],
+      "cphd.zip": [
+        "cphd.p1",
+        "Crouching Poney Hidden Dragon (DEMO)"
+      ],
+      "cthd2003.zip": [
+        "5003-p1.bin",
+        "Crouching Tiger Hidden Dragon 2003 (set 1)"
+      ],
+      "cthd2k3a.zip": [
+        "5003-p1a.bin",
+        "Crouching Tiger Hidden Dragon 2003 (set 2)"
+      ],
+      "ct2k3sp.zip": [
+        "5003-p1sp.bin",
+        "Crouching Tiger Hidden Dragon 2003 Super Plus"
+      ],
+      "ct2k3sa.zip": [
+        "5003-p1sa.bin",
+        "Crouching Tiger Hidden Dragon 2003 Super Plus alternate"
+      ],
+      "cyberlip.zip": [
+        "010-p1.p1",
+        "Cyber-Lip (NGM-010)"
+      ],
+      "dwi.zip": [
+        "dwi-p1.bin",
+        "DarkWing Duck (Intro demo)"
+      ],
+      "dwia.zip": [
+        "dwi-p1.bin",
+        "DarkWing Duck (Intro demo, alt)"
+      ],
+      "diggerma.zip": [
+        "dig-p1.bin",
+        "Digger Man"
+      ],
+      "doubledrbh.zip": [
+        "082-p1bh.p1",
+        "Double Dragon (Boss hack)"
+      ],
+      "doubledr.zip": [
+        "082-p1.p1",
+        "Double Dragon (Neo-Geo)"
+      ],
+      "doubledrsp.zip": [
+        "082-p1sp.p1",
+        "Double Dragon (Special 2017, hack)"
+      ],
+      "dragonsh.zip": [
+        "ep1.bin",
+        "Dragon's Heaven (development board)"
+      ],
+      "ducki.zip": [
+        "duck-p1.bin",
+        "Duck Tales (Intro demo)"
+      ],
+      "eightman.zip": [
+        "025-p1.p1",
+        "Eight Man (NGM-025)(NGH-025)"
+      ],
+      "kabukikl.zip": [
+        "092-p1.p1",
+        "Far East of Eden - Kabuki Klash / Tengai Makyou - Shin Den"
+      ],
+      "kabukiklb.zip": [
+        "092-p1b.p1",
+        "Far East of Eden - Kabuki Klash / Tengai Makyou - Shin Den (Add hidden characters)"
+      ],
+      "fatfury1bh.zip": [
+        "033-p1bh.p1",
+        "Fatal Fury - King of Fighters / Garou Densetsu - shukumei no tatakai (Boss Hack by Yumeji)"
+      ],
+      "fatfury1.zip": [
+        "033-p1.p1",
+        "Fatal Fury - King of Fighters / Garou Densetsu - shukumei no tatakai (NGM-033)(NGH-033)"
+      ],
+      "fatfury2a.zip": [
+        "047-epr.ep1",
+        "Fatal Fury 2 / Garou Densetsu 2 - arata-naru tatakai (NGM-047)"
+      ],
+      "fatfury2.zip": [
+        "047-p1.p1",
+        "Fatal Fury 2 / Garou Densetsu 2 - arata-naru tatakai (NGM-047)(NGH-047)"
+      ],
+      "fatfury3bh.zip": [
+        "069-p1bh.p1",
+        "Fatal Fury 3 - Road to the Final Victory / Garou Densetsu 3 - haruka-naru tatakai (Ancient Battles Resurgence 2015-03-13)"
+      ],
+      "fatfury3.zip": [
+        "069-p1.p1",
+        "Fatal Fury 3 - Road to the Final Victory / Garou Densetsu 3 - haruka-naru tatakai (NGM-069)(NGH-069)"
+      ],
+      "fatfury3a.zip": [
+        "069-p1.bin",
+        "Fatal Fury 3 - Road to the Final Victory / Garou Densetsu 3 - haruka-naru tatakai (NGM-069)(NGH-069) (alternate set)"
+      ],
+      "fatfurspbs.zip": [
+        "058-p1bs.p1",
+        "Fatal Fury Special / Garou Densetsu Special (Optional Hidden Character Third Edition)"
+      ],
+      "fatfursp.zip": [
+        "058-p1.p1",
+        "Fatal Fury Special / Garou Densetsu Special (set 1)(NGM-058)(NGH-058)"
+      ],
+      "fatfurspa.zip": [
+        "058-p1.p1",
+        "Fatal Fury Special / Garou Densetsu Special (set 2)(NGM-058)(NGH-058)"
+      ],
+      "fightfev.zip": [
+        "060-p1.p1",
+        "Fight Fever (set 1)"
+      ],
+      "fightfeva.zip": [
+        "060-p1.p1",
+        "Fight Fever (set 2)"
+      ],
+      "fswords.zip": [
+        "187-p1k.p1",
+        "Fighters Swords (Korean release of Samurai Shodown III)"
+      ],
+      "fbfrenzy.zip": [
+        "034-p1.p1",
+        "Football Frenzy (NGM-034)(NGH-034)"
+      ],
+      "ngfrog.zip": [
+        "frg-p1.bin",
+        "Frog Feast (Neo Geo)"
+      ],
+      "neogalag.zip": [
+        "gal_p1.rom",
+        "Galaga Demo (set 1)"
+      ],
+      "neogalaga.zip": [
+        "gal_p1a.rom",
+        "Galaga Demo (set 2)"
+      ],
+      "galaxyfg.zip": [
+        "078-p1.p1",
+        "Galaxy Fight - Universal Warriors"
+      ],
+      "ganryu.zip": [
+        "252-p1.p1",
+        "Ganryu / Musashi Ganryuki"
+      ],
+      "garoubl.zip": [
+        "garou-p1.bin",
+        "Garou - Mark of the Wolves (bootleg)"
+      ],
+      "garoub.zip": [
+        "kf.neo-sma",
+        "Garou - Mark of the Wolves (Enable hidden characters)"
+      ],
+      "garouha.zip": [
+        "neo-sma",
+        "Garou - Mark of the Wolves (NGH-2530)"
+      ],
+      "garou.zip": [
+        "kf.neo-sma",
+        "Garou - Mark of the Wolves (NGM-2530)"
+      ],
+      "garouh.zip": [
+        "ke.neo-sma",
+        "Garou - Mark of the Wolves (NGM-2530) (NGH-2530)"
+      ],
+      "garoup.zip": [
+        "proto_253-p1.p1",
+        "Garou - Mark of the Wolves (prototype)"
+      ],
+      "ghostbi.zip": [
+        "ghostb-p1.bin",
+        "Ghost Busters (Intro demo)"
+      ],
+      "gpilotsh.zip": [
+        "020-hp1.p1",
+        "Ghost Pilots (NGH-020)(US)"
+      ],
+      "gpilots.zip": [
+        "020-p1.p1",
+        "Ghost Pilots (NGM-020)(NGH-020)"
+      ],
+      "gpilotsp.zip": [
+        "p1",
+        "Ghost Pilots (prototype)"
+      ],
+      "ghostlop.zip": [
+        "proto_228-p1.p1",
+        "Ghostlop (prototype)"
+      ],
+      "goalx3.zip": [
+        "209-p1.p1",
+        "Goal! Goal! Goal!"
+      ],
+      "gururin.zip": [
+        "067-p1.p1",
+        "Gururin"
+      ],
+      "froman2b.zip": [
+        "098.p1",
+        "Idol Mahjong - final romance 2 (Neo CD Conversion)"
+      ],
+      "jockeygp.zip": [
+        "008-epr.p1",
+        "Jockey Grand Prix (set 1)"
+      ],
+      "jockeygpa.zip": [
+        "008-epr_a.p1",
+        "Jockey Grand Prix (set 2)"
+      ],
+      "ltorb1.zip": [
+        "nnp-p1.rom",
+        "Jonas Indiana and the Lost Temple of RA (20050717)"
+      ],
+      "janshin.zip": [
+        "048-p1.p1",
+        "Jyanshin Densetsu - Quest of Jongmaster"
+      ],
+      "karnovr.zip": [
+        "066-p1.p1",
+        "Karnov's Revenge / Fighter's History Dynamite"
+      ],
+      "kog.zip": [
+        "5232-p1.bin",
+        "King of Gladiator (The King of Fighters '97 bootleg)"
+      ],
+      "kogplus.zip": [
+        "5232-p1p.bin",
+        "King of Gladiator Plus (The King of Fighters '97 bootleg)"
+      ],
+      "kotm.zip": [
+        "016-p1.p1",
+        "King of the Monsters (set 1)"
+      ],
+      "kotmh.zip": [
+        "016-hp1.p1",
+        "King of the Monsters (set 2)"
+      ],
+      "kotm2.zip": [
+        "039-p1.p1",
+        "King of the Monsters 2 - The Next Thing (NGM-039)(NGH-039)"
+      ],
+      "kotm2a.zip": [
+        "039_p1.p1",
+        "King of the Monsters 2 - The Next Thing (older)"
+      ],
+      "kotm2p.zip": [
+        "proto_039-p1.p1",
+        "King of the Monsters 2 - The Next Thing (prototype)"
+      ],
+      "kizuna.zip": [
+        "216-p1.p1",
+        "Kizuna Encounter - Super Tag Battle / Fu'un Super Tag Battle"
+      ],
+      "lans2004.zip": [
+        "lnsq-p1.bin",
+        "Lansquenet 2004 (Shock Troopers - 2nd Squad bootleg)"
+      ],
+      "lasthope.zip": [
+        "ngdt-300-p1.bin",
+        "Last Hope (bootleg AES to MVS conversion, no coin support)"
+      ],
+      "lhcdb.zip": [
+        "300-p1ch.bin",
+        "Last Hope CD Beta (Neo CD conversion)"
+      ],
+      "lresort.zip": [
+        "024-p1.p1",
+        "Last Resort"
+      ],
+      "lresortp.zip": [
+        "024_p1_5937.podd",
+        "Last Resort (prototype)"
+      ],
+      "lbowling.zip": [
+        "019-p1.p1",
+        "League Bowling (NGM-019)(NGH-019)"
+      ],
+      "legendos.zip": [
+        "029-p1.p1",
+        "Legend of Success Joe / Ashitano Joe Densetsu"
+      ],
+      "magdrop2.zip": [
+        "221-p1.p1",
+        "Magical Drop II"
+      ],
+      "magdrop3.zip": [
+        "233-p1.p1",
+        "Magical Drop III"
+      ],
+      "magdrop3bh.zip": [
+        "233-p1bh.p1",
+        "Magical Drop III (Secret Character Hack)"
+      ],
+      "maglordh.zip": [
+        "005-p1.p1",
+        "Magician Lord (NGH-005)"
+      ],
+      "maglord.zip": [
+        "005-pg1.p1",
+        "Magician Lord (NGM-005)"
+      ],
+      "mahretsu.zip": [
+        "004-p1.p1",
+        "Mahjong Kyo Retsuden (NGM-004)(NGH-004)"
+      ],
+      "matrimbl.zip": [
+        "266-p1.p1",
+        "Matrimelee / Shin Gouketsuji Ichizoku Toukon (bootleg)"
+      ],
+      "matrimbh.zip": [
+        "266-p1bh.p1",
+        "Matrimelee / Shin Gouketsuji Ichizoku Toukon (Enable Hidden Characters V2)"
+      ],
+      "matrim.zip": [
+        "266-p1.p1",
+        "Matrimelee / Shin Gouketsuji Ichizoku Toukon (NGM-2660) (NGH-2660)"
+      ],
+      "mslugdg.zip": [
+        "201-p1.bin",
+        "Metal Slug (Multifunction Hack, 20180430)"
+      ],
+      "mslug.zip": [
+        "201-p1.p1",
+        "Metal Slug - Super Vehicle-001"
+      ],
+      "mslug2fm.zip": [
+        "241-p1fm.bin",
+        "Metal Slug 2 - Super Vehicle-001/II (CZXInc FC2 Version, hack)"
+      ],
+      "mslug2dg.zip": [
+        "241-p1.bin",
+        "Metal Slug 2 - Super Vehicle-001/II (Multifunction Hack, 20170509)"
+      ],
+      "mslug2.zip": [
+        "241-p1.p1",
+        "Metal Slug 2 - Super Vehicle-001/II (NGM-2410) (NGH-2410)"
+      ],
+      "mslug2t.zip": [
+        "941-p1.p1",
+        "Metal Slug 2 Turbo (NGM-9410)"
+      ],
+      "mslug3g.zip": [
+        "256-ph1.bin",
+        "Metal Slug 3 (Multifunction Hack, 20190119)"
+      ],
+      "mslug3h.zip": [
+        "256-ph1.p1",
+        "Metal Slug 3 (NGH-2560)"
+      ],
+      "mslug3v.zip": [
+        "256-pg1.p1",
+        "Metal Slug 3 (NGH-2560) (Enhanced Violence Version, hack by EEZEZY)"
+      ],
+      "mslug3.zip": [
+        "green.neo-sma",
+        "Metal Slug 3 (NGM-2560)"
+      ],
+      "mslug3a.zip": [
+        "white.neo-sma",
+        "Metal Slug 3 (NGM-2560, earlier)"
+      ],
+      "mslug4dg.zip": [
+        "263-p1.bin",
+        "Metal Slug 4 (Multifunction Hack, 20171225)"
+      ],
+      "mslug4h.zip": [
+        "263-ph1.p1",
+        "Metal Slug 4 (NGH-2630)"
+      ],
+      "mslug4.zip": [
+        "263-p1.p1",
+        "Metal Slug 4 (NGM-2630)"
+      ],
+      "ms4plus.zip": [
+        "ms4-p1p.bin",
+        "Metal Slug 4 Plus (bootleg)"
+      ],
+      "mslug5b.zip": [
+        "ms5b-p1.bin",
+        "Metal Slug 5 (bootleg, set 1)"
+      ],
+      "mslug5b2.zip": [
+        "ms5-p1b.bin",
+        "Metal Slug 5 (bootleg, set 2)"
+      ],
+      "ms5pcb.zip": [
+        "268-p1r.p1",
+        "Metal Slug 5 (JAMMA PCB)"
+      ],
+      "mslug5g.zip": [
+        "268-p1d.bin",
+        "Metal Slug 5 (Multifunction Hack, 20170523)"
+      ],
+      "mslug5w.zip": [
+        "268w.p1",
+        "Metal Slug 5 (New Campaign, 2016-03-10)"
+      ],
+      "mslug5h.zip": [
+        "268-p1c.p1",
+        "Metal Slug 5 (NGH-2680)"
+      ],
+      "mslug5.zip": [
+        "268-p1cr.p1",
+        "Metal Slug 5 (NGM-2680)"
+      ],
+      "ms5plus.zip": [
+        "ms5-p1p.bin",
+        "Metal Slug 5 Plus (bootleg)"
+      ],
+      "mslug3b6.zip": [
+        "299-p1.bin",
+        "Metal Slug 6 (Metal Slug 3 bootleg)"
+      ],
+      "mslugxsrf.zip": [
+        "250-p1srf.bin",
+        "Metal Slug X - Super Vehicle-001 (AzStar Soda Remix FC2 Version, hack)"
+      ],
+      "mslugx.zip": [
+        "250-p1.p1",
+        "Metal Slug X - Super Vehicle-001 (NGM-2500)(NGH-2500)"
+      ],
+      "minasan.zip": [
+        "027-p1.p1",
+        "Minasanno Okagesamadesu! Daisugorokutaikai (MOM-001)(MOH-001)"
+      ],
+      "miexchng.zip": [
+        "231-p1.p1",
+        "Money Puzzle Exchanger / Money Idol Exchanger"
+      ],
+      "mutnat.zip": [
+        "014-p1.p1",
+        "Mutation Nation (NGM-014)(NGH-014)"
+      ],
+      "nam1975.zip": [
+        "001-p1.p1",
+        "NAM-1975 (NGM-001)(NGH-001)"
+      ],
+      "neo2500.zip": [
+        "2500-p1.bin",
+        "Neo 2500 Demo"
+      ],
+      "nblktiger.zip": [
+        "nblktiegr-p1.bin",
+        "Neo Black Tiger Demo"
+      ],
+      "neobombe.zip": [
+        "093-p1.p1",
+        "Neo Bomberman"
+      ],
+      "neocstlv.zip": [
+        "cstlv_p1.rom",
+        "Neo CastleVania Demo"
+      ],
+      "neodrift.zip": [
+        "213-p1.p1",
+        "Neo Drift Out - New Technology"
+      ],
+      "neogeo.zip": [
+        "sp-s3.sp1",
+        "Neo Geo MVS system"
+      ],
+      "neocdz.zip": [
+        "neocd.bin",
+        "Neo Geo CDZ system"
+      ],
+      "neomrdo.zip": [
+        "207-p1.p1",
+        "Neo Mr. Do!"
+      ],
+      "neonopon.zip": [
+        "nnp-p1.rom",
+        "Neo No Panepon (beta)"
+      ],
+      "neoponga.zip": [
+        "np10_p1.rom",
+        "Neo Pong (ver 1.0)"
+      ],
+      "neopong.zip": [
+        "pong_p1.rom",
+        "Neo Pong (ver 1.1)"
+      ],
+      "nsmb.zip": [
+        "nsmb-p1.bin",
+        "Neo Super Mario Bros Demo 0.01!"
+      ],
+      "syscheck.zip": [
+        "sys-p1.rom",
+        "Neo System Check (ver 1.0b)"
+      ],
+      "neothndr.zip": [
+        "thund_p1.rom",
+        "Neo Thunder"
+      ],
+      "turfmast.zip": [
+        "200-p1.p1",
+        "Neo Turf Masters / Big Tournament Golf"
+      ],
+      "neocup98.zip": [
+        "244-p1.p1",
+        "Neo-Geo Cup '98 - The Road to the Victory"
+      ],
+      "neotet.zip": [
+        "tet_p1.rom",
+        "NeoGeo 2-Player Tetris"
+      ],
+      "neo3ddmo.zip": [
+        "neo3d_p1.rom",
+        "NeoGeo 3D! Demo"
+      ],
+      "neotris.zip": [
+        "neotris-p1.bin",
+        "NeoTRIS (Free Beta 2 Ver. 202009)"
+      ],
+      "ngem2k.zip": [
+        "ngem-p1.bin",
+        "NGEM2K (beta 2006-01-18)"
+      ],
+      "ngftdemo.zip": [
+        "ngftd_p1.rom",
+        "NGF Transparency Demo"
+      ],
+      "nitd.zip": [
+        "260-p1.p1",
+        "Nightmare in the Dark"
+      ],
+      "nitdbl.zip": [
+        "nitd-p1.bin",
+        "Nightmare in the Dark (bootleg)"
+      ],
+      "ncombath.zip": [
+        "009-pg1.p1",
+        "Ninja Combat (NGH-009)"
+      ],
+      "ncombat.zip": [
+        "009-p1.p1",
+        "Ninja Combat (NGM-009)"
+      ],
+      "ncommand.zip": [
+        "050-p1.p1",
+        "Ninja Commando"
+      ],
+      "ninjamas.zip": [
+        "217-p1.p1",
+        "Ninja Master's - haoh-ninpo-cho"
+      ],
+      "ninjamasha.zip": [
+        "217-p1ha.p1",
+        "Ninja Master's - haoh-ninpo-cho (Plus)"
+      ],
+      "overtop.zip": [
+        "212-p1.p1",
+        "Over Top"
+      ],
+      "samsho4k.zip": [
+        "222-p1k.p1",
+        "Pae Wang Jeon Seol / Legend of a Warrior (Korean censored Samurai Shodown IV)"
+      ],
+      "panicbom.zip": [
+        "073-p1.p1",
+        "Panic Bomber"
+      ],
+      "pgoal.zip": [
+        "219-p1.p1",
+        "Pleasure Goal / Futsal - 5 on 5 Mini Soccer (NGM-219)"
+      ],
+      "pnyaaa.zip": [
+        "267-p1.p1",
+        "Pochi and Nyaa (Ver 2.00)"
+      ],
+      "pnyaa.zip": [
+        "pn202.p1",
+        "Pochi and Nyaa (Ver 2.02)"
+      ],
+      "poknight.zip": [
+        "2003-p1.bin",
+        "Poker Night"
+      ],
+      "popbounc.zip": [
+        "237-p1.p1",
+        "Pop 'n Bounce / Gapporin"
+      ],
+      "pspikes2.zip": [
+        "068-pg1.p1",
+        "Power Spikes II (NGM-068)"
+      ],
+      "preisle2.zip": [
+        "255-p1.p1",
+        "Prehistoric Isle 2"
+      ],
+      "neoprimo.zip": [
+        "pri_p1.rom",
+        "Primo Demo"
+      ],
+      "proneon.zip": [
+        "neon-p1.bin",
+        "Project Neon (Caravan Edition, prealpha 0.4.19)"
+      ],
+      "pulstar.zip": [
+        "089-p1.p1",
+        "Pulstar"
+      ],
+      "pbobblenb.zip": [
+        "u7",
+        "Puzzle Bobble / Bust-A-Move (Neo-Geo) (bootleg)"
+      ],
+      "pbobblen.zip": [
+        "d96-07.ep1",
+        "Puzzle Bobble / Bust-A-Move (Neo-Geo) (NGM-083)"
+      ],
+      "pbobbl2n.zip": [
+        "248-p1.p1",
+        "Puzzle Bobble 2 / Bust-A-Move Again (Neo-Geo)"
+      ],
+      "puzzledp.zip": [
+        "202-p1.p1",
+        "Puzzle De Pon!"
+      ],
+      "puzzldpr.zip": [
+        "235-p1.p1",
+        "Puzzle De Pon! R!"
+      ],
+      "joyjoy.zip": [
+        "021-p1.p1",
+        "Puzzled / Joy Joy Kid (NGM-021)(NGH-021)"
+      ],
+      "quizdaisk.zip": [
+        "123-p1.p1",
+        "Quiz Daisousa Sen - The Last Count Down (Korean release)"
+      ],
+      "quizdais.zip": [
+        "023-p1.p1",
+        "Quiz Daisousa Sen - The Last Count Down (NGM-023)(NGH-023)"
+      ],
+      "quizkofk.zip": [
+        "vic-080-p1.p1",
+        "Quiz King of Fighters (Korean release)"
+      ],
+      "quizkof.zip": [
+        "080-p1.p1",
+        "Quiz King of Fighters (SAM-080)(SAH-080)"
+      ],
+      "quizdai2.zip": [
+        "042-p1.p1",
+        "Quiz Meitantei Neo & Geo - Quiz Daisousa Sen part 2 (NGM-042)(NGH-042)"
+      ],
+      "rotdh.zip": [
+        "264-pk1.p1",
+        "Rage of the Dragons (NGH-2640)"
+      ],
+      "rotd.zip": [
+        "264-p1.p1",
+        "Rage of the Dragons (NGM-264?)"
+      ],
+      "ragnagrd.zip": [
+        "218-p1.p1",
+        "Ragnagard / Shin-Oh-Ken"
+      ],
+      "rbff1a.zip": [
+        "095-p1.p1",
+        "Real Bout Fatal Fury / Real Bout Garou Densetsu (bug fix revision)"
+      ],
+      "rbff1k.zip": [
+        "095-p1k.p1",
+        "Real Bout Fatal Fury / Real Bout Garou Densetsu (Korean release)"
+      ],
+      "rbff1ka.zip": [
+        "095-p1k.p1",
+        "Real Bout Fatal Fury / Real Bout Garou Densetsu (Korean release, bug fix revision)"
+      ],
+      "rbff1.zip": [
+        "095-p1.p1",
+        "Real Bout Fatal Fury / Real Bout Garou Densetsu (NGM-095)(NGH-095)"
+      ],
+      "rbff2k.zip": [
+        "140-p1k.p1",
+        "Real Bout Fatal Fury 2 - The Newcomers (Korean release)"
+      ],
+      "rbff2h.zip": [
+        "240-pg1.p1",
+        "Real Bout Fatal Fury 2 - The Newcomers / Real Bout Garou Densetsu 2 - the newcomers (NGH-2400)"
+      ],
+      "rbff2.zip": [
+        "240-p1.p1",
+        "Real Bout Fatal Fury 2 - The Newcomers / Real Bout Garou Densetsu 2 - the newcomers (NGM-2400)"
+      ],
+      "rbff2bh.zip": [
+        "240-p1fc.p1",
+        "Real Bout Fatal Fury 2 - The Newcomers / Real Bout Garou Densetsu 2 - the newcomers (Secret Character Hack)"
+      ],
+      "rbffspec.zip": [
+        "223-p1.p1",
+        "Real Bout Fatal Fury Special / Real Bout Garou Densetsu Special"
+      ],
+      "rbffspbh.zip": [
+        "223-p1bs.p1",
+        "Real Bout Fatal Fury Special / Real Bout Garou Densetsu Special (Boss Hack)"
+      ],
+      "rbffspeck.zip": [
+        "223-p1k.p1",
+        "Real Bout Fatal Fury Special / Real Bout Garou Densetsu Special (Korean release)"
+      ],
+      "ridhero.zip": [
+        "006-p1.p1",
+        "Riding Hero (NGM-006)(NGH-006)"
+      ],
+      "ridheroh.zip": [
+        "006-pg1.p1",
+        "Riding Hero (set 2)"
+      ],
+      "roboarmy.zip": [
+        "032-p1.p1",
+        "Robo Army (set 1)"
+      ],
+      "roboarma.zip": [
+        "032-epr.p1",
+        "Robo Army (set 2)"
+      ],
+      "robocopi.zip": [
+        "robo-p1.bin",
+        "Robocop (Intro demo)"
+      ],
+      "samshoh.zip": [
+        "045-p1.p1",
+        "Samurai Shodown / Samurai Spirits (NGH-045)"
+      ],
+      "samsho.zip": [
+        "045-p1.p1",
+        "Samurai Shodown / Samurai Spirits (NGM-045)"
+      ],
+      "samshoa.zip": [
+        "045-epr.ep1",
+        "Samurai Shodown / Samurai Spirits (NGM-045, alternate board)"
+      ],
+      "samsho2.zip": [
+        "063-p1.p1",
+        "Samurai Shodown II / Shin Samurai Spirits - Haohmaru jigokuhen (NGM-063)(NGH-063)"
+      ],
+      "samsho2sp.zip": [
+        "063sp5.p1",
+        "Samurai Shodown II / Shin Samurai Spirits - Haohmaru jigokuhen (Special 2017, hack)"
+      ],
+      "samsho3h.zip": [
+        "087-pg1.p1",
+        "Samurai Shodown III / Samurai Spirits - Zankurou Musouken (NGH-087)"
+      ],
+      "samsho3.zip": [
+        "087-epr.ep1",
+        "Samurai Shodown III / Samurai Spirits - Zankurou Musouken (NGM-087)"
+      ],
+      "samsho4.zip": [
+        "222-p1.p1",
+        "Samurai Shodown IV - Amakusa's Revenge / Samurai Spirits - Amakusa Kourin (NGM-222)(NGH-222)"
+      ],
+      "samsho4sp.zip": [
+        "222-p1sp.p1",
+        "Samurai Shodown IV - Amakusa's Revenge / Samurai Spirits - Amakusa Kourin (Special 2017, hack)"
+      ],
+      "samsho5b.zip": [
+        "ssv-p2.bin",
+        "Samurai Shodown V / Samurai Spirits Zero (bootleg)"
+      ],
+      "samsho5x.zip": [
+        "ssvx_p1.rom",
+        "Samurai Shodown V / Samurai Spirits Zero (hack of XBOX version)"
+      ],
+      "samsho5h.zip": [
+        "270-p1c.p1",
+        "Samurai Shodown V / Samurai Spirits Zero (NGH-2700)"
+      ],
+      "samsho5.zip": [
+        "270-p1.p1",
+        "Samurai Shodown V / Samurai Spirits Zero (NGM-2700, set 1)"
+      ],
+      "samsho5a.zip": [
+        "p1.bin",
+        "Samurai Shodown V / Samurai Spirits Zero (NGM-2700, set 2)"
+      ],
+      "samsh5pf.zip": [
+        "273-p1.bin",
+        "Samurai Shodown V Perfect / Samurai Spirits Zero Perfect (bootleg, hack)"
+      ],
+      "samsh5spho.zip": [
+        "272-p1c.p1",
+        "Samurai Shodown V Special / Samurai Spirits Zero Special (NGH-2720) (1st release, censored)"
+      ],
+      "samsh5sph.zip": [
+        "272-p1ca.p1",
+        "Samurai Shodown V Special / Samurai Spirits Zero Special (NGH-2720) (2nd release, less censored)"
+      ],
+      "samsh5fe.zip": [
+        "272-p1.bin",
+        "Samurai Shodown V Special / Samurai Spirits Zero Special (NGM-272) (NGH-272) (Final Edition, location test version)"
+      ],
+      "samsh5sp.zip": [
+        "272-p1.p1",
+        "Samurai Shodown V Special / Samurai Spirits Zero Special (NGM-2720)"
+      ],
+      "samsho2k.zip": [
+        "063-p1-kan.p1",
+        "Saulabi Spirits / Jin Saulabi Tu Hon (Korean release of Samurai Shodown II)"
+      ],
+      "samsho2ka.zip": [
+        "063-p1-kan.p1",
+        "Saulabi Spirits / Jin Saulabi Tu Hon (Korean release of Samurai Shodown II, set 2)"
+      ],
+      "savagere.zip": [
+        "059-p1.p1",
+        "Savage Reign / Fu'un Mokushiroku - kakutou sousei"
+      ],
+      "savagereb.zip": [
+        "059-p1b.p1",
+        "Savage Reign / Fu'un Mokushiroku - kakutou sousei (Boss Hack)"
+      ],
+      "sengokuh.zip": [
+        "017-hp1.p1",
+        "Sengoku / Sengoku Denshou (NGH-017)(US)"
+      ],
+      "sengoku.zip": [
+        "017-p1.p1",
+        "Sengoku / Sengoku Denshou (NGM-017)(NGH-017)"
+      ],
+      "sengoku2.zip": [
+        "040-p1.p1",
+        "Sengoku 2 / Sengoku Denshou 2"
+      ],
+      "sengoku3s.zip": [
+        "261-p1s.bin",
+        "Sengoku 3 / Sengoku Densho 2001 (Evolution 1.0, FCHT hack)"
+      ],
+      "sengoku3fs.zip": [
+        "261-p1fs.bin",
+        "Sengoku 3 / Sengoku Densho 2001 (Feng Shen Edition, Hack)"
+      ],
+      "sengoku3.zip": [
+        "261-ph1.p1",
+        "Sengoku 3 / Sengoku Densho 2001 (set 1)"
+      ],
+      "sengoku3a.zip": [
+        "261-pg1.p1",
+        "Sengoku 3 / Sengoku Densho 2001 (Set 2)"
+      ],
+      "beast.zip": [
+        "2002-p1.bin",
+        "Shadow of the Beast (Neo Geo demo)"
+      ],
+      "shocktro.zip": [
+        "238-pg1.p1",
+        "Shock Troopers (set 1)"
+      ],
+      "shocktroa.zip": [
+        "238-p1.p1",
+        "Shock Troopers (set 2)"
+      ],
+      "shocktr2.zip": [
+        "246-p1.p1",
+        "Shock Troopers - 2nd Squad"
+      ],
+      "svcboot.zip": [
+        "svc-p1.bin",
+        "SNK vs. Capcom - SVC Chaos (bootleg)"
+      ],
+      "svcpcb.zip": [
+        "269-p1.p1",
+        "SNK vs. Capcom - SVC Chaos (JAMMA PCB, set 1)"
+      ],
+      "svcpcba.zip": [
+        "269-p1a.p1",
+        "SNK vs. Capcom - SVC Chaos (JAMMA PCB, set 2)"
+      ],
+      "svc.zip": [
+        "269-p1.p1",
+        "SNK vs. Capcom - SVC Chaos (NGM-2690)(NGH-2690)"
+      ],
+      "svcplus.zip": [
+        "svc-p2p.bin",
+        "SNK vs. Capcom - SVC Chaos Plus (bootleg set 1)"
+      ],
+      "svcplusa.zip": [
+        "svc-p2pl.bin",
+        "SNK vs. Capcom - SVC Chaos Plus (bootleg set 2)"
+      ],
+      "svcsplus.zip": [
+        "svc-p1sp.bin",
+        "SNK vs. Capcom - SVC Chaos Super Plus (bootleg)"
+      ],
+      "socbrawlh.zip": [
+        "031-p1.p1",
+        "Soccer Brawl (NGH-031)"
+      ],
+      "socbrawl.zip": [
+        "031-pg1.p1",
+        "Soccer Brawl (NGM-031)"
+      ],
+      "spidermi.zip": [
+        "sman-p1.bin",
+        "Spiderman (Intro demo)"
+      ],
+      "spinmast.zip": [
+        "062-p1.p1",
+        "Spin Master / Miracle Adventure"
+      ],
+      "stakwin.zip": [
+        "088-p1.p1",
+        "Stakes Winner / Stakes Winner - GI kinzen seiha e no michi"
+      ],
+      "stakwin2.zip": [
+        "227-p1.p1",
+        "Stakes Winner 2"
+      ],
+      "strhoop.zip": [
+        "079-p1.p1",
+        "Street Hoop / Street Slam / Dunk Dream (DEM-004) (DEH-004)"
+      ],
+      "s1945p.zip": [
+        "254-p1.p1",
+        "Strikers 1945 Plus"
+      ],
+      "sbp.zip": [
+        "001-003-02a.u2",
+        "Super Bubble Pop"
+      ],
+      "sdodgeb.zip": [
+        "208-p1.p1",
+        "Super Dodge Ball / Kunio no Nekketsu Toukyuu Densetsu"
+      ],
+      "sdodgebh.zip": [
+        "208-p1bh.p1",
+        "Super Dodge Ball / Kunio no Nekketsu Toukyuu Densetsu (Secret Character Hack)"
+      ],
+      "ssideki.zip": [
+        "052-p1.p1",
+        "Super Sidekicks / Tokuten Ou"
+      ],
+      "ssideki2.zip": [
+        "061-p1.p1",
+        "Super Sidekicks 2 - The World Championship / Tokuten Ou 2 - real fight football (NGM-061)(NGH-061)"
+      ],
+      "ssideki3.zip": [
+        "081-p1.p1",
+        "Super Sidekicks 3 - The Next Glory / Tokuten Ou 3 - eikou e no michi"
+      ],
+      "moshougi.zip": [
+        "203-p1.p1",
+        "Syougi No Tatsujin - Master of Shougi"
+      ],
+      "twsoc96.zip": [
+        "086-p1.p1",
+        "Tecmo World Soccer '96"
+      ],
+      "tmnti.zip": [
+        "tmnt-p1.bin",
+        "Teenage Mutant Ninja Turtles (Intro demo)"
+      ],
+      "tmntia.zip": [
+        "tmnt-p1a.bin",
+        "Teenage Mutant Ninja Turtles (Intro demo, alt)"
+      ],
+      "teot.zip": [
+        "teot-p1.bin",
+        "The Eye of Typhoon Demo"
+      ],
+      "irrmaze.zip": [
+        "236-p1.p1",
+        "The Irritating Maze / Ultra Denryu Iraira Bou"
+      ],
+      "kof94rz.zip": [
+        "055-p1rz.p1",
+        "The King of Fighters '94 (Hack Boss Remixed)"
+      ],
+      "kof94.zip": [
+        "055-p1.p1",
+        "The King of Fighters '94 (NGM-055)(NGH-055)"
+      ],
+      "kof95b.zip": [
+        "084-p1b.p1",
+        "The King of Fighters '95 (Enable Hidden Characters V.[?])"
+      ],
+      "kof95h.zip": [
+        "084-pg1.p1",
+        "The King of Fighters '95 (NGH-084)"
+      ],
+      "kof95a.zip": [
+        "084-epr.ep1",
+        "The King of Fighters '95 (NGH-084, alternate board)"
+      ],
+      "kof95.zip": [
+        "084-p1.p1",
+        "The King of Fighters '95 (NGM-084)"
+      ],
+      "kof95sp.zip": [
+        "084-p1sp.p1",
+        "The King of Fighters '95 (Special 2017, hack)"
+      ],
+      "kof96ae.zip": [
+        "214ae-p1.bin",
+        "The King of Fighters '96 (Anniversary Edition, EGHT hack)"
+      ],
+      "kof96ep.zip": [
+        "214-p1.bin",
+        "The King of Fighters '96 (bootleg / hack)"
+      ],
+      "kof96cn.zip": [
+        "214cn-p1.bin",
+        "The King of Fighters '96 (Chinese Edition ver 1.0, hack)"
+      ],
+      "kof96h.zip": [
+        "214-pg1.p1",
+        "The King of Fighters '96 (NGH-214)"
+      ],
+      "kof96.zip": [
+        "214-p1.p1",
+        "The King of Fighters '96 (NGM-214)"
+      ],
+      "kof96a.zip": [
+        "214-epr.ep1",
+        "The King of Fighters '96 (NGM-214, alternate board)"
+      ],
+      "kof96ae20.zip": [
+        "214ae-p1.p1",
+        "The King of Fighters '96 (The Anniversary Edition 2.0, Build 2.3.0320)"
+      ],
+      "kof97cn.zip": [
+        "232cn-p1.bin",
+        "The King of Fighters '97 (10th Anniversary Chinese Edition, EGHT hack)"
+      ],
+      "kof97ps.zip": [
+        "232-p1ps.p1",
+        "The King of Fighters '97 (Imitation Playstation final improved version 2016-10-29)"
+      ],
+      "kof97inv.zip": [
+        "232inv-p1.p1",
+        "The King of Fighters '97 (Invincible Plus)"
+      ],
+      "kof97k.zip": [
+        "232-p1.p1",
+        "The King of Fighters '97 (Korean release)"
+      ],
+      "kof97h.zip": [
+        "232-pg1.p1",
+        "The King of Fighters '97 (NGH-2320)"
+      ],
+      "kof97.zip": [
+        "232-p1.p1",
+        "The King of Fighters '97 (NGM-2320)"
+      ],
+      "kof97t2020.zip": [
+        "232t2020-p1.p1",
+        "The King of Fighters '97 (Optimised Edition 2020)"
+      ],
+      "kof97t.zip": [
+        "232t.p1",
+        "The King of Fighters '97 (Optimized Edition)"
+      ],
+      "kof97pm.zip": [
+        "232pm-p1.p1",
+        "The King of Fighters '97 (Practice Mode)"
+      ],
+      "kof97ae.zip": [
+        "232ae-p1.p1",
+        "The King of Fighters '97 - Anniversary Edition (Build 2.1.0212)"
+      ],
+      "kof97aef.zip": [
+        "232aef-p1.p1",
+        "The King of Fighters '97 - Anniversary Edition (Fork Build 2.1.1811)"
+      ],
+      "kof97cbt.zip": [
+        "97cbt-p1.bin",
+        "The King of Fighters '97 - Combo Training (Hack, Ver. 2018)"
+      ],
+      "kof97xt.zip": [
+        "232xt-p1.bin",
+        "The King of Fighters '97 - Final Battle (hack)"
+      ],
+      "kof97rc.zip": [
+        "232-rc.p1",
+        "The King of Fighters '97 - Random Combo (Hack, Ver. 2010)"
+      ],
+      "kof97oro.zip": [
+        "orochi-p1.bin",
+        "The King of Fighters '97 oroshi plus 2003"
+      ],
+      "kof97pls.zip": [
+        "kf97-p1p.bin",
+        "The King of Fighters '97 Plus (bootleg)"
+      ],
+      "kof97pla.zip": [
+        "kf97-p1a.bin",
+        "The King of Fighters '97 Plus 2003 (bootleg / hack)"
+      ],
+      "kof98ae2016.zip": [
+        "242ae-p1.p1",
+        "The King of Fighters '98 (Anniversary Edition build 1.2.0827)"
+      ],
+      "kof98ae.zip": [
+        "242-p1ae.bin",
+        "The King of Fighters '98 (Anniversary Edition, EGHT hack)"
+      ],
+      "kof98cps.zip": [
+        "kof98cps-p1.bin",
+        "The King of Fighters '98 (Combo Plus)"
+      ],
+      "kof98cb.zip": [
+        "242cb-p1.p1",
+        "The King of Fighters '98 (Combo, hack)"
+      ],
+      "kof98pfe.zip": [
+        "242pfe.p1",
+        "The King of Fighters '98 (Plus Final Edition 2017-07-23)"
+      ],
+      "kof98ult.zip": [
+        "242ult.p1",
+        "The King of Fighters '98 (Ultimate Match)"
+      ],
+      "kof98k.zip": [
+        "242-p1.p1",
+        "The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (Korean board, set 1)"
+      ],
+      "kof98ka.zip": [
+        "242-p1.p1",
+        "The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (Korean board, set 2)"
+      ],
+      "kof98h.zip": [
+        "242-pn1.p1",
+        "The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (NGH-2420)"
+      ],
+      "kof98.zip": [
+        "242-p1.p1",
+        "The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (NGM-2420)"
+      ],
+      "kof98a.zip": [
+        "242-p1.p1",
+        "The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (NGM-2420, alternate board)"
+      ],
+      "kof98eck20.zip": [
+        "98eck20-p1.bin",
+        "The King of Fighters '98 Easy Combo King (YZKOF Version, Hack)"
+      ],
+      "kof98eckvs.zip": [
+        "98eckvs-p1.bin",
+        "The King of Fighters '98 Easy Combo King 2014 (Versus Version, Hack)"
+      ],
+      "kof98mix.zip": [
+        "242mix.p1",
+        "The King of Fighters '98 Mix (2015-12-29)"
+      ],
+      "kof99e.zip": [
+        "ka.neo-sma",
+        "The King of Fighters '99 - Millennium Battle (earlier)"
+      ],
+      "kof99k.zip": [
+        "kb.neo-sma",
+        "The King of Fighters '99 - Millennium Battle (Korean release)"
+      ],
+      "kof99ka.zip": [
+        "152-p1.p1",
+        "The King of Fighters '99 - Millennium Battle (Korean release, non-encrypted program)"
+      ],
+      "kof99h.zip": [
+        "kc.neo-sma",
+        "The King of Fighters '99 - Millennium Battle (NGH-2510)"
+      ],
+      "kof99.zip": [
+        "ka.neo-sma",
+        "The King of Fighters '99 - Millennium Battle (NGM-2510)"
+      ],
+      "kof99p.zip": [
+        "proto_251-p1.p1",
+        "The King of Fighters '99 - Millennium Battle (prototype)"
+      ],
+      "kof99ae.zip": [
+        "kof99ae_p1.bin",
+        "The King of Fighters '99 Anniversary Edition (hack)"
+      ],
+      "kof99eur.zip": [
+        "kf99eur.p1",
+        "The King of Fighters '99 Evolution Ultra Remix (Hack By Yashional)"
+      ],
+      "kof99rp2f.zip": [
+        "kf99rp2f-p1.rom",
+        "The King of Fighters '99 Remix Pro V2.0 Final (Hack By FCHT)"
+      ],
+      "kof99sr.zip": [
+        "kf99sr-p1.bin",
+        "The King of Fighters '99 Summer Revolution (Hack By FCHT)"
+      ],
+      "kof10th.zip": [
+        "kf10-p1.bin",
+        "The King of Fighters 10th Anniversary (bootleg)"
+      ],
+      "kof10thd.zip": [
+        "363d.p1",
+        "The King of Fighters 10th Anniversary (The King of Fighters 2002 bootleg / Fully Decrypted)"
+      ],
+      "kf2k5uni.zip": [
+        "5006-p2a.bin",
+        "The King of Fighters 10th Anniversary 2005 Unique (bootleg)"
+      ],
+      "kof10thuo.zip": [
+        "kf10udo-p1.p1",
+        "The King of Fighters 10th Anniversary 2019 (Optimized version 2019, hack)"
+      ],
+      "kf10thep.zip": [
+        "5008-p1.bin",
+        "The King of Fighters 10th Anniversary Extra Plus (bootleg)"
+      ],
+      "kof2000.zip": [
+        "neo-sma",
+        "The King of Fighters 2000 (NGM-2570) (NGH-2570)"
+      ],
+      "kof2000n.zip": [
+        "257-pg1.p1",
+        "The King of Fighters 2000 (not encrypted)"
+      ],
+      "kof2000otc.zip": [
+        "kof2000otc-p1.bin",
+        "The King of Fighters 2000 (OTC, hack)"
+      ],
+      "kof2000ps2.zip": [
+        "257ps2-p1.bin",
+        "The King of Fighters 2000 (Playstation 2 ver. , EGHT hack)"
+      ],
+      "kof2000sp.zip": [
+        "257sp-pg1.p1",
+        "The King of Fighters 2000 - Special Edition (Final Version, Hack)"
+      ],
+      "kof2001h.zip": [
+        "262-pg1.p1",
+        "The King of Fighters 2001 (NGH-2621)"
+      ],
+      "kof2001.zip": [
+        "262-p1-08-e0.p1",
+        "The King of Fighters 2001 (NGM-262?)"
+      ],
+      "kf2k1pkz.zip": [
+        "kf2k1ps2-p1.bin",
+        "The King of Fighters 2001 (PS2 Krizalid Edition)"
+      ],
+      "kf2k1pls.zip": [
+        "2k1-p1p.bin",
+        "The King of Fighters 2001 Plus (set 1, bootleg / hack)"
+      ],
+      "kf2k1pa.zip": [
+        "2k1-p1a.bin",
+        "The King of Fighters 2001 Plus (set 2, bootleg / hack)"
+      ],
+      "kof2002b.zip": [
+        "265-p1.p1",
+        "The King of Fighters 2002 (bootleg)"
+      ],
+      "kof2002.zip": [
+        "265-p1.p1",
+        "The King of Fighters 2002 (NGM-2650)(NGH-2650)"
+      ],
+      "kof2k2omg.zip": [
+        "265omg.p1",
+        "The King of Fighters 2002 (Omega v.0?)"
+      ],
+      "kof2k2omg8.zip": [
+        "265omg8.p1",
+        "The King of Fighters 2002 (Omega v0.8)"
+      ],
+      "kof2k2omg9b.zip": [
+        "265-p1.p1",
+        "The King of Fighters 2002 (Omega v0.9 beta)"
+      ],
+      "kof2k2omg9.zip": [
+        "265-p1.p1",
+        "The King of Fighters 2002 (Omega v0.9)"
+      ],
+      "kf2k2ps2re1.zip": [
+        "K2k2ps2re-p1.p1",
+        "The King of Fighters 2002 (PlayStation 2 v1.0 Public Beta)"
+      ],
+      "kf2k2ps2.zip": [
+        "265ps2-p1.bin",
+        "The King of Fighters 2002 (PlayStation 2 ver 0.4, EGHT hack)"
+      ],
+      "kf2k2ps2b.zip": [
+        "265-p1ps2.p1",
+        "The King of Fighters 2002 (PlayStation 2, Hack)"
+      ],
+      "kof2k2plus.zip": [
+        "265-p1pls.p1",
+        "The King of Fighters 2002 (Plus 2017, Hack)"
+      ],
+      "kf2k23rd.zip": [
+        "kf2k23rd-p1.rom",
+        "The King of Fighters 2002 - 3rd Strike of Orochi (Hack by EGCG/EGHT)"
+      ],
+      "kf2k2mp.zip": [
+        "kf02m-p1.bin",
+        "The King of Fighters 2002 Magic Plus (bootleg)"
+      ],
+      "kf2k2mp2.zip": [
+        "k2k2m2p1.bin",
+        "The King of Fighters 2002 Magic Plus II (bootleg)"
+      ],
+      "kf2k2pls.zip": [
+        "2k2-p1p.bin",
+        "The King of Fighters 2002 Plus (bootleg set 1)"
+      ],
+      "kf2k2pla.zip": [
+        "2k2-p1pa.bin",
+        "The King of Fighters 2002 Plus (bootleg set 2)"
+      ],
+      "kf2k2plb.zip": [
+        "2k2-p1p.bin",
+        "The King of Fighters 2002 Plus (bootleg set 3)"
+      ],
+      "kf2k2ru35.zip": [
+        "kf2k2ru35-p1.bin",
+        "The King of Fighters 2002 Remix Ultra 3.5 (Hack By FCHT)"
+      ],
+      "kf2k2plc.zip": [
+        "2k2-p1pc.bin",
+        "The King of Fighters 2002 Super (bootleg)"
+      ],
+      "kf2k3bl.zip": [
+        "2k3-p1.bin",
+        "The King of Fighters 2003 (bootleg set 1)"
+      ],
+      "kf2k3bla.zip": [
+        "2k3-p1bl.bin",
+        "The King of Fighters 2003 (bootleg set 2)"
+      ],
+      "kf2k3pcb.zip": [
+        "271-p1.p1",
+        "The King of Fighters 2003 (Japan, JAMMA PCB)"
+      ],
+      "kof2003h.zip": [
+        "271-p1k.p1",
+        "The King of Fighters 2003 (NGH-2710)"
+      ],
+      "kof2003.zip": [
+        "271-p1c.p1",
+        "The King of Fighters 2003 (NGM-2710)"
+      ],
+      "kf2k3ps2.zip": [
+        "kf2k3ps2-p1.bin",
+        "The King of Fighters 2003 PlayStation 2 (Hack By EGCG)"
+      ],
+      "kf2k3pl.zip": [
+        "2k3-p1pl.bin",
+        "The King of Fighters 2004 Plus / Hero (bootleg)"
+      ],
+      "kf2k3upl.zip": [
+        "2k3-p1up.bin",
+        "The King of Fighters 2004 Ultra Plus (bootleg)"
+      ],
+      "kof2k4se.zip": [
+        "k2k4s-p1.bin",
+        "The King of Fighters Special Edition 2004 (bootleg)"
+      ],
+      "kf2k4pls.zip": [
+        "k2k4s-p1p.bin",
+        "The King of Fighters Special Edition 2004 Plus (bootleg)"
+      ],
+      "lastbladh.zip": [
+        "234-pg1.p1",
+        "The Last Blade / Bakumatsu Roman - Gekka no Kenshi (NGH-2340)"
+      ],
+      "lastblad.zip": [
+        "234-p1.p1",
+        "The Last Blade / Bakumatsu Roman - Gekka no Kenshi (NGM-2340)"
+      ],
+      "lastblada.zip": [
+        "0234-ep1.ep1",
+        "The Last Blade / Bakumatsu Roman - Gekka no Kenshi (NGM-2340, alternate board)"
+      ],
+      "lastbladsp.zip": [
+        "234sp2.p1",
+        "The Last Blade / Bakumatsu Roman - Gekka no Kenshi (Special 2017, hack)"
+      ],
+      "lb2b.zip": [
+        "243-pg1b.p1",
+        "The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka no Kenshi (Enable Hidden Characters V4)"
+      ],
+      "lastbld2eh.zip": [
+        "243-p1eh.p1",
+        "The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka no Kenshi (Enhanced Hack)"
+      ],
+      "lastbld2.zip": [
+        "243-pg1.p1",
+        "The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka no Kenshi (NGM-2430)(NGH-2430)"
+      ],
+      "lastbld2te.zip": [
+        "243te-pg1.p1",
+        "The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka no Kenshi (Team Edition Hack)"
+      ],
+      "lastsold.zip": [
+        "134-p1k.p1",
+        "The Last Soldier (Korean release of The Last Blade)"
+      ],
+      "superspy.zip": [
+        "011-p1.p1",
+        "The Super Spy (NGM-011)(NGH-011)"
+      ],
+      "ssideki4.zip": [
+        "215-p1.p1",
+        "The Ultimate 11 - The SNK Football Championship / Tokuten Ou - Honoo no Libero"
+      ],
+      "trally.zip": [
+        "038-p1.p1",
+        "Thrash Rally (ALM-003)(ALH-003)"
+      ],
+      "timesupd.zip": [
+        "tup_p1.rom",
+        "Time's Up Demo"
+      ],
+      "tophuntrh.zip": [
+        "046-pg1.p1",
+        "Top Hunter - Roddy & Cathy (NGH-046)"
+      ],
+      "tophuntr.zip": [
+        "046-p1.p1",
+        "Top Hunter - Roddy & Cathy (NGM-046)"
+      ],
+      "tpgolf.zip": [
+        "003-p1.p1",
+        "Top Player's Golf (NGM-003)(NGH-003)"
+      ],
+      "totc.zip": [
+        "316-p1.p1",
+        "Treasure of the Caribbean"
+      ],
+      "twinspri.zip": [
+        "224-p1.p1",
+        "Twinkle Star Sprites"
+      ],
+      "vliner53.zip": [
+        "epr_53.p1",
+        "V-Liner (v0.53)"
+      ],
+      "vliner54.zip": [
+        "epr_54.p1",
+        "V-Liner (v0.54)"
+      ],
+      "vliner6e.zip": [
+        "epr_6e.p1",
+        "V-Liner (v0.6e)"
+      ],
+      "vliner.zip": [
+        "epr_7a.p1",
+        "V-Liner (v0.7a)"
+      ],
+      "vliner7e.zip": [
+        "epr_7e.p1",
+        "V-Liner (v0.7e)"
+      ],
+      "viewpoin.zip": [
+        "051-p1.p1",
+        "Viewpoint"
+      ],
+      "viewpoinp.zip": [
+        "p1",
+        "Viewpoint (prototype)"
+      ],
+      "gowcaizr.zip": [
+        "094-p1.p1",
+        "Voltage Fighter - Gowcaizer / Choujin Gakuen Gowcaizer"
+      ],
+      "wakuwak7.zip": [
+        "225-p1.p1",
+        "Waku Waku 7"
+      ],
+      "wakuwak7bh.zip": [
+        "225-p1bh.p1",
+        "Waku Waku 7 (Boss Hack)"
+      ],
+      "wjammers.zip": [
+        "065-p1.p1",
+        "Windjammers / Flying Power Disc"
+      ],
+      "wh1h.zip": [
+        "053-p1.p1",
+        "World Heroes (ALH-005)"
+      ],
+      "wh1.zip": [
+        "053-epr.p1",
+        "World Heroes (ALM-005)"
+      ],
+      "wh1ha.zip": [
+        "053-p1_a.p1",
+        "World Heroes (set 3)"
+      ],
+      "wh2h.zip": [
+        "057-pg1.p1",
+        "World Heroes 2 (ALH-006)"
+      ],
+      "wh2.zip": [
+        "057-p1.p1",
+        "World Heroes 2 (ALM-006)(ALH-006)"
+      ],
+      "wh2ja.zip": [
+        "064-p1.p1",
+        "World Heroes 2 Jet (ADM-007)"
+      ],
+      "wh2j.zip": [
+        "064-p1.p1",
+        "World Heroes 2 Jet (ADM-007)(ADH-007)"
+      ],
+      "whp.zip": [
+        "090-p1.p1",
+        "World Heroes Perfect"
+      ],
+      "neoww2.zip": [
+        "ww2_p1.rom",
+        "WW2 Demo - Arcade Development Project"
+      ],
+      "zedblade.zip": [
+        "076-p1.p1",
+        "Zed Blade / Operation Ragnarok"
+      ],
+      "zintrckb.zip": [
+        "zin-p1.bin",
+        "Zintrick / Oshidashi Zentrix (hack / bootleg)"
+      ],
+      "zintrkcd.zip": [
+        "211-p1.bin",
+        "Zintrick / Oshidashi Zentrix (Neo CD conversion)"
+      ],
+      "zupapa.zip": [
+        "070-p1.p1",
+        "Zupapa!"
+      ]
+    }
   }
 }
