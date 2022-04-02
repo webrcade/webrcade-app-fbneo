@@ -25,6 +25,8 @@ export class Emulator extends AppWrapper {
     this.samples = []
     this.archives = {};
 
+    this.aspectX = 4;
+    this.aspectY = 3;
     this.width = 304;
     this.height = 224;
     this.rotated = false;
@@ -347,7 +349,10 @@ export class Emulator extends AppWrapper {
     }
   }
 
-  setRomProps(width, height, rotated, flipped, vidBits, refreshRate) {
+  setRomProps(width, height, rotated, flipped, vidBits, refreshRate, aspectX, aspectY) {
+    LOG.info(`Aspect ratio: ${aspectX}x${aspectY}`);
+    this.aspectX = aspectX;
+    this.aspectY = aspectY;
     this.rotated = rotated;
     this.flipped = flipped;
     this.width = width;
@@ -368,7 +373,7 @@ export class Emulator extends AppWrapper {
   }  
 
   initVideo(canvas) {
-    let { width, height, pixelCount } = this;
+    let { aspectX, aspectY, width, height, pixelCount } = this;
 
     canvas.width = width;
     canvas.height = height;    
@@ -381,6 +386,17 @@ export class Emulator extends AppWrapper {
       (this.rotated ? "-rotated" : "") + 
       (this.flipped ? "-flipped" : "" )
     canvas.classList.add(className); 
+
+    const xyAr = (aspectX/aspectY).toFixed(3);
+    const yxAr = (aspectY/aspectX).toFixed(3);
+
+    if (this.rotated) {
+      canvas.style.setProperty("max-height", `calc(96vh*${yxAr})`, "important");
+      canvas.style.setProperty("max-width", `calc(96vw*${xyAr})`, "important");
+    } else {
+      canvas.style.setProperty("max-width", `calc(96vh*${xyAr})`, "important");
+      canvas.style.setProperty("max-height", `calc(96vw*${yxAr})`, "important");
+    }    
   }
 
   drawScreen(buff) {
