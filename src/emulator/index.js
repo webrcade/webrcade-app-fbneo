@@ -12,29 +12,39 @@ import {
 window.audioCallback = null;
 
 export class Emulator extends AppWrapper {
-  constructor(app, debug = false) {
+  constructor(app, type, debug = false) {
     super(app, debug);
 
     window.emulator = this;
+    this.type = type;
     this.fbneoModule = null;
     this.started = false;
 
     this.roms = [];
     this.files = [];
+    this.samples = []
     this.archives = {};
 
     this.width = 304;
     this.height = 224;
+    this.rotated = false;
+    this.flipped = false;
     this.pixelCount = this.width * this.height;
+    this.vidBits = 32;
     this.refreshRate = 59.18;
   }
 
   TYPE_BIOS = 0;
   TYPE_PRIMARY = 1;
-  TYPE_PARENT = 2;
+  TYPE_ADDITIONAL = 2;
+  TYPE_SAMPLES = 3;
 
   setRoms(roms) {
     this.roms = roms;
+  }
+
+  setSamples(samples) {
+    this.samples = samples;
   }
 
   createControllers() {
@@ -47,7 +57,13 @@ export class Emulator extends AppWrapper {
   }  
 
   createAudioProcessor() {
-    return new ScriptAudioProcessor(2, 44100).setDebug(this.debug);
+    const audioProcessor =  new ScriptAudioProcessor(2, 44100).setDebug(this.debug);
+    // Check for volume adjust
+    const adjust = this.getProps().volAdjust;
+    if (adjust) {
+      audioProcessor.adjustVolume(adjust);
+    }
+    return audioProcessor;
   }
 
   async onShowPauseMenu() {
@@ -103,16 +119,16 @@ export class Emulator extends AppWrapper {
         input |= this.INP_START;
       }
       if (controllers.isControlDown(i, CIDS.A)) {
-        input |= modern ? this.INP_B2 : this.INP_B1;
+        input |= (modern ? this.INP_B2 : this.INP_B1);
       }
       if (controllers.isControlDown(i, CIDS.B)) {
-        input |= modern ? this.INP_B4: this.INP_B2;
+        input |= (modern ? this.INP_B4: this.INP_B2);
       }
       if (controllers.isControlDown(i, CIDS.X)) {
-        input |= modern ? this.INP_B1 : this.INP_B3;
+        input |= (modern ? this.INP_B1 : this.INP_B3);
       }
       if (controllers.isControlDown(i, CIDS.Y)) {
-        input |= modern ? this.INP_B3 : this.INP_B4;
+        input |= (modern ? this.INP_B3 : this.INP_B4);
       }
       if (controllers.isControlDown(i, CIDS.LBUMP)) {
         input |= this.INP_B5;
@@ -126,14 +142,22 @@ export class Emulator extends AppWrapper {
   }
                              
   loadEmscriptenModule() {
-    const { app } = this;
+    const { app, type } = this;
 
     return new Promise((resolve, reject) => {
 
       const script = document.createElement('script');
       document.body.appendChild(script);
 
-      script.src = 'js/fbneo.js';
+      if (type === 'fbneo-neogeo') {
+        script.src = 'js/fbneo-neogeo.js';
+      } else if (type === 'fbneo-konami') {
+        script.src = 'js/fbneo-konami.js';
+      } else if (type === 'fbneo-capcom') {
+        script.src = 'js/fbneo-capcom.js';
+      } else {  
+        script.src = 'js/fbneo-arcade.js';
+      }
       script.async = false;      
       script.onerror = () => {
         reject("An error occurred attempting to load the FBNeo engine.");
@@ -169,7 +193,7 @@ export class Emulator extends AppWrapper {
   }
 
   async onStart(canvas) {
-    const { app, debug, fbneoModule, refreshRate, roms } = this;
+    const { app, debug, fbneoModule, roms, samples } = this;
 
     try {
       // FS
@@ -193,7 +217,16 @@ export class Emulator extends AppWrapper {
         }
       }
 
-      // TODO: Force 60
+      // Make the samples directory and copy the files
+      FS.mkdir("support");
+      FS.mkdir("support/samples");
+      for (let i = 0; i < samples.length; i++) {
+        const sample = samples[i];
+        const name = sample.name;
+        FS.writeFile("support/samples/" + name, sample.u8array);
+      }
+
+      // TODO: AES Support
       //fbneoModule._forceNeoGeoBios(19);
       //fbneoModule._setForceAes(1);
 
@@ -233,7 +266,7 @@ export class Emulator extends AppWrapper {
 
       // Display loop
       this.initVideo(canvas);
-      this.displayLoop = new DisplayLoop(60, true, debug);
+      this.displayLoop = new DisplayLoop(this.refreshRate, true, debug);
 
       // Start the audio processor
       this.audioProcessor.start();      
@@ -314,10 +347,13 @@ export class Emulator extends AppWrapper {
     }
   }
 
-  setRomProps(width, height, refreshRate) {
+  setRomProps(width, height, rotated, flipped, vidBits, refreshRate) {
+    this.rotated = rotated;
+    this.flipped = flipped;
     this.width = width;
     this.height = height;
     this.pixelCount = width * height;
+    this.vidBits = vidBits;
     this.refreshRate = refreshRate;
   }
 
@@ -332,7 +368,7 @@ export class Emulator extends AppWrapper {
   }  
 
   initVideo(canvas) {
-    const { width, height, pixelCount } = this;
+    let { width, height, pixelCount } = this;
 
     canvas.width = width;
     canvas.height = height;    
@@ -340,18 +376,36 @@ export class Emulator extends AppWrapper {
     this.image = this.context.getImageData(0, 0, width, height);
     this.imageData = this.image.data;
     this.clearImageData(this.image, this.imageData, pixelCount);
+
+    const className = "canvas" + 
+      (this.rotated ? "-rotated" : "") + 
+      (this.flipped ? "-flipped" : "" )
+    canvas.classList.add(className); 
   }
 
   drawScreen(buff) {
-    const { fbneoModule, image, imageData, pixelCount } = this;    
-    const b = new Uint8Array(fbneoModule.HEAP8.buffer, buff, pixelCount << 2);
-    let index = 0;
-    for (let i = 0; i < pixelCount; i++) {
-      const offset = i << 2;
-      imageData[index++] = b[offset + 2];
-      imageData[index++] = b[offset + 1];
-      imageData[index++] = b[offset];            
-      index++;
+    const { fbneoModule, image, imageData, pixelCount, vidBits } = this;    
+    if (vidBits === 16) {
+      const b = new Uint8Array(fbneoModule.HEAP8.buffer, buff, pixelCount << 1);
+      let index = 0;
+      for (let i = 0; i < pixelCount; i++) {
+        const offset = i << 1;
+        const color = ((b[offset + 1] << 8) & 0xFF00) | (b[offset] & 0xFF); 
+        imageData[index++] = ((color >> 11) & 0x1F) << 3;
+        imageData[index++] = ((color >> 5) & 0x3F) << 2;
+        imageData[index++] = (color & 0x1F) << 3;
+        index++;
+      }
+    } else {
+      const b = new Uint8Array(fbneoModule.HEAP8.buffer, buff, pixelCount << 2);
+      let index = 0;
+      for (let i = 0; i < pixelCount; i++) {
+        const offset = i << 2;
+        imageData[index++] = b[offset + 2];
+        imageData[index++] = b[offset + 1];
+        imageData[index++] = b[offset];            
+        index++;
+      }
     }
     this.context.putImageData(image, 0, 0);
   }

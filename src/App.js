@@ -16,7 +16,7 @@ import './App.scss';
 class App extends WebrcadeApp {
   emulator = null;
 
-  async fetchFiles(emulator, files) {
+  async fetchFiles(files) {
     const results = []
     for (let i = 0; i < files.length; i++) {
       const f = files[i];
@@ -104,22 +104,26 @@ class App extends WebrcadeApp {
     const { appProps, ModeEnum } = this;
 
     try {
+      const type = appProps.type;
+
       // Create the emulator
       if (this.emulator === null) {
-        this.emulator = new Emulator(this, this.isDebug());
+        this.emulator = new Emulator(this, type, this.isDebug());
       }
-      const emulator = this.emulator;
+      const emulator = this.emulator;      
 
       const files = [];
 
       // Neo Geo bios
-      const bios = appProps.neogeo_bios;
-      if (bios) {
-        files.push({      
-          type: emulator.TYPE_BIOS,          
-          url: bios,
-          name: "neogeo.zip"
-        });
+      if (type === 'fbneo-neogeo') {
+        const bios = appProps.neogeo_bios;
+        if (bios) {
+          files.push({      
+            type: emulator.TYPE_BIOS,          
+            url: bios,
+            name: "neogeo.zip"
+          });
+        }
       }
 
       // Get the ROM location that was specified
@@ -130,18 +134,31 @@ class App extends WebrcadeApp {
         url: rom,
       })      
 
-      const parentRom = appProps.parentRom;
-      if (parentRom) {
-        files.push({
-          type: emulator.TYPE_PARENT,          
-          url: parentRom,
-        })      
+      const additionalRoms = appProps.additionalRoms;
+      if (additionalRoms) {
+        additionalRoms.forEach((rom) => {
+          files.push({
+            type: emulator.TYPE_ADDITIONAL,          
+            url: rom,
+          })        
+        })         
+      }
+
+      const samples = appProps.samples;
+      let samplesFile = [];
+      if (samples) {
+        samplesFile.push({
+          type: emulator.TYPE_SAMPLES,          
+          url: samples,
+        })
       }
 
       // Load Emscripten and ROMs
       emulator.loadEmscriptenModule()
-        .then(() => this.fetchFiles(emulator, files))
+        .then(() => this.fetchFiles(files))
         .then((roms) => emulator.setRoms(roms))
+        .then(() => this.fetchFiles(samplesFile))
+        .then((s) => emulator.setSamples(s))
         .then(() => this.setState({ mode: ModeEnum.LOADED }))
         .catch(msg => {
           LOG.error(msg);

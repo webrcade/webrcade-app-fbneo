@@ -4,11 +4,39 @@
   overflow: hidden;  
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   position: absolute;  
+  // border: 1px solid red;
+}
+
+.canvas {  
+  transform: translate(-50%, -50%);
   width: 96vw !important;
   height: 96vh !important;
   max-width: calc(96vh*1.333) !important;
   max-height: calc(96vw*.75) !important;  
+}
+
+.canvas-flipped {  
+  transform: translate(-50%, -50%) rotate(180deg);
+  width: 96vw !important;
+  height: 96vh !important;
+  max-width: calc(96vh*1.333) !important;
+  max-height: calc(96vw*.75) !important;  
+}
+
+.canvas-rotated {  
+  transform: translate(-50%, -50%) rotate(270deg);
+  width: 96vh !important;
+  height: 96vw !important;
+  max-height: calc(96vh*.75) !important;
+  max-width: calc(96vw*1.333) !important;  
+}
+
+.canvas-rotated-flipped {  
+  transform: translate(-50%, -50%) rotate(90deg);
+  width: 96vh !important;
+  height: 96vw !important;
+  max-height: calc(96vh*.75) !important;
+  max-width: calc(96vw*1.333) !important;  
   // border: 1px solid red;
 }
