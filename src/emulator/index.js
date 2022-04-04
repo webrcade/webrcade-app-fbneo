@@ -4,9 +4,11 @@ import {
   Controllers, 
   DefaultKeyCodeToControlMapping,
   DisplayLoop,
+  FetchAppData,
   ScriptAudioProcessor,
   CIDS,
-  LOG  
+  LOG,  
+  Unzip
 } from "@webrcade/app-common"
 
 window.audioCallback = null;
@@ -24,6 +26,7 @@ export class Emulator extends AppWrapper {
     this.files = [];
     this.samples = []
     this.archives = {};
+    this.primaryName = "(not found)";
 
     this.aspectX = 4;
     this.aspectY = 3;
@@ -34,6 +37,7 @@ export class Emulator extends AppWrapper {
     this.pixelCount = this.width * this.height;
     this.vidBits = 32;
     this.refreshRate = 59.18;
+    this.fsStateName = "";
   }
 
   TYPE_BIOS = 0;
@@ -41,8 +45,23 @@ export class Emulator extends AppWrapper {
   TYPE_ADDITIONAL = 2;
   TYPE_SAMPLES = 3;
 
+  FS_STATE_PREFIX = "/libsdl/fbneo/states/";
+  FS_HS_PREFIX = "support/hiscores/";
+  STATE_SAVE = "/state.fs";
+  HS_SAVE = "/hs.hi";
+
   setRoms(roms) {
     this.roms = roms;
+
+    for (let i = 0; i < roms.length; i++) {
+      const rom = roms[i];
+      const name = rom.name;
+      if (rom.type === this.TYPE_PRIMARY) {
+        this.primaryName = name.split(".")[0];
+        this.fsStateName = `${this.FS_STATE_PREFIX}${this.primaryName}.fs`;
+        this.fsHsName = `${this.FS_HS_PREFIX}${this.primaryName}.hi`;        
+      }
+    }    
   }
 
   setSamples(samples) {
@@ -189,13 +208,94 @@ export class Emulator extends AppWrapper {
   }
 
   async loadState() {
+    const { app, fbneoModule, fsHsName, fsStateName, 
+      primaryName, storage, HS_SAVE, STATE_SAVE} = this;
+    const FS = fbneoModule.FS;      
+
+    let path = null;
+    let res = null;
+    let s = null;
+
+    try {        
+      res = FS.analyzePath(fsStateName, true);
+      if (!res.exists) {
+        path = app.getStoragePath(`${primaryName}${STATE_SAVE}`);
+        s = await storage.get(path);          
+        if (s) {
+          FS.writeFile(fsStateName, s);
+        }
+      }
+
+      res = FS.analyzePath(fsHsName, true);
+      if (!res.exists) {
+        path = app.getStoragePath(`${primaryName}${HS_SAVE}`);
+        s = await storage.get(path);          
+        if (s) {
+          FS.writeFile(fsHsName, s);
+        }
+      }
+    } catch(e) {
+      LOG.error(e);
+    }
   }
 
   async saveState() {    
+    const { app, fbneoModule, fsHsName, fsStateName, primaryName, 
+      storage, HS_SAVE, STATE_SAVE} = this;
+    const FS = fbneoModule.FS;      
+    
+    if (!this.started) return;
+
+    let found = false;
+    let path = "";
+
+    try {
+      if (!fbneoModule._saveState(1)) {              
+
+        let s = null;
+        path = app.getStoragePath(`${primaryName}${STATE_SAVE}`);
+        let res = FS.analyzePath(fsStateName, true);
+        if (res.exists) {
+          s = FS.readFile(fsStateName);              
+          if (s) {          
+            found = true;
+            await this.saveStateToStorage(path, s, false);          
+          }
+        }         
+        if (!s) {
+          await storage.remove(path);
+        } 
+
+        s = null;
+        path = app.getStoragePath(`${primaryName}${HS_SAVE}`);
+        res = FS.analyzePath(fsHsName, true);
+        if (res.exists) {
+          s = FS.readFile(fsHsName);              
+          if (s) {          
+            found = true;
+            await this.saveStateToStorage(path, s, false);          
+          }
+        }         
+        if (!s) {
+          await storage.remove(path);
+        } 
+                
+        path = app.getStoragePath(`${primaryName}/sav`);
+        if (found) {      
+          await this.saveStateToStorage(path, null);
+        } else {
+          await storage.remove(path);
+        }
+
+        LOG.info("Saved: " + found);
+      }
+    } catch(e) {
+      LOG.error(e);
+    }
   }
 
   async onStart(canvas) {
-    const { app, debug, fbneoModule, roms, samples } = this;
+    const { app, debug, fbneoModule, primaryName, roms, samples } = this;
 
     try {
       // FS
@@ -203,25 +303,37 @@ export class Emulator extends AppWrapper {
 
       // Set the canvas for the module
       fbneoModule.canvas = canvas; 
+
+      // Create directories
+      FS.mkdir("/libsdl");
+      FS.mkdir("/libsdl/fbneo");
+      FS.mkdir("/libsdl/fbneo/states");
+      FS.mkdir("roms");
+      FS.mkdir("support");
+      FS.mkdir("support/hiscores");
+      FS.mkdir("support/samples");      
+
+      // Download, unzip, and copy high score file
+      const fad = new FetchAppData("hiscore.zip");
+      const res = await fad.fetch();    
+      let blob = await res.blob();
+      const uz = new Unzip().setDebug(debug);
+      blob = await uz.unzip(blob, [".dat"], [".dat"]);
+      const arrayBuffer = await new Response(blob).arrayBuffer();
+      const u8array = new Uint8Array(arrayBuffer);
+      FS.writeFile("support/hiscores/hiscore.dat", u8array);
                 
       // Load save state
       await this.loadState();
 
       // Make the roms directory and copy the files
-      FS.mkdir("roms");
-      let primaryName = "(not found)";
       for (let i = 0; i < roms.length; i++) {
         const rom = roms[i];
         const name = rom.name;
         FS.writeFile("roms/" + name, rom.u8array);
-        if (rom.type === this.TYPE_PRIMARY) {
-          primaryName = name.split(".")[0];
-        }
       }
 
       // Make the samples directory and copy the files
-      FS.mkdir("support");
-      FS.mkdir("support/samples");
       for (let i = 0; i < samples.length; i++) {
         const sample = samples[i];
         const name = sample.name;
