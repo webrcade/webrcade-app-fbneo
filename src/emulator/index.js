@@ -8,7 +8,8 @@ import {
   ScriptAudioProcessor,
   CIDS,
   LOG,  
-  Unzip
+  Unzip,
+  Zip,
 } from "@webrcade/app-common"
 
 window.audioCallback = null;
@@ -38,6 +39,7 @@ export class Emulator extends AppWrapper {
     this.vidBits = 32;
     this.refreshRate = 59.18;
     this.fsStateName = "";
+    this.isNeoGeo = false;
   }
 
   TYPE_BIOS = 0;
@@ -47,8 +49,11 @@ export class Emulator extends AppWrapper {
 
   FS_STATE_PREFIX = "/libsdl/fbneo/states/";
   FS_HS_PREFIX = "support/hiscores/";
+  FS_MEMCARD_SAVE = "memorycard.fc";
+
   STATE_SAVE = "/state.fs";
-  HS_SAVE = "/hs.hi";
+  HS_SAVE = "/hs.hi";  
+  MEMCARD_SAVE = "/memcard.fc";  
 
   setRoms(roms) {
     this.roms = roms;
@@ -171,6 +176,7 @@ export class Emulator extends AppWrapper {
       document.body.appendChild(script);
 
       if (type === 'fbneo-neogeo') {
+        this.isNeoGeo = true;
         script.src = 'js/fbneo-neogeo.js';
       } else if (type === 'fbneo-konami') {
         script.src = 'js/fbneo-konami.js';
@@ -208,8 +214,9 @@ export class Emulator extends AppWrapper {
   }
 
   async loadState() {
-    const { app, fbneoModule, fsHsName, fsStateName, 
-      primaryName, storage, HS_SAVE, STATE_SAVE} = this;
+    const { app, debug, fbneoModule, fsHsName, fsStateName, 
+      isNeoGeo, primaryName, storage, FS_MEMCARD_SAVE,
+       HS_SAVE, MEMCARD_SAVE, STATE_SAVE} = this;
     const FS = fbneoModule.FS;      
 
     let path = null;
@@ -234,14 +241,38 @@ export class Emulator extends AppWrapper {
           FS.writeFile(fsHsName, s);
         }
       }
+
+      if (isNeoGeo) {
+        let u8array = null;
+        res = FS.analyzePath(FS_MEMCARD_SAVE, true);        
+        if (!res.exists) {
+          path = app.getStoragePath(`${primaryName}${MEMCARD_SAVE}`);
+          s = await storage.get(path);        
+          if (s) {
+            LOG.info("Memory card from storage.");
+            // Retrieved from storage
+            const uz = new Unzip().setDebug(debug);
+            const blob = await uz.unzip(new Blob([s.buffer]), [], []);
+            u8array = new Uint8Array(await new Response(blob).arrayBuffer());            
+          } else {
+            // Download new memory card
+            LOG.info("New memory card.");
+            u8array = await this.downloadFile("memorycard.zip");
+          }
+          if (u8array) {
+            FS.writeFile(FS_MEMCARD_SAVE, u8array)
+          }
+        }
+      }
     } catch(e) {
       LOG.error(e);
     }
   }
 
   async saveState() {    
-    const { app, fbneoModule, fsHsName, fsStateName, primaryName, 
-      storage, HS_SAVE, STATE_SAVE} = this;
+    const { app, fbneoModule, fsHsName, fsStateName, isNeoGeo, 
+      primaryName, storage, FS_MEMCARD_SAVE, HS_SAVE, MEMCARD_SAVE, 
+      STATE_SAVE} = this;
     const FS = fbneoModule.FS;      
     
     if (!this.started) return;
@@ -279,6 +310,29 @@ export class Emulator extends AppWrapper {
         if (!s) {
           await storage.remove(path);
         } 
+
+        if (isNeoGeo) {
+          // Save mem card state
+          fbneoModule._memCardSave();
+
+          s = null;
+          path = app.getStoragePath(`${primaryName}${MEMCARD_SAVE}`);
+          res = FS.analyzePath(FS_MEMCARD_SAVE, true);
+          if (res.exists) {
+            s = FS.readFile(FS_MEMCARD_SAVE);              
+            if (s) {          
+              found = true;
+              const zip = new Zip();            
+              const blob = await zip.zip(new Blob([s.buffer]), FS_MEMCARD_SAVE);
+              await this.saveStateToStorage(path, 
+                new Uint8Array(await new Response(blob).arrayBuffer()), 
+                false);          
+            }
+          }         
+          if (!s) {
+            await storage.remove(path);
+          } 
+        }
                 
         path = app.getStoragePath(`${primaryName}/sav`);
         if (found) {      
@@ -294,8 +348,18 @@ export class Emulator extends AppWrapper {
     }
   }
 
+  async downloadFile(file) {
+    const { debug } = this
+    const uz = new Unzip().setDebug(debug);
+    const fad = new FetchAppData(file);
+    const res = await fad.fetch();    
+    let blob = await res.blob();
+    blob = await uz.unzip(blob, [], []);
+    return new Uint8Array(await new Response(blob).arrayBuffer());
+  }
+
   async onStart(canvas) {
-    const { app, debug, fbneoModule, primaryName, roms, samples } = this;
+    const { app, debug, fbneoModule, isNeoGeo, primaryName, roms, samples } = this;
 
     try {
       // FS
@@ -314,13 +378,7 @@ export class Emulator extends AppWrapper {
       FS.mkdir("support/samples");      
 
       // Download, unzip, and copy high score file
-      const fad = new FetchAppData("hiscore.zip");
-      const res = await fad.fetch();    
-      let blob = await res.blob();
-      const uz = new Unzip().setDebug(debug);
-      blob = await uz.unzip(blob, [".dat"], [".dat"]);
-      const arrayBuffer = await new Response(blob).arrayBuffer();
-      const u8array = new Uint8Array(arrayBuffer);
+      const u8array = await this.downloadFile("hiscore.zip");
       FS.writeFile("support/hiscores/hiscore.dat", u8array);
                 
       // Load save state
@@ -340,13 +398,31 @@ export class Emulator extends AppWrapper {
         FS.writeFile("support/samples/" + name, sample.u8array);
       }
 
-      // TODO: AES Support
-      //fbneoModule._forceNeoGeoBios(19);
-      //fbneoModule._setForceAes(1);
+      if (isNeoGeo) {
+        // BIOS
+        const bios = this.getProps().bios;
+        if (bios) {
+          const b = parseInt(bios);
+          if (b > 0) {
+            fbneoModule._forceNeoGeoBios(b - 1);  
+          }
+        }
+
+        // Force AES
+        const forceAes = this.getProps().forceAesMode;
+        if (forceAes && forceAes === true) {
+          fbneoModule._setForceAes(1);
+        }
+      }
 
       const startMain = fbneoModule.cwrap('startMain', 'number', ['string']);
       if(startMain(primaryName) === 2) {
         app.exit("'" + primaryName + "' is not a recognized game."); 
+      }
+
+      // Insert memory card
+      if (isNeoGeo) {
+        fbneoModule._memCardInsert();
       }
       
       // Check archives
