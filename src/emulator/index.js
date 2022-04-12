@@ -1,16 +1,14 @@
 import {
   AppWrapper,
-  Controller, 
-  Controllers, 
-  DefaultKeyCodeToControlMapping,
   DisplayLoop,
   FetchAppData,
   ScriptAudioProcessor,
-  CIDS,
   LOG,  
   Unzip,
   Zip,
 } from "@webrcade/app-common"
+
+import EmulatorInput from './input';
 
 window.audioCallback = null;
 
@@ -19,6 +17,7 @@ export class Emulator extends AppWrapper {
     super(app, debug);
 
     window.emulator = this;
+    this.input = new EmulatorInput(this);
     this.type = type;
     this.fbneoModule = null;
     this.started = false;
@@ -28,6 +27,7 @@ export class Emulator extends AppWrapper {
     this.samples = []
     this.archives = {};
     this.primaryName = "(not found)";
+    this.inputs = [];
 
     this.aspectX = 4;
     this.aspectY = 3;
@@ -69,18 +69,27 @@ export class Emulator extends AppWrapper {
     }    
   }
 
+  getPrimaryName() {
+    return this.primaryName;
+  }
+
+  getParentName() {
+    const { fbneoModule } = this;
+    const name = fbneoModule._getParentName();
+    return name ? fbneoModule.UTF8ToString(name) : null;
+  }
+
   setSamples(samples) {
     this.samples = samples;
   }
-
+  
   createControllers() {
-    return new Controllers([
-      new Controller(new DefaultKeyCodeToControlMapping()),
-      new Controller(),
-      new Controller(),
-      new Controller()
-    ]);
+    return null;
   }  
+
+  setControllers(controllers) {
+    this.controllers = controllers;
+  }
 
   createAudioProcessor() {
     const audioProcessor =  new ScriptAudioProcessor(2, 44100).setDebug(this.debug);
@@ -96,76 +105,10 @@ export class Emulator extends AppWrapper {
     await this.saveState();
   }
 
-  INP_LEFT =    1;
-  INP_RIGHT =   1 << 1;
-  INP_UP =      1 << 2;
-  INP_DOWN =    1 << 3;
-  INP_START =   1 << 4;
-  INP_SELECT =  1 << 5;
-  INP_B1 =      1 << 6;
-  INP_B2 =      1 << 7;
-  INP_B3 =      1 << 8;
-  INP_B4 =      1 << 9;
-  INP_B5 =      1 << 10;
-  INP_B6 =      1 << 11;
-
   pollControls() {
-    const { controllers, fbneoModule } = this;
-    
-    controllers.poll();
-
-    const modern = false; // Modern control scheme
-    for (let i = 0; i < 4; i++) {
-
-      if (controllers.isControlDown(i, CIDS.ESCAPE)) {
-        if (this.pause(true)) {
-          controllers.waitUntilControlReleased(i, CIDS.ESCAPE)
-            .then(() => this.showPauseMenu());
-          return;
-        }
-      }
-
-      let input = 0;
-      if (controllers.isControlDown(i, CIDS.UP)) {
-        input |= this.INP_UP;
-      }
-      else if (controllers.isControlDown(i, CIDS.DOWN)) {
-        input |= this.INP_DOWN;
-      }
-      if (controllers.isControlDown(i, CIDS.RIGHT)) {
-        input |= this.INP_RIGHT;
-      }
-      else if (controllers.isControlDown(i, CIDS.LEFT)) {      
-        input |= this.INP_LEFT;
-      }
-      if (controllers.isControlDown(i, CIDS.SELECT)) {
-        input |= this.INP_SELECT;
-      }
-      if (controllers.isControlDown(i, CIDS.START)) {
-        input |= this.INP_START;
-      }
-      if (controllers.isControlDown(i, CIDS.A)) {
-        input |= (modern ? this.INP_B2 : this.INP_B1);
-      }
-      if (controllers.isControlDown(i, CIDS.B)) {
-        input |= (modern ? this.INP_B4: this.INP_B2);
-      }
-      if (controllers.isControlDown(i, CIDS.X)) {
-        input |= (modern ? this.INP_B1 : this.INP_B3);
-      }
-      if (controllers.isControlDown(i, CIDS.Y)) {
-        input |= (modern ? this.INP_B3 : this.INP_B4);
-      }
-      if (controllers.isControlDown(i, CIDS.LBUMP)) {
-        input |= this.INP_B5;
-      }
-      if (controllers.isControlDown(i, CIDS.RBUMP)) {
-        input |= this.INP_B6;
-      }
-
-      fbneoModule._setEmInput(i, input);
-    }
+    this.input.pollControls(this.controllers);
   }
+
                              
   loadEmscriptenModule() {
     const { app, type } = this;
@@ -420,6 +363,13 @@ export class Emulator extends AppWrapper {
         app.exit("'" + primaryName + "' is not a recognized game."); 
       }
 
+      // Start the inputs
+      this.input.start();
+
+      // Output the game inputs
+      let inputs = this.collectGameInputs();
+      LOG.info(inputs);
+
       // Insert memory card
       if (isNeoGeo) {
         fbneoModule._memCardInsert();
@@ -516,6 +466,22 @@ export class Emulator extends AppWrapper {
     });
   }
 
+  collectGameInputs() {
+    const { fbneoModule } = this;
+    this.inputs = [];
+    fbneoModule._collectGameInputs();
+    const inputs = this.inputs;
+    this.inputs = [];
+    return inputs;
+  }
+
+  addInput(name, binding) {
+    const { fbneoModule } = this;
+    name = fbneoModule.UTF8ToString(name);
+    binding = fbneoModule.UTF8ToString(binding);
+    this.inputs.push([name, binding]);
+  }
+
   addArchive(name, path, found) {
     const { fbneoModule } = this;
     name = fbneoModule.UTF8ToString(name);
@@ -560,11 +526,31 @@ export class Emulator extends AppWrapper {
     this.context.putImageData(image, 0, 0);
   }  
 
-  initVideo(canvas) {
-    let { aspectX, aspectY, width, height, pixelCount } = this;
-
+  setVisibleSize(width, height) {
+    const { canvas } = this;
+    LOG.info("### visible size: " + width + "x" + height);
     canvas.width = width;
     canvas.height = height;    
+  }
+
+  setAspectRatio(aspectX, aspectY) {
+    const { canvas } = this;
+    LOG.info("### aspect ratio: " + aspectX + "x" + aspectY);    
+    const xyAr = (aspectX/aspectY).toFixed(3);
+    const yxAr = (aspectY/aspectX).toFixed(3);
+
+    if (this.rotated) {
+      canvas.style.setProperty("max-height", `calc(96vh*${yxAr})`, "important");
+      canvas.style.setProperty("max-width", `calc(96vw*${xyAr})`, "important");
+    } else {
+      canvas.style.setProperty("max-width", `calc(96vh*${xyAr})`, "important");
+      canvas.style.setProperty("max-height", `calc(96vw*${yxAr})`, "important");
+    }        
+  }
+
+  initVideo(canvas) {
+    let { aspectX, aspectY, width, height, pixelCount } = this;
+    this.canvas = canvas;
     this.context = this.canvas.getContext("2d");
     this.image = this.context.getImageData(0, 0, width, height);
     this.imageData = this.image.data;
@@ -575,16 +561,8 @@ export class Emulator extends AppWrapper {
       (this.flipped ? "-flipped" : "" )
     canvas.classList.add(className); 
 
-    const xyAr = (aspectX/aspectY).toFixed(3);
-    const yxAr = (aspectY/aspectX).toFixed(3);
-
-    if (this.rotated) {
-      canvas.style.setProperty("max-height", `calc(96vh*${yxAr})`, "important");
-      canvas.style.setProperty("max-width", `calc(96vw*${xyAr})`, "important");
-    } else {
-      canvas.style.setProperty("max-width", `calc(96vh*${xyAr})`, "important");
-      canvas.style.setProperty("max-height", `calc(96vw*${yxAr})`, "important");
-    }    
+    this.setAspectRatio(aspectX, aspectY);
+    this.setVisibleSize(width, height);
   }
 
   drawScreen(buff) {
