@@ -8,6 +8,7 @@ import {
 } from "@webrcade/app-common"
 
 import { findMapping } from "./mappings";
+import { AnalogAdjustment } from "./mappings/base";
 
 export default class EmulatorInput {
 
@@ -99,6 +100,7 @@ export default class EmulatorInput {
   }
 
   constructor(emulator) {
+    this.debug = emulator.debug;
     this.emulator = emulator;   
     this.controllerCount = 4; 
   }
@@ -106,16 +108,27 @@ export default class EmulatorInput {
   inputs = [];
   keyMap = [];
   keyMapping = [];
+  analogToDpad = [];
+  analogModeDetectors = [];
+  analogAdjustments = [
+    new AnalogAdjustment(0, true),
+    new AnalogAdjustment(0, false),
+    new AnalogAdjustment(1, true),
+    new AnalogAdjustment(1, false),
+  ];
+  isAnalogDpadEnabled = true;
 
   setGameInput(input) {
     const { fbneoModule } = this;
     const setInput = fbneoModule.cwrap('setGameInput', 'number', ['string', 'number']);
     const result = setInput(input, 1);
-    LOG.info(input + " = " + result);
+    if (this.debug) {
+      LOG.info(input + " = " + result);
+    }
   }
 
   start() {
-    const { controllerCount, inputs, keyMap, keyMapping } = this;
+    const { analogAdjustments, controllerCount, inputs, keyMap, keyMapping } = this;
     this.fbneoModule = this.emulator.fbneoModule;  
        
     const customMapping = findMapping(this);
@@ -180,12 +193,42 @@ export default class EmulatorInput {
     //
     // Analog to Dpad
     //
-    this.analogToDpad = [];
+
     if (customMapping) {
       this.analogToDpad = customMapping.getAnalogToDpadMap();
     }
 
-// TODO: Gamepad map (per controller)    
+    //
+    // Analog adjustments
+    //
+    if (customMapping) {
+      const adjustments = customMapping.getAnalogAdjustments();
+      for (let idx = 0; idx < adjustments.length; idx++) {
+        const adjustment = adjustments[idx];
+        if (this.debug) {
+          LOG.info(adjustment)
+        }
+        if (adjustment.getStick() === 0 && adjustment.isX()) {
+          analogAdjustments[0] = adjustment;
+        } else if (adjustment.getStick() === 0 && !adjustment.isX()) {
+          analogAdjustments[1] = adjustment;
+        } else if (adjustment.getStick() === 1 && adjustment.isX()) {
+          analogAdjustments[2] = adjustment;
+        } else if (adjustment.getStick() === 1 && !adjustment.isX()) {
+          analogAdjustments[3] = adjustment;
+        }
+      }
+    }
+
+    //
+    // Analog mode detectors
+    //
+    if (customMapping) {
+      this.isAnalogDpadEnabled = customMapping.isAnalogDpadEnabled();
+      this.analogModeDetectors = customMapping.getAnalogModeDetectors();      
+    }
+
+    // TODO: Gamepad map (per controller)    
 
     this.emulator.setControllers(
       new Controllers([
@@ -195,6 +238,10 @@ export default class EmulatorInput {
         new Controller(keyMapping[3])
       ])
     );
+
+    console.log("\n\n### Gamepad mapping:\n\n");
+    this.dumpInfo();
+    console.log("\n\n");
   }
 
   getModule() {
@@ -202,8 +249,8 @@ export default class EmulatorInput {
   }  
 
   pollControls(controllers) {
-    const { analogToDpad, controllerCount, customMapping, inputs,
-      keyMap, keyMapping } = this;
+    const { analogAdjustments, analogModeDetectors, analogToDpad, controllerCount, 
+      customMapping, inputs, isAnalogDpadEnabled, keyMap, keyMapping } = this;
     let key;
 
     controllers.poll();
@@ -240,7 +287,7 @@ export default class EmulatorInput {
       //
 
       for (key in this.buttonMap) {
-        if (controllers.isControlDown(i, parseInt(key))) {
+        if (controllers.isControlDown(i, parseInt(key), isAnalogDpadEnabled)) {
           inputs[i] |= this.buttonMap[key];
         }
       } 
@@ -273,31 +320,247 @@ export default class EmulatorInput {
       // Analog
       //
 
+      const analog0x = analogAdjustments[0].getValue(controllers, i);
+      const analog0y = analogAdjustments[1].getValue(controllers, i);
+      const analog1x = analogAdjustments[2].getValue(controllers, i);
+      const analog1y = analogAdjustments[3].getValue(controllers, i);
+
       this.getModule()._setEmInput(i, inputs[i],
-        this.getAxisValue(controllers, i, 0, true),
-        this.getAxisValue(controllers, i, 0, false),
-        this.getAxisValue(controllers, i, 1, true),
-        this.getAxisValue(controllers, i, 1, false),
+        analog0x, analog0y, analog1x, analog1y
       );
+
+      for (let idx = 0; idx < analogModeDetectors.length; idx++) {
+        const detector = analogModeDetectors[idx];        
+        if (detector.getPlayerIndex() === i) {
+          const stickIndex = detector.getAnalogStickIndex();
+          const isX = detector.isAnalogX();
+          let analogValue = 0;
+          if (stickIndex === 0 && isX) {
+            analogValue = analog0x;
+          } else if (stickIndex === 0 && !isX) {
+            analogValue = analog0y;
+          } else if (stickIndex === 1 && isX) {
+            analogValue = analog1x;
+          } else if (stickIndex === 1 && !isX) {
+            analogValue = analog1y;
+          }  
+          detector.check(this, inputs[i], analogValue);
+        }
+      }
     }
   }
 
-  getAxisValue(controllers, index, a, b) {
-    let val = controllers.getAxisValue(index, a, b);
-    if (val > -.15 && val < .15) return 0;
-    val = val > 0 ? (val - .15) : (val + .15);
-    val = (val * (1 / .85)) * 0x8000;
-    return val;
+  dumpInfo() {
+    const { buttonMap } = this;
+    //console.log(this.buttonMap);    
+
+    const inputs = this.emulator.collectGameInputs();
+
+    const aLeft0 = this.findAnalogInput(inputs, 0, 0);
+    if (aLeft0) {
+      console.log("Left Analog (x-axis) = " + this.stripPlayer(aLeft0));
+    }
+    const aLeft1 = this.findAnalogInput(inputs, 0, 1);
+    if (aLeft1) {
+      console.log("Left Analog (y-axis) = " + this.stripPlayer(aLeft1));
+    }
+    const aRight0 = this.findAnalogInput(inputs, 0, 2);
+    if (aRight0) {
+      console.log("Right Analog (x-axis) = " + this.stripPlayer(aRight0));
+    }
+    const aRight1 = this.findAnalogInput(inputs, 0, 3);
+    if (aRight1) {
+      console.log("Right Analog (y-axis) = " + this.stripPlayer(aRight1));
+    }
+
+    // Only player 1 for now
+    for (var p = 0; p < 1; p++) {
+      const dir = [];
+
+      for (const b in buttonMap) {
+        const bInt = parseInt(b);
+        const v = buttonMap[b];
+        const name = this.getButtonName(bInt);
+        const mapped = this.findSwitchInput(inputs, this.getButtonValue(v, p));
+        if (mapped) {
+          if (bInt === CIDS.LEFT || bInt === CIDS.RIGHT || 
+            bInt === CIDS.UP || bInt === CIDS.DOWN) {
+            dir.push(this.stripPlayer(mapped));
+          } else {
+            console.log(name + " = " + this.stripPlayer(mapped));
+          }
+        }
+      }
+
+      if (dir.length > 0) {
+        let control = "Dpad";
+        if (this.isAnalogDpadEnabled) {
+          control += " or Left Analog";
+        }
+
+        console.log(control + " = " + dir.join(", "));
+      }
+
+      // Check for analog to dpad
+      if (this.analogToDpad) {
+        try {
+          const dpad = this.analogToDpad[p];
+          const vals = [];
+          if (dpad && dpad >= 0) {
+            const up = this.findSwitchInput(
+              inputs, this.getButtonValue(this.INP_UP, dpad));
+            if (up) vals.push(this.stripPlayer(up));
+            const down = this.findSwitchInput(
+              inputs, this.getButtonValue(this.INP_DOWN, dpad));            
+            if (down) vals.push(this.stripPlayer(down));
+            const left = this.findSwitchInput(
+              inputs, this.getButtonValue(this.INP_LEFT, dpad));            
+            if (left) vals.push(this.stripPlayer(left));
+            const right = this.findSwitchInput(
+              inputs, this.getButtonValue(this.INP_RIGHT, dpad));
+            if (right) vals.push(this.stripPlayer(right));
+            if (vals.length > 0) {
+              console.log("Right Analog = " + vals.join(", "));
+            }
+          }
+        } catch (e) {
+          // Ignore for now.
+        }
+
+      }
+    }    
+  }
+
+  stripPlayer(str) {
+    if (str.startsWith("P")) {
+      return str.substring(3);
+    }
+    return str;
+  }
+
+  findAnalogInput(inputs, controller, axis) {
+    // Search in analog mode detectors
+    for (let i = 0; i < this.analogModeDetectors.length; i++) {
+      const amd = this.analogModeDetectors[i];
+      const aString = amd.getAnalogString().trim();
+      try {
+        const parts = aString.split(" ");
+        const pc = parseInt(parts[1]);
+        const pa = parseInt(parts[2]);
+        if (pc === controller && pa === axis) {
+          return amd.getControlString();
+        }
+      } catch (e) {
+        // Ignore for now.
+      }
+    }   
+
+    // Search in inputs
+    for (let i = 0; i < inputs.length; i++) {
+      const inp = inputs[i];
+      const vstr = inp[1].trim();
+      if (vstr.startsWith("joyaxis")) {
+        const parts = vstr.split(" ");
+        try {
+          const pc = parseInt(parts[1]);
+          const pa = parseInt(parts[2]);
+          if (pc === controller && pa === axis) {
+            return inp[0];
+          }
+        } catch (e) {
+          // Ignore for now.
+        }
+      }
+    }  
+
+    return null;     
+  }
+
+  findSwitchInput(inputs, value) {
+    for (let i = 0; i < inputs.length; i++) {
+      const inp = inputs[i];
+      const vstr = inp[1].trim();
+      if (vstr.startsWith("switch")) {
+        const parts = vstr.split(" ");
+        if (parts.length > 1) {
+          try {
+            if (parseInt(parts[1]) === value) {
+              return inp[0];
+            }
+          } catch (e) {
+            // Ignore for now.
+          }
+        }
+      }
+    }  
+    return null;  
+  }
+
+  getButtonName(buttonId) {
+    switch(buttonId) {
+      case CIDS.UP: return "Up";
+      case CIDS.DOWN: return "Down";
+      case CIDS.LEFT: return "Left";
+      case CIDS.RIGHT: return "Right";
+      case CIDS.A: return "A";
+      case CIDS.B: return "B";
+      case CIDS.X: return "X";
+      case CIDS.Y: return "Y";
+      case CIDS.LBUMP: return "Left Bumper";
+      case CIDS.RBUMP: return "Right Bumper";
+      case CIDS.LTRIG: return "Left Trigger";
+      case CIDS.RTRIG: return "Right Trigger";
+      case CIDS.SELECT: return "Select";
+      case CIDS.START: return "Start";
+      case CIDS.LANALOG: return "Left Analog";
+      case CIDS.RANALOG: return "Right Analog";
+      case CIDS.ESCAPE: return "Escape"
+      default: break;
+    }
+    return "(Unknown)";
+  }
+
+  getButtonValue(v, player) {
+    let bv = 0;
+    switch(v) {
+      case this.INP_LEFT: 
+        bv = (0x4000 + (player * 0x100));
+        break;
+      case this.INP_RIGHT: 
+        bv = (0x4001 + (player * 0x100));
+        break;
+      case this.INP_UP: 
+        bv = (0x4002 + (player * 0x100));
+        break;
+      case this.INP_DOWN: 
+        bv = (0x4003 + (player * 0x100));
+        break;
+      case this.INP_START: 
+        bv = 0x02 + player;
+        break;
+      case this.INP_SELECT: 
+        bv = 0x06 + player;
+        break;
+      case this.INP_B1: 
+        bv = (0x4080 + (player * 0x100));
+        break;
+      case this.INP_B2: 
+        bv = (0x4081 + (player * 0x100));
+        break;
+      case this.INP_B3: 
+        bv = (0x4082 + (player * 0x100));
+        break;
+      case this.INP_B4: 
+        bv = (0x4083 + (player * 0x100));
+        break;
+      case this.INP_B5: 
+        bv = (0x4084 + (player * 0x100));
+        break;
+      case this.INP_B6: 
+        bv = (0x4085 + (player * 0x100));
+        break;
+      default: break;
+    }
+    return bv;
   }
 }
-
-//setGameInput("\"P1 Down\" switch 0xC8", 1);
-//setGameInput("\"P1 Up\" switch 0xD0", 1);
-  //  "P1 Dial"          slider 0xcb 0xcd speed 0x800 center 10
-  //  "P1 Aim Analog"    slider 0xc8 0xd0 speed 0x800 center 10
-//alert(setGameInput("\"P1 Dial\" joyaxis 0 2", 1));
-// alert(setGameInput("\"P1 Aim Analog\" joyaxis 0 2", 1));
-//alert(setGameInput("\"Steering\" joyaxis 0 0", 1));      
-// alert(setGameInput("\"P1 Stick X\" joyaxis 0 0", 1));      
-//alert(setGameInput("\"P1 Stick Y\" joyaxis 0 1", 1));     
-//alert(setGameInput("\"Left/Right\" slider 0x4000 0x4001 speed 0x800 center 10", 1));     

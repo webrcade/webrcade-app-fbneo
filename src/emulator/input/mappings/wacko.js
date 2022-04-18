@@ -1,4 +1,4 @@
-import { BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
 
 export class WackoMapping extends BaseMapping {
 
@@ -7,6 +7,40 @@ export class WackoMapping extends BaseMapping {
   getAnalogToDpadMap() {
     return [1];
   }
+
+  getKeyboardMap() {
+    const { emuInput } = this;
+    return [{
+      ...emuInput.KEYMAP_BASE_WITH_DPAD,
+    }, {
+      ...emuInput.KEYMAP_BASE_WITH_DPAD,
+    }];
+  }  
+
+  getAnalogAdjustments() { 
+    return [
+      new AnalogAdjustment(0, true, .75),
+      new AnalogAdjustment(0, false, .75),
+    ];  
+  }
+
+  getAnalogModeDetectors() {
+    const { emuInput } = this;
+    return [
+      new AnalogModeDetector(
+        0, 'P1 Trackball X',
+        'slider 0x4100 0x4101 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
+        'joyaxis 0 0', 0, true
+      ),
+      new AnalogModeDetector(
+        0, 'P1 Trackball Y',
+        'slider 0x4102 0x4103 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
+        'joyaxis 0 1', 0, false
+      )
+    ];
+  }  
+
+  isAnalogDpadEnabled() { return false; }
 
   getRemapList() {
     return [

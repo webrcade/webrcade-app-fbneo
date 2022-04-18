@@ -368,8 +368,10 @@ export class Emulator extends AppWrapper {
 
       // Output the game inputs
       let inputs = this.collectGameInputs();
-      LOG.info(inputs);
-
+      if (this.debug) {        
+        LOG.info(inputs);
+      }
+      
       // Insert memory card
       if (isNeoGeo) {
         fbneoModule._memCardInsert();
