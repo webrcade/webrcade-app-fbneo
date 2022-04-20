@@ -10,6 +10,7 @@ import {
   TEXT_IDS 
 } from '@webrcade/app-common'
 import { Emulator } from './emulator'
+import { NeoPauseScreen } from './pause';
 
 import './App.scss';
 
@@ -190,6 +191,20 @@ class App extends WebrcadeApp {
       // Start the emulator
       emulator.start(canvas);
     }
+  }
+
+  renderPauseScreen() {
+    const { appProps } = this;
+
+    return (
+      <NeoPauseScreen
+        appProps={appProps}
+        closeCallback={() => this.resume()}
+        exitCallback={() => this.exit()}
+        isEditor={this.isEditor}
+        inputs={this.emulator.input.collectGamepadInfo()}
+      />
+    );
   }
 
   renderCanvas() {

@@ -46,6 +46,13 @@ export class StarWarsMapping extends BaseMapping {
     ];
   }
 
+  // getRemapList() {
+  //   return [
+  //     ["Dip A", "constant 0xB3"],
+  //     ["Dip D", "constant 0x10"],
+  //   ];
+  // }  
+
   isAnalogDpadEnabled() { return false; }
 }
 

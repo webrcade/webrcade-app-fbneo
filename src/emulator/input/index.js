@@ -239,9 +239,9 @@ export default class EmulatorInput {
       ])
     );
 
-    console.log("\n\n### Gamepad mapping:\n\n");
-    this.dumpInfo();
-    console.log("\n\n");
+    if (this.debug) {
+      this.dumpInfo();
+    }
   }
 
   getModule() {
@@ -351,26 +351,32 @@ export default class EmulatorInput {
   }
 
   dumpInfo() {
-    const { buttonMap } = this;
-    //console.log(this.buttonMap);    
+    if (this.debug) {
+      LOG.info(this.collectGamepadInfo());
+    }
+  }
 
+  collectGamepadInfo() {
+    const { buttonMap } = this;
+    
     const inputs = this.emulator.collectGameInputs();
+    const results = [];
 
     const aLeft0 = this.findAnalogInput(inputs, 0, 0);
     if (aLeft0) {
-      console.log("Left Analog (x-axis) = " + this.stripPlayer(aLeft0));
+      results.push(["lanalog-x", this.stripPlayer(aLeft0) + " (x-axis)"]);
     }
     const aLeft1 = this.findAnalogInput(inputs, 0, 1);
     if (aLeft1) {
-      console.log("Left Analog (y-axis) = " + this.stripPlayer(aLeft1));
+      results.push(["lanalog-y", this.stripPlayer(aLeft1) + " (y-axis)"]);
     }
     const aRight0 = this.findAnalogInput(inputs, 0, 2);
     if (aRight0) {
-      console.log("Right Analog (x-axis) = " + this.stripPlayer(aRight0));
+      results.push(["ranalog-x", this.stripPlayer(aRight0) + " (x-axis)"]);
     }
     const aRight1 = this.findAnalogInput(inputs, 0, 3);
     if (aRight1) {
-      console.log("Right Analog (y-axis) = " + this.stripPlayer(aRight1));
+      results.push(["ranalog-y", this.stripPlayer(aRight1) + " (y-axis)"]);
     }
 
     // Only player 1 for now
@@ -387,18 +393,16 @@ export default class EmulatorInput {
             bInt === CIDS.UP || bInt === CIDS.DOWN) {
             dir.push(this.stripPlayer(mapped));
           } else {
-            console.log(name + " = " + this.stripPlayer(mapped));
+            results.push([name, this.stripPlayer(mapped)]);
           }
         }
       }
 
       if (dir.length > 0) {
-        let control = "Dpad";
         if (this.isAnalogDpadEnabled) {
-          control += " or Left Analog";
-        }
-
-        console.log(control + " = " + dir.join(", "));
+          results.push(["lanalog-dpad", dir.join(", ")]); 
+        }        
+        results.push(["dpad", dir.join(", ")]); 
       }
 
       // Check for analog to dpad
@@ -420,15 +424,16 @@ export default class EmulatorInput {
               inputs, this.getButtonValue(this.INP_RIGHT, dpad));
             if (right) vals.push(this.stripPlayer(right));
             if (vals.length > 0) {
-              console.log("Right Analog = " + vals.join(", "));
+              results.push(["ranalog-dpad", vals.join(", ")]);
             }
           }
         } catch (e) {
           // Ignore for now.
         }
-
       }
     }    
+
+    return results;
   }
 
   stripPlayer(str) {
@@ -498,23 +503,23 @@ export default class EmulatorInput {
 
   getButtonName(buttonId) {
     switch(buttonId) {
-      case CIDS.UP: return "Up";
-      case CIDS.DOWN: return "Down";
-      case CIDS.LEFT: return "Left";
-      case CIDS.RIGHT: return "Right";
-      case CIDS.A: return "A";
-      case CIDS.B: return "B";
-      case CIDS.X: return "X";
-      case CIDS.Y: return "Y";
-      case CIDS.LBUMP: return "Left Bumper";
-      case CIDS.RBUMP: return "Right Bumper";
-      case CIDS.LTRIG: return "Left Trigger";
-      case CIDS.RTRIG: return "Right Trigger";
-      case CIDS.SELECT: return "Select";
-      case CIDS.START: return "Start";
-      case CIDS.LANALOG: return "Left Analog";
-      case CIDS.RANALOG: return "Right Analog";
-      case CIDS.ESCAPE: return "Escape"
+      case CIDS.UP: return "up";
+      case CIDS.DOWN: return "down";
+      case CIDS.LEFT: return "left";
+      case CIDS.RIGHT: return "right";
+      case CIDS.A: return "a";
+      case CIDS.B: return "b";
+      case CIDS.X: return "x";
+      case CIDS.Y: return "y";
+      case CIDS.LBUMP: return "lbump";
+      case CIDS.RBUMP: return "rbump";
+      case CIDS.LTRIG: return "ltrig";
+      case CIDS.RTRIG: return "rtrig";
+      case CIDS.SELECT: return "select";
+      case CIDS.START: return "start";
+      case CIDS.LANALOG: return "lanalog";
+      case CIDS.RANALOG: return "ranalog";
+      case CIDS.ESCAPE: return "esc"
       default: break;
     }
     return "(Unknown)";
