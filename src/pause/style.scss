@@ -15,10 +15,10 @@
     width: 100vw;
     max-height: 80vh;    
     transform: translate(-50%, -50%);
-    opacity: 0.8;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    opacity: 0.8;
     background-color: #090909;
     animation: controls-screen-fadeinpause .5s;
   }  

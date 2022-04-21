@@ -58,6 +58,8 @@ class ControlsScreen extends Screen {
 
     this.okButtonRef = React.createRef();
     this.focusGrid.setComponents([[this.okButtonRef]]);
+    this.contentRef = React.createRef();
+    this.analogCallback = null;
   }
 
   focus() {
@@ -71,13 +73,38 @@ class ControlsScreen extends Screen {
   }
 
   componentDidMount() {
-    super.componentDidMount();
-    // TODO: Right analog up and down for scrolling...
-    // If > 0.25 (check on all controllers...)
+    const { gamepadNotifier } = this;
+
+    super.componentDidMount();    
+
+    if (!this.analogCallback) {
+      this.analogCallback = e => {
+        if (e.type === 'r_analog_y') {
+          if (this.contentRef.current) {
+            const el = this.contentRef.current;
+            const height = (el.scrollHeight - el.clientHeight);
+            let adjust = el.scrollTop + (e.value * 10);
+            if (adjust < 0) {
+              adjust = 0;
+            } else if (adjust > height) {
+              adjust = height;
+            }
+            el.scrollTop = adjust;
+          }    
+        }
+      };      
+      gamepadNotifier.addAnalogCallback(this.analogCallback);
+    }
   }
 
   componentWillUnmount() {
+    const { gamepadNotifier } = this;
+
     super.componentWillUnmount();
+
+    if (this.analogCallback) {
+      gamepadNotifier.removeAnalogCallback(this.analogCallback);
+    }
   }
 
   renderRow(control, imageSrc, inputs) {
@@ -91,7 +118,7 @@ class ControlsScreen extends Screen {
       <>
         <div className={'controls-screen-content-container-row'}>
           <div className={'controls-screen-content-container-column'}>
-            <img className={'controls-gamepad-button'} src={imageSrc}></img>
+            <img className={'controls-gamepad-button'} src={imageSrc} alt=""></img>
           </div>
           <div className={'controls-screen-content-container-column'}>
             {mapping}
@@ -112,11 +139,11 @@ class ControlsScreen extends Screen {
           <div className={'controls-screen-inner'}>
             <div className={'controls-screen-heading'}>
               <div className={'controls-screen-heading-group'}>
-                <img className={'controls-screen-heading-group-image'} src={GamepadWhiteImage}></img>
+                <img className={'controls-screen-heading-group-image'} src={GamepadWhiteImage} alt=""></img>
                 <span className={'controls-screen-heading-group-right-text'}>Gamepad Controls</span>
               </div>
             </div>
-            <div className={'controls-screen-content'}>
+            <div className={'controls-screen-content'} ref={this.contentRef}>
               <div className={'controls-screen-content-container'}>
                 {this.renderRow("start", XboxOneMenuButton, inputs)}
                 {this.renderRow("select", XboxOneWindowsButton, inputs)}
