@@ -8,12 +8,14 @@ import { BeastBustersMapping } from "./bbusters"
 import { BlackWidowMapping } from "./bwidow";
 import { BladesOfSteelMapping } from "./bladestll";
 import { BulletMapping } from "./bullet";
+import { CapcomBowlingMapping } from "./capbowl"
 import { ChequeredFlagMapping } from "./chqflag";
 import { CloakAndDaggerMapping } from "./cloak";
 import { ComplexXMapping } from "./complexx";
 import { CrazyClimberMapping } from "./cclimber";
 import { CrystalCastlesMapping } from "./ccastles";
 import { CyberTankMapping } from "./cybertnk";
+import { DemolitionDerbyMapping } from "./demoderb";
 import { DiscsOfTronMapping } from "./dotron";
 import { DribblingMapping } from "./dribling";
 import { DragonGunMapping } from "./dragngun";
@@ -70,6 +72,7 @@ import { TinStarMapping } from "./tinstar";
 import { TitleFightMapping } from "./titlef";
 import { TronMapping } from "./tron";
 import { TutankhamMapping } from "./tutankham";
+import { TwoTigersMapping } from "./twotiger"
 import { VindicatorsMapping } from "./vindictr";
 import { Vindicators2Mapping } from "./vindctr2";
 import { WaterMatchMapping } from "./wmatch";
@@ -134,6 +137,10 @@ export function findMapping(emuInput) {
   if (isName(["bullet"])) {
     return new BulletMapping(emuInput);
   }  
+  /* Capcom Bowling */
+  if (isName(["capbowl", "bowlrama"])) {
+    return new CapcomBowlingMapping(emuInput);
+  }    
   /* Chequered Flag */
   if (isName(["chqflag"])) {
     return new ChequeredFlagMapping(emuInput);
@@ -158,6 +165,10 @@ export function findMapping(emuInput) {
   if (isName(["cybertnk"])) {
     return new CyberTankMapping(emuInput);
   }    
+  /* Demolition Derby */
+  if (isName(["demoderb"])) {
+    return new DemolitionDerbyMapping(emuInput);
+  }      
   /* Discs of Tron */
   if (isName(["dotron"])) {
     return new DiscsOfTronMapping(emuInput);
@@ -382,6 +393,10 @@ export function findMapping(emuInput) {
   if (isName(["tutankhm"])) {
     return new TutankhamMapping(emuInput);
   }  
+  /* Two Tigers */
+  if (isName(["twotiger"])) {
+    return new TwoTigersMapping(emuInput);
+  }  
   /* Vindicators */
   if (isName(["vindictr"])) {
     return new VindicatorsMapping(emuInput);
@@ -487,9 +502,12 @@ export function findMapping(emuInput) {
 // * Badlands
 // * Beast Busters
 // * Blades of Steel (Trackball)
+// * Bowl-o-Rama
+// * Capcom Bowling
 // * Checkered Flag
 // * Crystal Castles
 // * Cyber Tank
+// * Demolition Derby
 // * Discs of Tron
 // * Dragon Gun
 // * Empire Strikes Back

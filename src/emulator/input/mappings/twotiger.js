@@ -1,4 +1,34 @@
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
 
+export class TwoTigersMapping extends BaseMapping {
+
+  getName() { return "twotiger"; }
+
+  getAnalogAdjustments() {
+    return [
+      new AnalogAdjustment(0, true, 1),
+    ];
+  }
+
+  getAnalogModeDetectors() {
+    const { emuInput } = this;
+    return [
+      new AnalogModeDetector(
+        0, 'P1 Stick X',
+        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
+        'joyaxis 0 0', 0, true
+      )
+    ];
+  }  
+
+  getRemapList() {
+    return [
+      ["P2 Stick X", "joyaxis 1 0"],
+    ]
+  }
+
+  isAnalogDpadEnabled() { return false; }
+}
 
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
