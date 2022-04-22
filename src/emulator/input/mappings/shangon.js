@@ -1,7 +1,7 @@
 import {
-    CIDS,
-  } from "@webrcade/app-common"
-  
+  CIDS,
+} from "@webrcade/app-common"
+
 import { AnalogModeDetector, BaseMapping } from "./base";
 
 export class SuperHangOnMapping extends BaseMapping {
@@ -21,14 +21,14 @@ export class SuperHangOnMapping extends BaseMapping {
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
     }
-  }  
+  }
 
-  getAnalogModeDetectors() { 
+  getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'Steering', 
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT |  emuInput.INP_RIGHT),
+        0, 'Steering',
+        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
         'joyaxis 0 0', 0, true
       )
     ];

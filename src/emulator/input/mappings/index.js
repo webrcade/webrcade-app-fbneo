@@ -2,12 +2,14 @@ import { AkkaArrhMapping } from "./akkaarrh"
 import { AngelKidsMapping } from "./angelkds";
 import { ArcadeClassicsMapping } from "./arcadecl";
 import { AssaultMapping } from "./assault";
+import { AztaracMapping } from "./aztarac";
 import { BadlandsMapping } from "./badlands"
 import { BattleZoneMapping } from "./bzone";
 import { BeastBustersMapping } from "./bbusters"
 import { BlackWidowMapping } from "./bwidow";
 import { BladesOfSteelMapping } from "./bladestll";
 import { BulletMapping } from "./bullet";
+import { CabalMapping } from "./cabaluk";
 import { CapcomBowlingMapping } from "./capbowl"
 import { ChequeredFlagMapping } from "./chqflag";
 import { CloakAndDaggerMapping } from "./cloak";
@@ -15,25 +17,30 @@ import { ComplexXMapping } from "./complexx";
 import { CrazyClimberMapping } from "./cclimber";
 import { CrystalCastlesMapping } from "./ccastles";
 import { CyberTankMapping } from "./cybertnk";
+import { DDayMapping } from "./dday";
 import { DemolitionDerbyMapping } from "./demoderb";
 import { DiscsOfTronMapping } from "./dotron";
 import { DribblingMapping } from "./dribling";
 import { DragonGunMapping } from "./dragngun";
 import { EmpireStrikesBackMapping } from "./esb";
 import { EscapeFromPlanetOfRobotMonstersMapping } from "./eprom"
+import { ExterminatorMapping } from "./exterm";
 import { FaceoffMapping } from "./faceoff";
 import { FiretrapMapping } from "./firetrap";
 import { FoodFightMapping } from "./foodf";
 import { ForgottenWorldsMapping } from "./forgottn"
 import { FrontlineMapping } from './frontlin'
+import { GoindolMapping } from "./goindol";
 import { GunsmokeMapping } from "./gunsmoke";
 import { HydraMapping } from "./hydra";
 import { IkariWarriorsMapping } from "./ikari";
+import { Ikari3Mapping } from "./ikari3";
 import { IrritatingMazeMapping } from "./irrmaze";
 import { JoyfulRoadMapping } from "./joyfulr";
 import { KarateChampMapping } from './kchamp'
 import { KickMapping } from "./kick";
 import { KonamiGtMapping } from "./konamigt";
+import { KozmikKroozrMapping } from "./kroozr";
 import { KnightmareMapping } from './kngtmare'
 import { KrullMapping } from "./krull";
 import { LethalEnforcersMapping } from "./lethalen";
@@ -41,15 +48,19 @@ import { LostTombMapping } from "./losttomb";
 import { LibbleRablleMapping } from "./liblrabl";
 import { LunarLanderMapping } from "./llander";
 import { MarsMapping } from "./mars"
+import { MaxRpmMapping } from "./maxrpm";
+import { MillipedeMapping } from "./milliped";
 import { MinefieldMapping } from "./minefld";
 import { MkMapping } from "./mk";
 import { NbaJamMapping } from "./nbajam";
+import { OmegaRaceMapping } from "./omegrace";
 import { OutrunMapping } from "./outrun";
 import { PointBlankMapping } from "./ptblank"
 import { PopNBounceMapping } from "./popbounc";
 import { PoundForPoundMapping } from "./poundfor"
 import { PowerDriftMapping } from "./pdrift";
 import { PuzzLoop2Mapping } from "./pzloop2";
+import { QuantumMapping } from "./quantum";
 import { RedBaronMapping } from "./redbaron";
 import { RescueMapping } from "./rescue";
 import { ReturnOfIshtarMapping } from "./roishtar";
@@ -59,11 +70,13 @@ import { RobotronMapping } from "./robotron";
 import { RockClimberMapping } from "./rockclim";
 import { SargeMapping } from "./sarge";
 import { ScrewLooseMapping } from "./screwloo";
+import { SearchAndRescueMapping } from "./searchar";
 import { Sf2Mapping } from "./sf2";
 import { ShuuzMapping } from "./shuuz";
 import { SmashTvMapping } from "./smashtv";
 import { SpaceDungeonMapping } from "./sdungeon";
 import { SplatMapping } from "./splat";
+import { SpyHunterMapping } from "./spyhunt";
 import { StarGuardsMapping } from "./stargrds";
 import { StarWarsMapping } from "./starwars";
 import { SuperHangOnMapping } from "./shangon";
@@ -113,6 +126,10 @@ export function findMapping(emuInput) {
   if (isName(["assault"])) {
     return new AssaultMapping(emuInput);
   }    
+  /* Aztarac */
+  if (isName(["aztarac"])) {
+    return new AztaracMapping(emuInput);
+  }    
   /* Badlands */
   if (isName(["badlands"])) {
     return new BadlandsMapping(emuInput);
@@ -137,6 +154,10 @@ export function findMapping(emuInput) {
   if (isName(["bullet"])) {
     return new BulletMapping(emuInput);
   }  
+  /* Cabal */
+  if (isName(["cabaluk", "cabalus", "cabalus2"])) {
+    return new CabalMapping(emuInput);
+  }    
   /* Capcom Bowling */
   if (isName(["capbowl", "bowlrama"])) {
     return new CapcomBowlingMapping(emuInput);
@@ -165,6 +186,10 @@ export function findMapping(emuInput) {
   if (isName(["cybertnk"])) {
     return new CyberTankMapping(emuInput);
   }    
+  /* D-Day */
+  if (isName(["dday"])) {
+    return new DDayMapping(emuInput);
+  }      
   /* Demolition Derby */
   if (isName(["demoderb"])) {
     return new DemolitionDerbyMapping(emuInput);
@@ -189,6 +214,10 @@ export function findMapping(emuInput) {
   if (isName(["eprom"])) {
     return new EscapeFromPlanetOfRobotMonstersMapping(emuInput);    
   }      
+  /* Exterminator */
+  if (isName(["exterm"])) {
+    return new ExterminatorMapping(emuInput);    
+  }      
   /* Faceoff */
   if (isName(["faceoff"])) {
     return new FaceoffMapping(emuInput);
@@ -209,6 +238,10 @@ export function findMapping(emuInput) {
   if (isName(["frontlin"])) {
     return new FrontlineMapping(emuInput);
   }    
+  /* Goindol */
+  if (isName(["goindol"])) {
+    return new GoindolMapping(emuInput);
+  }    
   /* Gunsmoke */
   if (isName(["gunsmoke"])) {
     return new GunsmokeMapping(emuInput);
@@ -221,6 +254,10 @@ export function findMapping(emuInput) {
   if (isName(["ikari"])) {
     return new IkariWarriorsMapping(emuInput);
   }    
+  /* Ikari 3 */
+  if (isName(["ikari3"])) {
+    return new Ikari3Mapping(emuInput);
+  }      
   /* Irritating Maze */
   if (isName(["irrmaze"])) {
     return new IrritatingMazeMapping(emuInput);
@@ -244,7 +281,11 @@ export function findMapping(emuInput) {
   /* Konami GT */
   if (isName(["konamigt"])) {
     return new KonamiGtMapping(emuInput);
-  }      
+  }    
+  /* Kozmik Kroozr */
+  if (isName(["kroozr"])) {
+    return new KozmikKroozrMapping(emuInput);
+  }    
   /* Krull */
   if (isName(["krull"])) {
     return new KrullMapping(emuInput);
@@ -273,6 +314,14 @@ export function findMapping(emuInput) {
   if (isName(["mars"])) {
     return new MarsMapping(emuInput);
   }  
+  /* Max Rpm */
+  if (isName(["maxrpm"])) {
+    return new MaxRpmMapping(emuInput);
+  }  
+  /* Centipede, Millipede */
+  if (isName(["centiped", "milliped"])) {
+    return new MillipedeMapping(emuInput);
+  }
   /* Minefield */
   if (isName(["minefld"])) {
     return new MinefieldMapping(emuInput);
@@ -280,6 +329,10 @@ export function findMapping(emuInput) {
   /* Nba Jam */
   if (isName(["nbajam", "nbahangt", "nbajamte", "nbamht"])) {
     return new NbaJamMapping(emuInput);
+  }
+  /* Omega Race */
+  if (isName(["omegrace"])) {
+    return new OmegaRaceMapping(emuInput);
   }
   /* Outrun */
   if (isName(["outrun"])) {
@@ -305,6 +358,10 @@ export function findMapping(emuInput) {
   if (isName(["pzloop2"])) {
     return new PuzzLoop2Mapping(emuInput);
   }  
+  /* Quantum */
+  if (isName(["quantum"])) {
+    return new QuantumMapping(emuInput);    
+  }
   /* Rescue */
   if (isName(["rescue"])) {
     return new RescueMapping(emuInput);    
@@ -341,7 +398,11 @@ export function findMapping(emuInput) {
   if (isName(["screwloo"])) {
     return new ScrewLooseMapping(emuInput);
   }  
-    /* Smash T.V., Total Carnage */
+  /* Search and Rescue */
+  if (isName(["searchar"])) {
+    return new SearchAndRescueMapping(emuInput);
+  }    
+  /* Smash T.V., Total Carnage */
   if (isName(["shuuz"])) {
     return new ShuuzMapping(emuInput);
   }
@@ -356,6 +417,10 @@ export function findMapping(emuInput) {
   /* Splat! */
   if (isName(["splat"])) {
     return new SplatMapping(emuInput);
+  }  
+  /* Spy Hunter */
+  if (isName(["spyhunt"])) {
+    return new SpyHunterMapping(emuInput);
   }  
   /* Star Guards */
   if (isName(["stargrds"])) {
@@ -446,6 +511,7 @@ export function findMapping(emuInput) {
 // - Hat Trick
 // - Hyperdrive
 // * Ikari Warriors
+// * Ikari 3
 // - Indoor Soccer
 // - Inferno
 // * Joyful Road (Japan)
@@ -499,38 +565,51 @@ export function findMapping(emuInput) {
 
 // * Akka Arrh
 // * Arcade Classics
+// * Aztarac
 // * Badlands
-// * Beast Busters
+// * Beast Busters (J and JA)
 // * Blades of Steel (Trackball)
 // * Bowl-o-Rama
+// * Cabal (UK, US, US2)
 // * Capcom Bowling
+// * Centipede
 // * Checkered Flag
 // * Crystal Castles
 // * Cyber Tank
+// * D-Day
 // * Demolition Derby
 // * Discs of Tron
 // * Dragon Gun
 // * Empire Strikes Back
 // * Escape from the Planet of the Robot Monsters
+// * Exterminator
 // * Food Fight
 // * Forgotten Worlds
+// * Goindol
 // * Hydra
 // * Irritating Maze 
 // * Kick
+// * Kozmik Kroozr
 // * Konami GT
 // * Lethal Enforcers
 // * Lunar Lander
+// * Max RPM
+// * Millipede
+// * Omega Race
 // * Outrun
 // * Point Blank
 // * Pop 'n Bounce (Must enable paddle w/ soft dip)
 // * Pound for Pound
 // * Power Drift
 // * Puzz Loop 2
+// * Quantum
 // * Red Baron
 // * Return of the Jedi
 // * RevolutionX
+// * Search and Rescue
 // * Shuuz
 // * Shuuz 2
+// * Spy Hunter
 // * Star Wars
 // * Super Hang-On
 // * Terminator 2
