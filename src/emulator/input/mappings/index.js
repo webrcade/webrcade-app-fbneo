@@ -1,6 +1,7 @@
 import { AkkaArrhMapping } from "./akkaarrh"
 import { AngelKidsMapping } from "./angelkds";
 import { ArcadeClassicsMapping } from "./arcadecl";
+import { ArgusMapping } from "./argusg";
 import { AssaultMapping } from "./assault";
 import { AztaracMapping } from "./aztarac";
 import { BadlandsMapping } from "./badlands"
@@ -61,6 +62,7 @@ import { PoundForPoundMapping } from "./poundfor"
 import { PowerDriftMapping } from "./pdrift";
 import { PuzzLoop2Mapping } from "./pzloop2";
 import { QuantumMapping } from "./quantum";
+import { ReactorMapping } from "./reactor";
 import { RedBaronMapping } from "./redbaron";
 import { RescueMapping } from "./rescue";
 import { ReturnOfIshtarMapping } from "./roishtar";
@@ -75,6 +77,7 @@ import { Sf2Mapping } from "./sf2";
 import { ShuuzMapping } from "./shuuz";
 import { SmashTvMapping } from "./smashtv";
 import { SpaceDungeonMapping } from "./sdungeon";
+import { SpaceDuelMapping } from "./spacduel";
 import { SplatMapping } from "./splat";
 import { SpyHunterMapping } from "./spyhunt";
 import { StarGuardsMapping } from "./stargrds";
@@ -92,6 +95,7 @@ import { WaterMatchMapping } from "./wmatch";
 import { WackoMapping } from "./wacko";
 import { WecLeMans24Mapping } from "./wecleman";
 import { WildWesternMapping } from "./wwestern";
+import { WizWarzMapping } from "./wizwarz";
 
 export function findMapping(emuInput) {
   const { fbneoModule, emulator } = emuInput;
@@ -117,6 +121,10 @@ export function findMapping(emuInput) {
   /* Arcade Classics */
   if (isName(["arcadecl"])) {
     return new ArcadeClassicsMapping(emuInput);
+  }      
+  /* Argus */
+  if (isName(["argusg"])) {
+    return new ArgusMapping(emuInput);
   }      
   /* Angel Kids */
   if (isName(["angelkds"])) {
@@ -362,6 +370,10 @@ export function findMapping(emuInput) {
   if (isName(["quantum"])) {
     return new QuantumMapping(emuInput);    
   }
+  /* Reactor */  
+  if (isName(["reactor"])) {
+    return new ReactorMapping(emuInput);    
+  }
   /* Rescue */
   if (isName(["rescue"])) {
     return new RescueMapping(emuInput);    
@@ -410,10 +422,14 @@ export function findMapping(emuInput) {
   if (isName(["smashtv", "totcarn"])) {
     return new SmashTvMapping(emuInput);
   }
+  /* Space Duel */
+  if (isName(["spacduel"])) {
+    return new SpaceDuelMapping(emuInput);
+  }    
   /* Space Dungeon */
   if (isName(["sdungeon"])) {
     return new SpaceDungeonMapping(emuInput);
-  }  
+  }    
   /* Splat! */
   if (isName(["splat"])) {
     return new SplatMapping(emuInput);
@@ -485,6 +501,10 @@ export function findMapping(emuInput) {
   /* Wild Western */
   if (isName(["wwestern"])) {
     return new WildWesternMapping(emuInput);
+  }  
+  /* Wiz Warz */
+  if (isName(["wizwarz"])) {
+    return new WizWarzMapping(emuInput);
   }  
 
   return null;
@@ -565,6 +585,7 @@ export function findMapping(emuInput) {
 
 // * Akka Arrh
 // * Arcade Classics
+// * Argus
 // * Aztarac
 // * Badlands
 // * Beast Busters (J and JA)
@@ -603,6 +624,7 @@ export function findMapping(emuInput) {
 // * Power Drift
 // * Puzz Loop 2
 // * Quantum
+// * Reactor
 // * Red Baron
 // * Return of the Jedi
 // * RevolutionX
@@ -617,9 +639,10 @@ export function findMapping(emuInput) {
 // * Two Tigers
 // * Wacko
 // * WEC Le Mans 24 (and Hot Chase)
+// * Wiz Warz
 
 //
 // Misc
 //
 
-// Space Duel
+// * Space Duel

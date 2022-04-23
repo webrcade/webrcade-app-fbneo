@@ -101,6 +101,12 @@ export class Emulator extends AppWrapper {
     return audioProcessor;
   }
 
+  pause(resumeCallback) {
+    if (!this.started) return false;    
+
+    return super.pause(resumeCallback);
+  }
+
   async onShowPauseMenu() {
     await this.saveState();
   }
@@ -371,7 +377,7 @@ export class Emulator extends AppWrapper {
       if (this.debug) {        
         LOG.info(inputs);
       }
-      
+
       // Insert memory card
       if (isNeoGeo) {
         fbneoModule._memCardInsert();

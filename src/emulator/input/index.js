@@ -109,7 +109,7 @@ export default class EmulatorInput {
   keyMap = [];
   keyMapping = [];
   analogToDpad = [];
-  analogModeDetectors = [];
+  analogModeDetectors = [];  
   analogAdjustments = [
     new AnalogAdjustment(0, true),
     new AnalogAdjustment(0, false),
@@ -117,6 +117,7 @@ export default class EmulatorInput {
     new AnalogAdjustment(1, false),
   ];
   isAnalogDpadEnabled = true;
+  playerOrder = [0, 1, 2, 3];
 
   setGameInput(input) {
     const { fbneoModule } = this;
@@ -130,7 +131,20 @@ export default class EmulatorInput {
   start() {
     const { analogAdjustments, controllerCount, inputs, keyMap, keyMapping } = this;
     this.fbneoModule = this.emulator.fbneoModule;  
-       
+
+    // Set player order
+    const props = this.emulator.getProps();
+    if (props.playerOrder) {
+      const order = props.playerOrder;
+      const values = order.split(":");
+      if (values.length === 4 && 
+        ["0", "1", "2", "3"].every(v => values.includes(v))) {
+        for (let i = 0; i < values.length; i++) {
+          this.playerOrder[i] = parseInt(values[i]);
+        }               
+      }
+    }
+
     const customMapping = findMapping(this);
     this.customMapping = customMapping;
 
@@ -250,7 +264,7 @@ export default class EmulatorInput {
 
   pollControls(controllers) {
     const { analogAdjustments, analogModeDetectors, analogToDpad, controllerCount, 
-      customMapping, inputs, isAnalogDpadEnabled, keyMap, keyMapping } = this;
+      customMapping, inputs, isAnalogDpadEnabled, keyMap, keyMapping, playerOrder } = this;
     let key;
 
     controllers.poll();
@@ -259,7 +273,8 @@ export default class EmulatorInput {
       inputs[i] = 0;
     }
  
-    for (let i = 0; i < controllerCount; i++) {
+    for (let j = 0; j < controllerCount; j++) {
+      const i = playerOrder[j];
 
       if (controllers.isControlDown(i, CIDS.ESCAPE)) {
         if (this.emulator.pause(true)) {
@@ -325,7 +340,7 @@ export default class EmulatorInput {
       const analog1x = analogAdjustments[2].getValue(controllers, i);
       const analog1y = analogAdjustments[3].getValue(controllers, i);
 
-      this.getModule()._setEmInput(i, inputs[i],
+      this.getModule()._setEmInput(j, inputs[i],
         analog0x, analog0y, analog1x, analog1y
       );
 
