@@ -5,10 +5,13 @@ import { ArgusMapping } from "./argusg";
 import { AssaultMapping } from "./assault";
 import { AztaracMapping } from "./aztarac";
 import { BadlandsMapping } from "./badlands"
+import { BangMapping } from "./bang";
 import { BattleZoneMapping } from "./bzone";
 import { BeastBustersMapping } from "./bbusters"
+import { BigRunMapping } from "./bigrun";
 import { BlackWidowMapping } from "./bwidow";
 import { BladesOfSteelMapping } from "./bladestll";
+import { BlasterMapping } from "./blaster"
 import { BulletMapping } from "./bullet";
 import { CabalMapping } from "./cabaluk";
 import { CapcomBowlingMapping } from "./capbowl"
@@ -32,7 +35,10 @@ import { FoodFightMapping } from "./foodf";
 import { ForgottenWorldsMapping } from "./forgottn"
 import { FrontlineMapping } from './frontlin'
 import { GoindolMapping } from "./goindol";
+import { GoldenTee3dMapping } from "./gt3d";
+import { GrandPrixStarMapping } from "./f1gpstar";
 import { GunsmokeMapping } from "./gunsmoke";
+import { HiddenCatch3Mapping } from "./hidctch3";
 import { HydraMapping } from "./hydra";
 import { IkariWarriorsMapping } from "./ikari";
 import { Ikari3Mapping } from "./ikari3";
@@ -47,6 +53,7 @@ import { KrullMapping } from "./krull";
 import { LethalEnforcersMapping } from "./lethalen";
 import { LostTombMapping } from "./losttomb";
 import { LibbleRablleMapping } from "./liblrabl";
+import { LordOfGunMapping } from "./lordgun";
 import { LunarLanderMapping } from "./llander";
 import { MarsMapping } from "./mars"
 import { MaxRpmMapping } from "./maxrpm";
@@ -60,6 +67,7 @@ import { PointBlankMapping } from "./ptblank"
 import { PopNBounceMapping } from "./popbounc";
 import { PoundForPoundMapping } from "./poundfor"
 import { PowerDriftMapping } from "./pdrift";
+import { PowerUpBaseballMapping } from "./pubball";
 import { PuzzLoop2Mapping } from "./pzloop2";
 import { QuantumMapping } from "./quantum";
 import { ReactorMapping } from "./reactor";
@@ -72,18 +80,24 @@ import { RobotronMapping } from "./robotron";
 import { RockClimberMapping } from "./rockclim";
 import { SargeMapping } from "./sarge";
 import { ScrewLooseMapping } from "./screwloo";
+import { ScudHammerMapping } from "./scudhamm";
 import { SearchAndRescueMapping } from "./searchar";
+import { SinistarMapping } from "./sinistar"
 import { Sf2Mapping } from "./sf2";
+import { ShuffleshotMapping } from "./shufshot";
 import { ShuuzMapping } from "./shuuz";
 import { SmashTvMapping } from "./smashtv";
 import { SpaceDungeonMapping } from "./sdungeon";
 import { SpaceDuelMapping } from "./spacduel";
+import { SpeedBallMapping } from "./spdball";
 import { SplatMapping } from "./splat";
 import { SpyHunterMapping } from "./spyhunt";
 import { StarGuardsMapping } from "./stargrds";
 import { StarWarsMapping } from "./starwars";
 import { SuperHangOnMapping } from "./shangon";
+import { TempestMapping } from "./tempest";
 import { Terminator2Mapping } from "./term2"
+import { ThunderCeptorMapping } from "./tceptor";
 import { TinStarMapping } from "./tinstar";
 import { TitleFightMapping } from "./titlef";
 import { TronMapping } from "./tron";
@@ -94,8 +108,11 @@ import { Vindicators2Mapping } from "./vindctr2";
 import { WaterMatchMapping } from "./wmatch";
 import { WackoMapping } from "./wacko";
 import { WecLeMans24Mapping } from "./wecleman";
+import { WildPilotMapping } from "./wildplt";
 import { WildWesternMapping } from "./wwestern";
 import { WizWarzMapping } from "./wizwarz";
+import { WorldClassBowlingDeluxeMapping } from "./wcbowldx"
+import { WorldPkSoccerV2Mapping } from "./wpksocv2";
 
 export function findMapping(emuInput) {
   const { fbneoModule, emulator } = emuInput;
@@ -141,7 +158,11 @@ export function findMapping(emuInput) {
   /* Badlands */
   if (isName(["badlands"])) {
     return new BadlandsMapping(emuInput);
-  }      
+  }    
+  /* Bang */ 
+  if (isName(["bang"])) {
+    return new BangMapping(emuInput);
+  }    
   /* Battle Zone */
   if (isName(["bzone"])) {
     return new BattleZoneMapping(emuInput);
@@ -150,6 +171,10 @@ export function findMapping(emuInput) {
   if (isName(["bbusters"])) {
     return new BeastBustersMapping(emuInput);
   }      
+  /* Big Run, Cisco Heat */
+  if (isName(["bigrun", "cischeat"])) {
+    return new BigRunMapping(emuInput);
+  }        
   /* Black Widow */
   if (isName(["bwidow"])) {
     return new BlackWidowMapping(emuInput);
@@ -158,6 +183,10 @@ export function findMapping(emuInput) {
   if (isName(["bladestll", "bladestle"])) {
     return new BladesOfSteelMapping(emuInput);
   }    
+  /* Blaster */
+  if (isName(["blaster"])) {
+    return new BlasterMapping(emuInput);
+  }      
   /* Bullet */
   if (isName(["bullet"])) {
     return new BulletMapping(emuInput);
@@ -249,11 +278,23 @@ export function findMapping(emuInput) {
   /* Goindol */
   if (isName(["goindol"])) {
     return new GoindolMapping(emuInput);
-  }    
+  }   
+  /* Gold Tee 3d */ 
+  if (isName(["gt3d", "gt97", "gt98", "gt99", "gt2k", "gtclassc"])) {
+    return new GoldenTee3dMapping(emuInput);
+  }     
+  /* Grand Prix Star */
+  if (isName(["f1gpstar"])) {
+    return new GrandPrixStarMapping(emuInput);
+  }      
   /* Gunsmoke */
   if (isName(["gunsmoke"])) {
     return new GunsmokeMapping(emuInput);
   }    
+  /* Hidden Catch 3 */
+  if (isName(["hidctch3"])) {
+    return new HiddenCatch3Mapping(emuInput);
+  }      
   /* Hydra */
   if (isName(["hydra"])) {
     return new HydraMapping(emuInput);
@@ -305,6 +346,10 @@ export function findMapping(emuInput) {
   /* Libble Rablle */
   if (isName(["liblrabl"])) {
     return new LibbleRablleMapping(emuInput);
+  }      
+  /* Lord of Gun */
+  if (isName(["lordgun"])) {
+    return new LordOfGunMapping(emuInput);
   }      
   /* Lost Tomb */
   if (isName(["losttomb"])) {
@@ -362,6 +407,10 @@ export function findMapping(emuInput) {
   if (isName(["pdrift"])) {
     return new PowerDriftMapping(emuInput);
   }
+  /* Power Up Baseball */  
+  if (isName(["pubball"])) {
+    return new PowerUpBaseballMapping(emuInput);
+  }
   /* Puzz Loop 2 */
   if (isName(["pzloop2"])) {
     return new PuzzLoop2Mapping(emuInput);
@@ -409,11 +458,23 @@ export function findMapping(emuInput) {
   /* Screw Loose */
   if (isName(["screwloo"])) {
     return new ScrewLooseMapping(emuInput);
+  }    
+  /* Scud Hammer */
+  if (isName(["scudhamm"])) {
+    return new ScudHammerMapping(emuInput);
   }  
   /* Search and Rescue */
   if (isName(["searchar"])) {
     return new SearchAndRescueMapping(emuInput);
   }    
+  /* Shuffleshot */  
+  if (isName(["shufshot"])) {
+    return new ShuffleshotMapping(emuInput);
+  }      
+  /* Sinistar */
+  if (isName(["sinistar"])) {
+    return new SinistarMapping(emuInput);
+  }      
   /* Smash T.V., Total Carnage */
   if (isName(["shuuz"])) {
     return new ShuuzMapping(emuInput);
@@ -430,6 +491,10 @@ export function findMapping(emuInput) {
   if (isName(["sdungeon"])) {
     return new SpaceDungeonMapping(emuInput);
   }    
+  /* Speedball */
+  if (isName(["spdball"])) {
+    return new SpeedBallMapping(emuInput);
+  }      
   /* Splat! */
   if (isName(["splat"])) {
     return new SplatMapping(emuInput);
@@ -454,6 +519,10 @@ export function findMapping(emuInput) {
   if (isName(["shangon"])) {
     return new SuperHangOnMapping(emuInput);
   }    
+  /* Tempest */
+  if (isName(["tempest"])) {
+    return new TempestMapping(emuInput);
+  }  
   /* Terminator 2 */  
   if (isName(["term2"])) {
     return new Terminator2Mapping(emuInput);
@@ -462,6 +531,10 @@ export function findMapping(emuInput) {
   if (isName(["tinstar"])) {
     return new TinStarMapping(emuInput);
   }  
+  /* Thunder Ceptor */
+  if (isName(["tceptor"])) {
+    return new ThunderCeptorMapping(emuInput);
+  }    
   /* Title Fight */
   if (isName(["titlef"])) {
     return new TitleFightMapping(emuInput);
@@ -498,6 +571,10 @@ export function findMapping(emuInput) {
   if (isName(["wecleman", "hotchase"])) {
     return new WecLeMans24Mapping(emuInput);
   }    
+  /* Wild Pilot */
+  if (isName(["wildplt"])) {
+    return new WildPilotMapping(emuInput);
+  }    
   /* Wild Western */
   if (isName(["wwestern"])) {
     return new WildWesternMapping(emuInput);
@@ -505,6 +582,13 @@ export function findMapping(emuInput) {
   /* Wiz Warz */
   if (isName(["wizwarz"])) {
     return new WizWarzMapping(emuInput);
+  }  
+  /* World Class Bowling Deluxe */  
+  if (isName(["wcbowl", "wcbowldx"])) {
+    return new WorldClassBowlingDeluxeMapping(emuInput);
+  }  
+  if (isName(["wpksocv2"])) {
+    return new WorldPkSoccerV2Mapping(emuInput);
   }  
 
   return null;
@@ -588,13 +672,17 @@ export function findMapping(emuInput) {
 // * Argus
 // * Aztarac
 // * Badlands
+// * Bang
 // * Beast Busters (J and JA)
+// * Big Run
 // * Blades of Steel (Trackball)
+// * Blaster
 // * Bowl-o-Rama
 // * Cabal (UK, US, US2)
 // * Capcom Bowling
 // * Centipede
 // * Checkered Flag
+// * Cisco Heat
 // * Crystal Castles
 // * Cyber Tank
 // * D-Day
@@ -607,12 +695,16 @@ export function findMapping(emuInput) {
 // * Food Fight
 // * Forgotten Worlds
 // * Goindol
+// * Golden Tee 3d
+// * Grand Prix Star
+// * Hidden Catch 3
 // * Hydra
 // * Irritating Maze 
 // * Kick
 // * Kozmik Kroozr
 // * Konami GT
 // * Lethal Enforcers
+// * Lord of Gun
 // * Lunar Lander
 // * Max RPM
 // * Millipede
@@ -622,27 +714,43 @@ export function findMapping(emuInput) {
 // * Pop 'n Bounce (Must enable paddle w/ soft dip)
 // * Pound for Pound
 // * Power Drift
+// * Power Up Baseball
 // * Puzz Loop 2
 // * Quantum
 // * Reactor
 // * Red Baron
 // * Return of the Jedi
 // * RevolutionX
+// * Scud Hammer
 // * Search and Rescue
 // * Shuuz
 // * Shuuz 2
+// * Shuffleshot
+// * Sinistar
+// * Speed Ball - Contest at Neonworld
 // * Spy Hunter
 // * Star Wars
 // * Super Hang-On
+// * Tempest
 // * Terminator 2
+// * Thunder Ceptor
 // * Tron
 // * Two Tigers
 // * Wacko
 // * WEC Le Mans 24 (and Hot Chase)
+// * Wild Pilot
 // * Wiz Warz
+// * World Class Bowling Deluxe
+// * World PK Soccer V2
 
 //
 // Misc
 //
 
 // * Space Duel
+
+//
+// DrvFakeInput
+//
+
+// Mad Planets (mplanets) DrvFakeInput
