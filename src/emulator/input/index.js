@@ -510,6 +510,18 @@ export default class EmulatorInput {
           } catch (e) {
             // Ignore for now.
           }
+        }        
+      // Racing games w/ analog accelerate and brake hack... :-(
+      } else if (vstr.startsWith("slider 0x3c ")) {
+        const parts = vstr.split(" ");
+        if (parts.length > 2) {
+          try {
+            if (parseInt(parts[2]) === value) {
+              return inp[0];
+            }
+          } catch (e) {
+            // Ignore for now.
+          }
         }
       }
     }  

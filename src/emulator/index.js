@@ -9,6 +9,7 @@ import {
 } from "@webrcade/app-common"
 
 import EmulatorInput from './input';
+import SRAM_TABLE from './sram';
 
 window.audioCallback = null;
 
@@ -50,9 +51,11 @@ export class Emulator extends AppWrapper {
   FS_STATE_PREFIX = "/libsdl/fbneo/states/";
   FS_HS_PREFIX = "support/hiscores/";
   FS_MEMCARD_SAVE = "memorycard.fc";
+  FS_NVRAM_SAVE = "nvram.nv";
 
   STATE_SAVE = "/state.fs";
   HS_SAVE = "/hs.hi";  
+  NVRAM_SAVE = "/nvram.nv";
   MEMCARD_SAVE = "/memcard.fc";  
 
   setRoms(roms) {
@@ -164,8 +167,8 @@ export class Emulator extends AppWrapper {
 
   async loadState() {
     const { app, debug, fbneoModule, fsHsName, fsStateName, 
-      isNeoGeo, primaryName, storage, FS_MEMCARD_SAVE,
-       HS_SAVE, MEMCARD_SAVE, STATE_SAVE} = this;
+      isNeoGeo, primaryName, storage, FS_MEMCARD_SAVE, FS_NVRAM_SAVE,
+       HS_SAVE, MEMCARD_SAVE, NVRAM_SAVE, STATE_SAVE} = this;
     const FS = fbneoModule.FS;      
 
     let path = null;
@@ -173,12 +176,41 @@ export class Emulator extends AppWrapper {
     let s = null;
 
     try {        
+
+      const sramLookup = SRAM_TABLE[primaryName];
+      let initSram = -1;
+      let initSramName = "";
+      if (sramLookup) {
+        initSram = sramLookup[1];
+        initSramName = sramLookup[0];
+      }
+
       res = FS.analyzePath(fsStateName, true);
       if (!res.exists) {
         path = app.getStoragePath(`${primaryName}${STATE_SAVE}`);
         s = await storage.get(path);          
         if (s) {
           FS.writeFile(fsStateName, s);
+
+          // var blob = new Blob([s], {type: "application/octet-stream"});
+          // var link = document.createElement('a');
+          // link.href = window.URL.createObjectURL(blob);
+          // var fileName = "dump.sram";
+          // link.download = fileName;
+          // link.click();
+
+        } else {
+          if (initSram === 0) {
+            // Retrieve default SRAM file
+            try {
+              s = await this.downloadFile(`sram/${initSramName}.sram`);
+              if (s) {
+                FS.writeFile(fsStateName, s);
+              }
+            } catch (e) {
+              LOG.error('Unable to download state file: ' + e);
+            }
+          }
         }
       }
 
@@ -188,6 +220,28 @@ export class Emulator extends AppWrapper {
         s = await storage.get(path);          
         if (s) {
           FS.writeFile(fsHsName, s);
+        }
+      }
+
+      res = FS.analyzePath(FS_NVRAM_SAVE, true);        
+      if (!res.exists) {
+        path = app.getStoragePath(`${primaryName}${NVRAM_SAVE}`);
+        s = await storage.get(path);        
+        if (s) {
+          LOG.info("NVRAM from storage.");
+          FS.writeFile(FS_NVRAM_SAVE, s)
+        } else {
+          if (initSram === 1) {
+            // Retrieve default NVRAM file
+            try {
+              s = await this.downloadFile(`sram/${initSramName}.nv`);
+              if (s) {
+                FS.writeFile(FS_NVRAM_SAVE, s);
+              }
+            } catch (e) {
+              LOG.error('Unable to download nvram file: ' + e);
+            }
+          }
         }
       }
 
@@ -220,8 +274,8 @@ export class Emulator extends AppWrapper {
 
   async saveState() {    
     const { app, fbneoModule, fsHsName, fsStateName, isNeoGeo, 
-      primaryName, storage, FS_MEMCARD_SAVE, HS_SAVE, MEMCARD_SAVE, 
-      STATE_SAVE} = this;
+      primaryName, storage, FS_MEMCARD_SAVE, FS_NVRAM_SAVE, HS_SAVE,
+      MEMCARD_SAVE, NVRAM_SAVE, STATE_SAVE} = this;
     const FS = fbneoModule.FS;      
     
     if (!this.started) return;
@@ -230,68 +284,86 @@ export class Emulator extends AppWrapper {
     let path = "";
 
     try {
-      if (!fbneoModule._saveState(1)) {              
+      // Force saves to occur
+      fbneoModule._saveState(1);
 
-        let s = null;
-        path = app.getStoragePath(`${primaryName}${STATE_SAVE}`);
-        let res = FS.analyzePath(fsStateName, true);
-        if (res.exists) {
-          s = FS.readFile(fsStateName);              
-          if (s) {          
-            found = true;
-            await this.saveStateToStorage(path, s, false);          
-          }
-        }         
-        if (!s) {
-          await storage.remove(path);
-        } 
+      // State
+      let s = null;
+      path = app.getStoragePath(`${primaryName}${STATE_SAVE}`);
+      let res = FS.analyzePath(fsStateName, true);
+      if (res.exists) {
+        s = FS.readFile(fsStateName);              
+        if (s) {          
+          found = true;
+          await this.saveStateToStorage(path, s, false);          
+        }
+      }         
+      if (!s) {
+        await storage.remove(path);
+      } 
+
+      // High score
+      s = null;
+      path = app.getStoragePath(`${primaryName}${HS_SAVE}`);
+      res = FS.analyzePath(fsHsName, true);
+      if (res.exists) {
+        s = FS.readFile(fsHsName);              
+        if (s) {          
+          found = true;
+          await this.saveStateToStorage(path, s, false);          
+        }
+      }         
+      if (!s) {
+        await storage.remove(path);
+      } 
+
+      // NV RAM
+      s = null;
+      path = app.getStoragePath(`${primaryName}${NVRAM_SAVE}`);
+      res = FS.analyzePath(FS_NVRAM_SAVE, true);
+      if (res.exists) {
+        s = FS.readFile(FS_NVRAM_SAVE);              
+        if (s) {          
+          found = true;
+          await this.saveStateToStorage(path, s, false);
+        }
+      }         
+      if (!s) {
+        await storage.remove(path);
+      } 
+
+      // Neo Geom Memory Card
+      if (isNeoGeo) {
+        // Save mem card state
+        fbneoModule._memCardSave();
 
         s = null;
-        path = app.getStoragePath(`${primaryName}${HS_SAVE}`);
-        res = FS.analyzePath(fsHsName, true);
+        path = app.getStoragePath(`${primaryName}${MEMCARD_SAVE}`);
+        res = FS.analyzePath(FS_MEMCARD_SAVE, true);
         if (res.exists) {
-          s = FS.readFile(fsHsName);              
+          s = FS.readFile(FS_MEMCARD_SAVE);              
           if (s) {          
             found = true;
-            await this.saveStateToStorage(path, s, false);          
+            const zip = new Zip();            
+            const blob = await zip.zip(new Blob([s.buffer]), FS_MEMCARD_SAVE);
+            await this.saveStateToStorage(path, 
+              new Uint8Array(await new Response(blob).arrayBuffer()), 
+              false);          
           }
         }         
         if (!s) {
           await storage.remove(path);
         } 
-
-        if (isNeoGeo) {
-          // Save mem card state
-          fbneoModule._memCardSave();
-
-          s = null;
-          path = app.getStoragePath(`${primaryName}${MEMCARD_SAVE}`);
-          res = FS.analyzePath(FS_MEMCARD_SAVE, true);
-          if (res.exists) {
-            s = FS.readFile(FS_MEMCARD_SAVE);              
-            if (s) {          
-              found = true;
-              const zip = new Zip();            
-              const blob = await zip.zip(new Blob([s.buffer]), FS_MEMCARD_SAVE);
-              await this.saveStateToStorage(path, 
-                new Uint8Array(await new Response(blob).arrayBuffer()), 
-                false);          
-            }
-          }         
-          if (!s) {
-            await storage.remove(path);
-          } 
-        }
-                
-        path = app.getStoragePath(`${primaryName}/sav`);
-        if (found) {      
-          await this.saveStateToStorage(path, null);
-        } else {
-          await storage.remove(path);
-        }
-
-        LOG.info("Saved: " + found);
       }
+              
+      path = app.getStoragePath(`${primaryName}/sav`);
+      if (found) {      
+        await this.saveStateToStorage(path, null);
+      } else {
+        await storage.remove(path);
+      }
+
+      LOG.info("Saved: " + found);
     } catch(e) {
       LOG.error(e);
     }
@@ -301,7 +373,8 @@ export class Emulator extends AppWrapper {
     const { debug } = this
     const uz = new Unzip().setDebug(debug);
     const fad = new FetchAppData(file);
-    const res = await fad.fetch();    
+    // fad.setProxyDisabled(true);
+    const res = await fad.fetch();
     let blob = await res.blob();
     blob = await uz.unzip(blob, [], []);
     return new Uint8Array(await new Response(blob).arrayBuffer());
@@ -522,6 +595,9 @@ export class Emulator extends AppWrapper {
     this.pixelCount = width * height;
     this.vidBits = vidBits;
     this.refreshRate = refreshRate;
+    if (this.canvas) {
+      this.initVideo(this.canvas);
+    }
   }
 
   clearImageData(image, imageData, pixelCount) {
@@ -539,6 +615,14 @@ export class Emulator extends AppWrapper {
     LOG.info("### visible size: " + width + "x" + height);
     canvas.width = width;
     canvas.height = height;    
+
+    // this.width = width;
+    // this.height = height;
+    // this.pixelCount = width * height;
+    // this.context = this.canvas.getContext("2d");
+    // this.image = this.context.getImageData(0, 0, width, height);
+    // this.imageData = this.image.data;    
+    // this.clearImageData(this.image, this.imageData, this.pixelCount);
   }
 
   setAspectRatio(aspectX, aspectY) {
