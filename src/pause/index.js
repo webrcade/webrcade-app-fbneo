@@ -30,8 +30,7 @@ class CustomPauseScreen extends PauseScreen {
   getFocusGridComponents() {
     this.viewControlsButtonRef = React.createRef();
     const comps = super.getFocusGridComponents();
-    const update = comps[0];
-    update.push(this.viewControlsButtonRef);
+    comps[0].push(this.viewControlsButtonRef);
     return comps;
   }
 
@@ -43,7 +42,7 @@ class CustomPauseScreen extends PauseScreen {
       <ImageButton
         className={pauseStyles["pause-screen-image-button"]}
         imgSrc={GamepadWhiteImage}
-        ref={this.viewControlsButtonRef}
+        ref={viewControlsButtonRef}
         label={Resources.getText(TEXT_IDS.VIEW_CONTROLS)}
         onPad={e => focusGrid.moveFocus(e.type, viewControlsButtonRef)}
         onClick={() => { onControlsCallback() }}
@@ -75,7 +74,7 @@ class ControlsScreen extends Screen {
   componentDidMount() {
     const { gamepadNotifier } = this;
 
-    super.componentDidMount();    
+    super.componentDidMount();
 
     if (!this.analogCallback) {
       this.analogCallback = e => {
@@ -90,9 +89,9 @@ class ControlsScreen extends Screen {
               adjust = height;
             }
             el.scrollTop = adjust;
-          }    
+          }
         }
-      };      
+      };
       gamepadNotifier.addAnalogCallback(this.analogCallback);
     }
   }
@@ -208,7 +207,7 @@ export class NeoPauseScreen extends Component {
           }}
         />
       ) : (
-        <ControlsScreen 
+        <ControlsScreen
           inputs={inputs}
           onClose={closeCallback} />
       )
