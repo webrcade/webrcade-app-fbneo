@@ -478,7 +478,7 @@ export default class EmulatorInput {
     const results = [];
 
     // Only player 1 for now
-    for (let p = 0; p < 1; p++) {
+    for (let p = 0; p < keyMapping.length; p++) {
       const mapping = keyMapping[p];
       const keyToControlId = mapping.keyCodeToControlId;
       for (let key in keyToControlId) {
