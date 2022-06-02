@@ -1,13 +1,13 @@
 import {
   blobToStr,
-  md5,  
-  FetchAppData, 
-  Resources, 
-  Unzip, 
+  md5,
+  FetchAppData,
+  Resources,
+  Unzip,
   UrlUtil,
-  WebrcadeApp, 
+  WebrcadeApp,
   LOG,
-  TEXT_IDS 
+  TEXT_IDS
 } from '@webrcade/app-common'
 import { Emulator } from './emulator'
 import { NeoPauseScreen } from './pause';
@@ -26,7 +26,7 @@ class App extends WebrcadeApp {
       if (this.debug) console.log("fetching: " + url);
       try {
         const fad = new FetchAppData(url);
-        const res = await fad.fetch();    
+        const res = await fad.fetch();
         let blob = await res.blob();
 
         // Collect filenames from zip
@@ -44,7 +44,7 @@ class App extends WebrcadeApp {
 
         // MD5
         const blobStr = await blobToStr(blob);
-        const md5Hash = md5(blobStr);        
+        const md5Hash = md5(blobStr);
 
         // Determine name
         let name = null;
@@ -73,7 +73,7 @@ class App extends WebrcadeApp {
                   name = match;
                 }
               }
-            }    
+            }
           }
           if (!name) {
             throw Error("Unknown ROM file (" + md5Hash + ").");
@@ -90,10 +90,10 @@ class App extends WebrcadeApp {
           filenames: filenames,
           md5: md5Hash,
           u8array: u8array
-        });        
+        });
       } catch (e) {
         throw Error(e + "\n" + url);
-      }      
+      }
     }
 
     return results;
@@ -111,7 +111,7 @@ class App extends WebrcadeApp {
       if (this.emulator === null) {
         this.emulator = new Emulator(this, type, this.isDebug());
       }
-      const emulator = this.emulator;      
+      const emulator = this.emulator;
 
       const files = [];
 
@@ -119,8 +119,8 @@ class App extends WebrcadeApp {
       if (type === 'fbneo-neogeo') {
         const bios = appProps.neogeo_bios;
         if (bios) {
-          files.push({      
-            type: emulator.TYPE_BIOS,          
+          files.push({
+            type: emulator.TYPE_BIOS,
             url: bios,
             name: "neogeo.zip"
           });
@@ -131,25 +131,25 @@ class App extends WebrcadeApp {
       const rom = appProps.rom;
       if (!rom) throw new Error("A ROM file was not specified.");
       files.push({
-        type: emulator.TYPE_PRIMARY,          
+        type: emulator.TYPE_PRIMARY,
         url: rom,
-      })      
+      })
 
       const additionalRoms = appProps.additionalRoms;
       if (additionalRoms) {
         additionalRoms.forEach((rom) => {
           files.push({
-            type: emulator.TYPE_ADDITIONAL,          
+            type: emulator.TYPE_ADDITIONAL,
             url: rom,
-          })        
-        })         
+          })
+        })
       }
 
       const samples = appProps.samples;
       let samplesFile = [];
       if (samples) {
         samplesFile.push({
-          type: emulator.TYPE_SAMPLES,          
+          type: emulator.TYPE_SAMPLES,
           url: samples,
         })
       }
@@ -203,6 +203,7 @@ class App extends WebrcadeApp {
         exitCallback={() => this.exit()}
         isEditor={this.isEditor}
         inputs={this.emulator.input.collectGamepadInfo()}
+        keyInputs={this.emulator.input.collectKeyboardInfo()}
       />
     );
   }
@@ -219,10 +220,10 @@ class App extends WebrcadeApp {
 
     return (
       <>
-        { super.render()}
-        { mode === ModeEnum.LOADING ? this.renderLoading() : null}
-        { mode === ModeEnum.PAUSE ? this.renderPauseScreen() : null}        
-        { mode === ModeEnum.LOADED || mode === ModeEnum.PAUSE  ? this.renderCanvas() : null}
+        {super.render()}
+        {mode === ModeEnum.LOADING ? this.renderLoading() : null}
+        {mode === ModeEnum.PAUSE ? this.renderPauseScreen() : null}
+        {mode === ModeEnum.LOADED || mode === ModeEnum.PAUSE ? this.renderCanvas() : null}
       </>
     );
   }

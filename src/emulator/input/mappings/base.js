@@ -14,8 +14,8 @@ export class BaseMapping {
 }
 
 export class AnalogModeDetector {
-  constructor( 
-    playerIndex, controlString, 
+  constructor(
+    playerIndex, controlString,
     digitalString, digitalTriggerButtons,
     analogString, analogStickIndex, analogStickIsX) {
     this.playerIndex = playerIndex;
@@ -32,6 +32,7 @@ export class AnalogModeDetector {
   getAnalogStickIndex() { return this.analogStickIndex; }
   isAnalogX() { return this.analogStickIsX; }
   getAnalogString() { return this.analogString; }
+  getDigitalString() { return this.digitalString; }
   getControlString() { return this.controlString; }
 
   check(emulatorInput, digitalButtons, analogValue) {
@@ -45,10 +46,10 @@ export class AnalogModeDetector {
   }
 }
 
-export class AnalogAdjustment {  
+export class AnalogAdjustment {
   constructor(stick, isX, multipler = 1) {
     this.stick = stick;
-    this.isXAxis = isX;    
+    this.isXAxis = isX;
     this.multipler = multipler;
   }
 

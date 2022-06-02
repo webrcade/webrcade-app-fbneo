@@ -101,15 +101,15 @@ export default class EmulatorInput {
 
   constructor(emulator) {
     this.debug = emulator.debug;
-    this.emulator = emulator;   
-    this.controllerCount = 4; 
+    this.emulator = emulator;
+    this.controllerCount = 4;
   }
 
   inputs = [];
   keyMap = [];
   keyMapping = [];
   analogToDpad = [];
-  analogModeDetectors = [];  
+  analogModeDetectors = [];
   analogAdjustments = [
     new AnalogAdjustment(0, true),
     new AnalogAdjustment(0, false),
@@ -130,18 +130,18 @@ export default class EmulatorInput {
 
   start() {
     const { analogAdjustments, controllerCount, inputs, keyMap, keyMapping } = this;
-    this.fbneoModule = this.emulator.fbneoModule;  
+    this.fbneoModule = this.emulator.fbneoModule;
 
     // Set player order
     const props = this.emulator.getProps();
     if (props.playerOrder) {
       const order = props.playerOrder;
       const values = order.split(":");
-      if (values.length === 4 && 
+      if (values.length === 4 &&
         ["0", "1", "2", "3"].every(v => values.includes(v))) {
         for (let i = 0; i < values.length; i++) {
           this.playerOrder[i] = parseInt(values[i]);
-        }               
+        }
       }
     }
 
@@ -159,7 +159,7 @@ export default class EmulatorInput {
     //
     // Keyboard
     //
-    
+
     let keyButtonMap = [
       (this.fbneoModule._getFireButtonCount() <= 4 ?
         this.FOUR_BUTTON_KEYMAP : this.SIX_BUTTON_KEYMAP)
@@ -178,7 +178,7 @@ export default class EmulatorInput {
       keyMapping.push(new KeyCodeToControlMapping(keyMap[i]));
     }
 
-    // 
+    //
     // Buttons (Gamepads)
     //
 
@@ -190,15 +190,15 @@ export default class EmulatorInput {
       }
     }
 
-    // 
+    //
     // Remap
-    // 
+    //
 
     if (customMapping) {
       const remap = customMapping.getRemapList();
       if (remap) {
         for (let i = 0; i < remap.length; i++) {
-          const m = remap[i];          
+          const m = remap[i];
           this.setGameInput(`"${m[0]}" ${m[1]}`);
         }
       }
@@ -239,10 +239,10 @@ export default class EmulatorInput {
     //
     if (customMapping) {
       this.isAnalogDpadEnabled = customMapping.isAnalogDpadEnabled();
-      this.analogModeDetectors = customMapping.getAnalogModeDetectors();      
+      this.analogModeDetectors = customMapping.getAnalogModeDetectors();
     }
 
-    // TODO: Gamepad map (per controller)    
+    // TODO: Gamepad map (per controller)
 
     this.emulator.setControllers(
       new Controllers([
@@ -260,10 +260,10 @@ export default class EmulatorInput {
 
   getModule() {
     return this.fbneoModule;
-  }  
+  }
 
   pollControls(controllers) {
-    const { analogAdjustments, analogModeDetectors, analogToDpad, controllerCount, 
+    const { analogAdjustments, analogModeDetectors, analogToDpad, controllerCount,
       customMapping, inputs, isAnalogDpadEnabled, keyMap, keyMapping, playerOrder } = this;
     let key;
 
@@ -272,7 +272,7 @@ export default class EmulatorInput {
     for (let i = 0; i < controllerCount; i++) {
       inputs[i] = 0;
     }
- 
+
     for (let j = 0; j < controllerCount; j++) {
       const i = playerOrder[j];
 
@@ -282,19 +282,19 @@ export default class EmulatorInput {
             .then(() => this.emulator.showPauseMenu());
           return;
         }
-      }            
+      }
 
       //
       // Keyboard
       //
 
-      if (keyMap.length > i) {        
+      if (keyMap.length > i) {
         for (key in keyMap[i]) {
           const val = keyMap[i][key];
           if ((val & 0x8000) && keyMapping[i].isControlDown(val)) {
             inputs[i] |= (0x7FFF & val);
           }
-        }    
+        }
       }
 
       //
@@ -305,12 +305,12 @@ export default class EmulatorInput {
         if (controllers.isControlDown(i, parseInt(key), isAnalogDpadEnabled)) {
           inputs[i] |= this.buttonMap[key];
         }
-      } 
+      }
 
       //
       // Twin stick
       //
-      
+
       if (customMapping) {
         if (analogToDpad.length > i) {
           const mapTo = analogToDpad[i];
@@ -327,7 +327,7 @@ export default class EmulatorInput {
             if (controllers.isAxisDown(i, 1)) {
               inputs[mapTo] |= this.INP_DOWN;
             }
-          }          
+          }
         }
       }
 
@@ -345,7 +345,7 @@ export default class EmulatorInput {
       );
 
       for (let idx = 0; idx < analogModeDetectors.length; idx++) {
-        const detector = analogModeDetectors[idx];        
+        const detector = analogModeDetectors[idx];
         if (detector.getPlayerIndex() === i) {
           const stickIndex = detector.getAnalogStickIndex();
           const isX = detector.isAnalogX();
@@ -358,7 +358,7 @@ export default class EmulatorInput {
             analogValue = analog1x;
           } else if (stickIndex === 1 && !isX) {
             analogValue = analog1y;
-          }  
+          }
           detector.check(this, inputs[i], analogValue);
         }
       }
@@ -373,7 +373,7 @@ export default class EmulatorInput {
 
   collectGamepadInfo() {
     const { buttonMap } = this;
-    
+
     const inputs = this.emulator.collectGameInputs();
     const results = [];
 
@@ -404,20 +404,19 @@ export default class EmulatorInput {
         const name = this.getButtonName(bInt);
         const mapped = this.findSwitchInput(inputs, this.getButtonValue(v, p));
         if (mapped) {
-          if (bInt === CIDS.LEFT || bInt === CIDS.RIGHT || 
+          if (bInt === CIDS.LEFT || bInt === CIDS.RIGHT ||
             bInt === CIDS.UP || bInt === CIDS.DOWN) {
             dir.push(this.stripPlayer(mapped));
-          } else {
-            results.push([name, this.stripPlayer(mapped)]);
           }
+          results.push([name, this.stripPlayer(mapped)]);
         }
       }
 
       if (dir.length > 0) {
         if (this.isAnalogDpadEnabled) {
-          results.push(["lanalog-dpad", dir.join(", ")]); 
-        }        
-        results.push(["dpad", dir.join(", ")]); 
+          results.push(["lanalog-dpad", dir.join(", ")]);
+        }
+        results.push(["dpad", dir.join(", ")]);
       }
 
       // Check for analog to dpad
@@ -430,10 +429,10 @@ export default class EmulatorInput {
               inputs, this.getButtonValue(this.INP_UP, dpad));
             if (up) vals.push(this.stripPlayer(up));
             const down = this.findSwitchInput(
-              inputs, this.getButtonValue(this.INP_DOWN, dpad));            
+              inputs, this.getButtonValue(this.INP_DOWN, dpad));
             if (down) vals.push(this.stripPlayer(down));
             const left = this.findSwitchInput(
-              inputs, this.getButtonValue(this.INP_LEFT, dpad));            
+              inputs, this.getButtonValue(this.INP_LEFT, dpad));
             if (left) vals.push(this.stripPlayer(left));
             const right = this.findSwitchInput(
               inputs, this.getButtonValue(this.INP_RIGHT, dpad));
@@ -446,7 +445,98 @@ export default class EmulatorInput {
           // Ignore for now.
         }
       }
-    }    
+    }
+
+    return results;
+  }
+
+  findKeyForValue(value, player) {
+    const { buttonMap, keyMapping } = this;
+    const mapping = keyMapping[player];
+    const keyToControlId = mapping.keyCodeToControlId;
+    for (let key in keyToControlId) {
+      let v = keyToControlId[key];
+      if (v & 0x8000) {
+        v = v & 0x7FFF;
+      } else {
+        if (buttonMap[v]) {
+          v = buttonMap[v];
+        }
+      }
+      v = this.getButtonValue(v, player);
+      if (v === value) {
+        return key;
+      }
+    }
+    return null;
+  }
+
+  collectKeyboardInfo() {
+    const { buttonMap, keyMapping } = this;
+
+    const inputs = this.emulator.collectGameInputs();
+    const results = [];
+
+    // Only player 1 for now
+    for (let p = 0; p < 1; p++) {
+      const mapping = keyMapping[p];
+      const keyToControlId = mapping.keyCodeToControlId;
+      for (let key in keyToControlId) {
+        let v = keyToControlId[key];
+        if (v & 0x8000) {
+          v = v & 0x7FFF;
+        } else {
+          if (buttonMap[v]) {
+            v = buttonMap[v];
+          } else {
+            v = null;
+          }
+        }
+        if (v) {
+          const bValue = this.getButtonValue(v, p);
+          const mapped = this.findSwitchInput(inputs, bValue);
+          if (mapped) {
+            results.push([key, this.stripPlayer(mapped)]);
+          }
+        }
+      }
+
+      // Search in analog mode detectors
+      for (let i = 0; i < this.analogModeDetectors.length; i++) {
+        const amd = this.analogModeDetectors[i];
+        const dString = amd.getDigitalString().trim();
+        try {
+          if (dString.startsWith("slider")) {
+            const parts = dString.split(" ");
+            for (let j = 1; j <= 2; j++) {
+              const value = parseInt(parts[j]);
+              const k = this.findKeyForValue(value, p);
+              if (k) {
+                results.push([k, this.stripPlayer(amd.getControlString())]);
+              }
+            }
+          }
+        } catch (e) {
+          // Ignore for now.
+        }
+      }
+
+      // Search for sliders
+      for (let i = 0; i < inputs.length; i++) {
+        const name = inputs[i][0];
+        const mapping = inputs[i][1];
+        if (mapping.startsWith("slider")) {
+          const parts = mapping.split(" ");
+          for (let j = 1; j <= 2; j++) {
+            const value = parseInt(parts[j]);
+            const k = this.findKeyForValue(value, p);
+            if (k) {
+              results.push([k, this.stripPlayer(name)]);
+            }
+          }
+        }
+      }
+    }
 
     return results;
   }
@@ -473,7 +563,7 @@ export default class EmulatorInput {
       } catch (e) {
         // Ignore for now.
       }
-    }   
+    }
 
     // Search in inputs
     for (let i = 0; i < inputs.length; i++) {
@@ -491,9 +581,9 @@ export default class EmulatorInput {
           // Ignore for now.
         }
       }
-    }  
+    }
 
-    return null;     
+    return null;
   }
 
   findSwitchInput(inputs, value) {
@@ -510,7 +600,7 @@ export default class EmulatorInput {
           } catch (e) {
             // Ignore for now.
           }
-        }        
+        }
       // Racing games w/ analog accelerate and brake hack... :-(
       } else if (vstr.startsWith("slider 0x3c ")) {
         const parts = vstr.split(" ");
@@ -524,8 +614,8 @@ export default class EmulatorInput {
           }
         }
       }
-    }  
-    return null;  
+    }
+    return null;
   }
 
   getButtonName(buttonId) {
@@ -555,40 +645,40 @@ export default class EmulatorInput {
   getButtonValue(v, player) {
     let bv = 0;
     switch(v) {
-      case this.INP_LEFT: 
+      case this.INP_LEFT:
         bv = (0x4000 + (player * 0x100));
         break;
-      case this.INP_RIGHT: 
+      case this.INP_RIGHT:
         bv = (0x4001 + (player * 0x100));
         break;
-      case this.INP_UP: 
+      case this.INP_UP:
         bv = (0x4002 + (player * 0x100));
         break;
-      case this.INP_DOWN: 
+      case this.INP_DOWN:
         bv = (0x4003 + (player * 0x100));
         break;
-      case this.INP_START: 
+      case this.INP_START:
         bv = 0x02 + player;
         break;
-      case this.INP_SELECT: 
+      case this.INP_SELECT:
         bv = 0x06 + player;
         break;
-      case this.INP_B1: 
+      case this.INP_B1:
         bv = (0x4080 + (player * 0x100));
         break;
-      case this.INP_B2: 
+      case this.INP_B2:
         bv = (0x4081 + (player * 0x100));
         break;
-      case this.INP_B3: 
+      case this.INP_B3:
         bv = (0x4082 + (player * 0x100));
         break;
-      case this.INP_B4: 
+      case this.INP_B4:
         bv = (0x4083 + (player * 0x100));
         break;
-      case this.INP_B5: 
+      case this.INP_B5:
         bv = (0x4084 + (player * 0x100));
         break;
-      case this.INP_B6: 
+      case this.INP_B6:
         bv = (0x4085 + (player * 0x100));
         break;
       default: break;
