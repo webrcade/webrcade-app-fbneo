@@ -1,6 +1,7 @@
 import {
   blobToStr,
   md5,
+  settings,
   FetchAppData,
   Resources,
   Unzip,
@@ -156,6 +157,8 @@ class App extends WebrcadeApp {
 
       // Load Emscripten and ROMs
       emulator.loadEmscriptenModule()
+        .then(() => settings.load())
+        // .then(() => settings.setBilinearFilterEnabled(true))
         .then(() => this.fetchFiles(files))
         .then((roms) => emulator.setRoms(roms))
         .then(() => this.fetchFiles(samplesFile))
@@ -210,7 +213,7 @@ class App extends WebrcadeApp {
 
   renderCanvas() {
     return (
-      <canvas ref={canvas => { this.canvas = canvas; }} id="canvas"></canvas>
+      <canvas style={this.getCanvasStyles()} ref={canvas => { this.canvas = canvas; }} id="canvas"></canvas>
     );
   }
 
