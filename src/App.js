@@ -159,6 +159,7 @@ class App extends WebrcadeApp {
       emulator.loadEmscriptenModule()
         .then(() => settings.load())
         // .then(() => settings.setBilinearFilterEnabled(true))
+        // .then(() => settings.setVsyncEnabled(false))
         .then(() => this.fetchFiles(files))
         .then((roms) => emulator.setRoms(roms))
         .then(() => this.fetchFiles(samplesFile))
