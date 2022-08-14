@@ -6,7 +6,7 @@ import {
   LOG,
   Unzip,
   Zip,
-} from "@webrcade/app-common"
+} from '@webrcade/app-common';
 
 import EmulatorInput from './input';
 import SRAM_TABLE from './sram';
@@ -25,9 +25,9 @@ export class Emulator extends AppWrapper {
 
     this.roms = [];
     this.files = [];
-    this.samples = []
+    this.samples = [];
     this.archives = {};
-    this.primaryName = "(not found)";
+    this.primaryName = '(not found)';
     this.inputs = [];
 
     this.aspectX = 4;
@@ -39,7 +39,7 @@ export class Emulator extends AppWrapper {
     this.pixelCount = this.width * this.height;
     this.vidBits = 32;
     this.refreshRate = 59.18;
-    this.fsStateName = "";
+    this.fsStateName = '';
     this.isNeoGeo = false;
   }
 
@@ -48,15 +48,15 @@ export class Emulator extends AppWrapper {
   TYPE_ADDITIONAL = 2;
   TYPE_SAMPLES = 3;
 
-  FS_STATE_PREFIX = "/libsdl/fbneo/states/";
-  FS_HS_PREFIX = "support/hiscores/";
-  FS_MEMCARD_SAVE = "memorycard.fc";
-  FS_NVRAM_SAVE = "nvram.nv";
+  FS_STATE_PREFIX = '/libsdl/fbneo/states/';
+  FS_HS_PREFIX = 'support/hiscores/';
+  FS_MEMCARD_SAVE = 'memorycard.fc';
+  FS_NVRAM_SAVE = 'nvram.nv';
 
-  STATE_SAVE = "/state.fs";
-  HS_SAVE = "/hs.hi";
-  NVRAM_SAVE = "/nvram.nv";
-  MEMCARD_SAVE = "/memcard.fc";
+  STATE_SAVE = '/state.fs';
+  HS_SAVE = '/hs.hi';
+  NVRAM_SAVE = '/nvram.nv';
+  MEMCARD_SAVE = '/memcard.fc';
 
   setRoms(roms) {
     this.roms = roms;
@@ -65,7 +65,7 @@ export class Emulator extends AppWrapper {
       const rom = roms[i];
       const name = rom.name;
       if (rom.type === this.TYPE_PRIMARY) {
-        this.primaryName = name.split(".")[0];
+        this.primaryName = name.split('.')[0];
         this.fsStateName = `${this.FS_STATE_PREFIX}${this.primaryName}.fs`;
         this.fsHsName = `${this.FS_HS_PREFIX}${this.primaryName}.hi`;
       }
@@ -95,7 +95,9 @@ export class Emulator extends AppWrapper {
   }
 
   createAudioProcessor() {
-    const audioProcessor =  new ScriptAudioProcessor(2, 44100).setDebug(this.debug);
+    const audioProcessor = new ScriptAudioProcessor(2, 44100).setDebug(
+      this.debug,
+    );
     // Check for volume adjust
     const adjust = this.getProps().volAdjust;
     if (adjust) {
@@ -122,7 +124,6 @@ export class Emulator extends AppWrapper {
     const { app, type } = this;
 
     return new Promise((resolve, reject) => {
-
       const script = document.createElement('script');
       document.body.appendChild(script);
 
@@ -138,35 +139,41 @@ export class Emulator extends AppWrapper {
       }
       script.async = false;
       script.onerror = () => {
-        reject("An error occurred attempting to load the FBNeo engine.");
-      }
+        reject('An error occurred attempting to load the FBNeo engine.');
+      };
       script.onload = () => {
         if (window.fbneo) {
-          window.fbneo()
-            .then(fbneoModule => {
-              fbneoModule.onAbort = msg => app.exit(msg);
-              fbneoModule.onExit = () => app.exit();
-              this.fbneoModule = fbneoModule;
-              resolve();
-            });
+          window.fbneo().then((fbneoModule) => {
+            fbneoModule.onAbort = (msg) => app.exit(msg);
+            fbneoModule.onExit = () => app.exit();
+            this.fbneoModule = fbneoModule;
+            resolve();
+          });
         } else {
-          reject("An error occurred attempting to load the FBNeo engine.");
+          reject('An error occurred attempting to load the FBNeo engine.');
         }
       };
     });
   }
 
   async destroy() {
-    console.log('destroy start')
+    console.log('destroy start');
     if (this.audioProcessor) {
       this.audioProcessor.pause(true);
     }
-    console.log('destroy end')
+    console.log('destroy end');
   }
 
-
   async migrateSaves() {
-    const { app, primaryName, storage, STATE_SAVE, HS_SAVE, NVRAM_SAVE, MEMCARD_SAVE } = this;
+    const {
+      app,
+      primaryName,
+      storage,
+      STATE_SAVE,
+      HS_SAVE,
+      NVRAM_SAVE,
+      MEMCARD_SAVE,
+    } = this;
 
     // Load old saves (if applicable)
     const files = [];
@@ -219,9 +226,21 @@ export class Emulator extends AppWrapper {
   }
 
   async loadState() {
-    const { app, debug, fbneoModule, fsHsName, fsStateName,
-      isNeoGeo, primaryName, FS_MEMCARD_SAVE, FS_NVRAM_SAVE,
-       HS_SAVE, MEMCARD_SAVE, NVRAM_SAVE, STATE_SAVE} = this;
+    const {
+      app,
+      debug,
+      fbneoModule,
+      fsHsName,
+      fsStateName,
+      isNeoGeo,
+      primaryName,
+      FS_MEMCARD_SAVE,
+      FS_NVRAM_SAVE,
+      HS_SAVE,
+      MEMCARD_SAVE,
+      NVRAM_SAVE,
+      STATE_SAVE,
+    } = this;
     const FS = fbneoModule.FS;
 
     let res = null;
@@ -232,7 +251,7 @@ export class Emulator extends AppWrapper {
 
       const sramLookup = SRAM_TABLE[primaryName];
       let initSram = -1;
-      let initSramName = "";
+      let initSramName = '';
       if (sramLookup) {
         initSram = sramLookup[1];
         initSramName = sramLookup[0];
@@ -268,7 +287,7 @@ export class Emulator extends AppWrapper {
       res = FS.analyzePath(fsStateName, true);
       if (!res.exists) {
         if (sram) {
-          LOG.info("writing sram");
+          LOG.info('writing sram');
           FS.writeFile(fsStateName, sram);
 
           // var blob = new Blob([s], {type: "application/octet-stream"});
@@ -277,14 +296,13 @@ export class Emulator extends AppWrapper {
           // var fileName = "dump.sram";
           // link.download = fileName;
           // link.click();
-
         } else {
           if (initSram === 0) {
             // Retrieve default SRAM file
             try {
               const s = await this.downloadFile(`sram/${initSramName}.sram`);
               if (s) {
-                LOG.info("writing default sram");
+                LOG.info('writing default sram');
                 FS.writeFile(fsStateName, s);
               }
             } catch (e) {
@@ -297,7 +315,7 @@ export class Emulator extends AppWrapper {
       res = FS.analyzePath(fsHsName, true);
       if (!res.exists) {
         if (hs) {
-          LOG.info("writing high score");
+          LOG.info('writing high score');
           FS.writeFile(fsHsName, hs);
         }
       }
@@ -305,15 +323,15 @@ export class Emulator extends AppWrapper {
       res = FS.analyzePath(FS_NVRAM_SAVE, true);
       if (!res.exists) {
         if (nvram) {
-          LOG.info("writing nvram");
-          FS.writeFile(FS_NVRAM_SAVE, nvram)
+          LOG.info('writing nvram');
+          FS.writeFile(FS_NVRAM_SAVE, nvram);
         } else {
           if (initSram === 1) {
             // Retrieve default NVRAM file
             try {
               const s = await this.downloadFile(`sram/${initSramName}.nv`);
               if (s) {
-                LOG.info("writing default nvram");
+                LOG.info('writing default nvram');
                 FS.writeFile(FS_NVRAM_SAVE, s);
               }
             } catch (e) {
@@ -328,37 +346,48 @@ export class Emulator extends AppWrapper {
         res = FS.analyzePath(FS_MEMCARD_SAVE, true);
         if (!res.exists) {
           if (memCard) {
-            LOG.info("writing memcard");
+            LOG.info('writing memcard');
             // Retrieved from storage
             const uz = new Unzip().setDebug(debug);
             const blob = await uz.unzip(new Blob([memCard.buffer]), [], []);
             u8array = new Uint8Array(await new Response(blob).arrayBuffer());
           } else {
             // Download new memory card
-            LOG.info("New memory card.");
-            u8array = await this.downloadFile("memorycard.zip");
+            LOG.info('New memory card.');
+            u8array = await this.downloadFile('memorycard.zip');
           }
           if (u8array) {
-            FS.writeFile(FS_MEMCARD_SAVE, u8array)
+            FS.writeFile(FS_MEMCARD_SAVE, u8array);
           }
         }
       }
-    } catch(e) {
+    } catch (e) {
       LOG.error('Error loading save state: ' + e);
     }
   }
 
   async saveState() {
-    const { app, fbneoModule, fsHsName, fsStateName, isNeoGeo,
-      primaryName, FS_MEMCARD_SAVE, FS_NVRAM_SAVE, HS_SAVE,
-      MEMCARD_SAVE, NVRAM_SAVE, STATE_SAVE} = this;
+    const {
+      app,
+      fbneoModule,
+      fsHsName,
+      fsStateName,
+      isNeoGeo,
+      primaryName,
+      FS_MEMCARD_SAVE,
+      FS_NVRAM_SAVE,
+      HS_SAVE,
+      MEMCARD_SAVE,
+      NVRAM_SAVE,
+      STATE_SAVE,
+    } = this;
     const FS = fbneoModule.FS;
 
     if (!this.started) return;
 
-    let path = "";
+    let path = '';
 
-    const files = []
+    const files = [];
 
     try {
       // Force saves to occur
@@ -441,23 +470,19 @@ export class Emulator extends AppWrapper {
       // }
       const found = files.length > 0;
       if (found) {
-        await this.getSaveManager().save(
-          path,
-          files,
-          this.saveMessageCallback,
-        );
+        await this.getSaveManager().save(path, files, this.saveMessageCallback);
       } else {
         await this.getSaveManager().delete(path);
       }
 
-      LOG.info("Saved: " + found);
-    } catch(e) {
+      LOG.info('Saved: ' + found);
+    } catch (e) {
       LOG.error('Error persisting save state: ' + e);
     }
   }
 
   async downloadFile(file) {
-    const { debug } = this
+    const { debug } = this;
     const uz = new Unzip().setDebug(debug);
     const fad = new FetchAppData(file);
     // fad.setProxyDisabled(true);
@@ -468,7 +493,8 @@ export class Emulator extends AppWrapper {
   }
 
   async onStart(canvas) {
-    const { app, debug, fbneoModule, isNeoGeo, primaryName, roms, samples } = this;
+    const { app, debug, fbneoModule, isNeoGeo, primaryName, roms, samples } =
+      this;
 
     try {
       // FS
@@ -478,17 +504,17 @@ export class Emulator extends AppWrapper {
       fbneoModule.canvas = canvas;
 
       // Create directories
-      FS.mkdir("/libsdl");
-      FS.mkdir("/libsdl/fbneo");
-      FS.mkdir("/libsdl/fbneo/states");
-      FS.mkdir("roms");
-      FS.mkdir("support");
-      FS.mkdir("support/hiscores");
-      FS.mkdir("support/samples");
+      FS.mkdir('/libsdl');
+      FS.mkdir('/libsdl/fbneo');
+      FS.mkdir('/libsdl/fbneo/states');
+      FS.mkdir('roms');
+      FS.mkdir('support');
+      FS.mkdir('support/hiscores');
+      FS.mkdir('support/samples');
 
       // Download, unzip, and copy high score file
-      const u8array = await this.downloadFile("hiscore.zip");
-      FS.writeFile("support/hiscores/hiscore.dat", u8array);
+      const u8array = await this.downloadFile('hiscore.zip');
+      FS.writeFile('support/hiscores/hiscore.dat', u8array);
 
       // Load save state
       await this.loadState();
@@ -497,14 +523,14 @@ export class Emulator extends AppWrapper {
       for (let i = 0; i < roms.length; i++) {
         const rom = roms[i];
         const name = rom.name;
-        FS.writeFile("roms/" + name, rom.u8array);
+        FS.writeFile('roms/' + name, rom.u8array);
       }
 
       // Make the samples directory and copy the files
       for (let i = 0; i < samples.length; i++) {
         const sample = samples[i];
         const name = sample.name;
-        FS.writeFile("support/samples/" + name, sample.u8array);
+        FS.writeFile('support/samples/' + name, sample.u8array);
       }
 
       if (isNeoGeo) {
@@ -525,7 +551,7 @@ export class Emulator extends AppWrapper {
       }
 
       const startMain = fbneoModule.cwrap('startMain', 'number', ['string']);
-      if(startMain(primaryName) === 2) {
+      if (startMain(primaryName) === 2) {
         app.exit("'" + primaryName + "' is not a recognized game.");
       }
 
@@ -545,30 +571,31 @@ export class Emulator extends AppWrapper {
 
       // Check archives
       if (this.debug) LOG.info(this.archives);
-      let notFound = "";
+      let notFound = '';
       for (const [key, value] of Object.entries(this.archives)) {
         if (!value.found) {
-          const name = key + ".zip"
-          notFound += notFound.length > 0 ? ("\n" + name) : name;
+          const name = key + '.zip';
+          notFound += notFound.length > 0 ? '\n' + name : name;
         }
       }
       if (notFound.length > 0) {
-        notFound = "The following ROM files are missing:\n\n" + notFound;
+        notFound = 'The following ROM files are missing:\n\n' + notFound;
         throw new Error(notFound);
       }
 
       // Check files
       if (this.debug) LOG.info(this.files);
-      notFound = "";
+      notFound = '';
       for (let i = 0; i < this.files.length; i++) {
         const f = this.files[i];
         if (!f.found && f.essential) {
-          const name = f.name + " (" + f.type + ")";
-          notFound += notFound.length > 0 ? ("\n" + name) : name;
+          const name = f.name + ' (' + f.type + ')';
+          notFound += notFound.length > 0 ? '\n' + name : name;
         }
       }
       if (notFound.length > 0) {
-        notFound = "The following files are missing in ROM files:\n\n" + notFound;
+        notFound =
+          'The following files are missing in ROM files:\n\n' + notFound;
         throw new Error(notFound);
       }
 
@@ -585,8 +612,14 @@ export class Emulator extends AppWrapper {
       let audioArray = null;
       window.audioCallback = (offset, length) => {
         audioArray = new Int16Array(fbneoModule.HEAP16.buffer, offset, 4096);
-        this.audioProcessor.storeSoundCombinedInput(audioArray, 2, length, 0, 32768);
-      }
+        this.audioProcessor.storeSoundCombinedInput(
+          audioArray,
+          2,
+          length,
+          0,
+          32768,
+        );
+      };
 
       this.displayLoop.start(() => {
         try {
@@ -596,41 +629,37 @@ export class Emulator extends AppWrapper {
           app.exit(e);
         }
       });
-    } catch(e) {
+    } catch (e) {
       LOG.error(e);
       app.exit(e);
     }
   }
 
-  BRF_PRG = (1 << 20);
-  BRF_GRA = (1 << 21);
-  BRF_SND	= (1 << 22);
-  BRF_ESS	= (1 << 24);
-  BRF_BIOS = (1 << 25);
-  BRF_SELECT = (1 << 26);
-  BRF_OPT = (1 << 27);
-  BRF_NODUMP = (1 << 28);
+  BRF_PRG = 1 << 20;
+  BRF_GRA = 1 << 21;
+  BRF_SND = 1 << 22;
+  BRF_ESS = 1 << 24;
+  BRF_BIOS = 1 << 25;
+  BRF_SELECT = 1 << 26;
+  BRF_OPT = 1 << 27;
+  BRF_NODUMP = 1 << 28;
 
   addFile(file, type, loaded) {
     const { fbneoModule } = this;
-    const essential = (type & this.BRF_ESS) ? true : false;
-    let typeStr = "";
-    if (type & this.BRF_BIOS)
-      typeStr += " BIOS";
-    if (type & this.BRF_PRG)
-      typeStr += " program";
-    if (type & this.BRF_GRA)
-      typeStr += " graphics";
-    if (type & this.BRF_SND)
-      typeStr += " sound";
-    typeStr += " ROM";
+    const essential = type & this.BRF_ESS ? true : false;
+    let typeStr = '';
+    if (type & this.BRF_BIOS) typeStr += ' BIOS';
+    if (type & this.BRF_PRG) typeStr += ' program';
+    if (type & this.BRF_GRA) typeStr += ' graphics';
+    if (type & this.BRF_SND) typeStr += ' sound';
+    typeStr += ' ROM';
     typeStr = typeStr.trim();
 
     this.files.push({
       name: fbneoModule.UTF8ToString(file),
       type: typeStr,
       found: loaded === 0 ? true : false,
-      essential: essential
+      essential: essential,
     });
   }
 
@@ -660,8 +689,8 @@ export class Emulator extends AppWrapper {
     if (!archive) {
       archive = {
         found: found === 1 ? true : false,
-        paths: [path]
-      }
+        paths: [path],
+      };
       archives[name] = archive;
     } else {
       if (!archive.found && found) {
@@ -671,7 +700,16 @@ export class Emulator extends AppWrapper {
     }
   }
 
-  setRomProps(width, height, rotated, flipped, vidBits, refreshRate, aspectX, aspectY) {
+  setRomProps(
+    width,
+    height,
+    rotated,
+    flipped,
+    vidBits,
+    refreshRate,
+    aspectX,
+    aspectY,
+  ) {
     LOG.info(`Aspect ratio: ${aspectX}x${aspectY}`);
     this.aspectX = aspectX;
     this.aspectY = aspectY;
@@ -688,18 +726,18 @@ export class Emulator extends AppWrapper {
   }
 
   clearImageData(image, imageData, pixelCount) {
-    for (var i = 0; i < (pixelCount * 4);) {
+    for (var i = 0; i < pixelCount * 4; ) {
       imageData[i++] = 0;
       imageData[i++] = 0;
       imageData[i++] = 0;
-      imageData[i++] = 0xFF;
+      imageData[i++] = 0xff;
     }
     this.context.putImageData(image, 0, 0);
   }
 
   setVisibleSize(width, height) {
     const { canvas } = this;
-    LOG.info("### visible size: " + width + "x" + height);
+    LOG.info('### visible size: ' + width + 'x' + height);
     canvas.width = width;
     canvas.height = height;
 
@@ -714,10 +752,9 @@ export class Emulator extends AppWrapper {
 
   setAspectRatio(aspectX, aspectY) {
     const { canvas } = this;
-    LOG.info("### aspect ratio: " + aspectX + "x" + aspectY);
-    const xyAr = (aspectX/aspectY).toFixed(3);
-    const yxAr = (aspectY/aspectX).toFixed(3);
-
+    LOG.info('### aspect ratio: ' + aspectX + 'x' + aspectY);
+    const xyAr = (aspectX / aspectY).toFixed(3);
+    const yxAr = (aspectY / aspectX).toFixed(3);
 
     // canvas.style.setProperty("height", `96vh`, "important");
     // canvas.style.setProperty("width", `96vw`, "important");
@@ -727,25 +764,26 @@ export class Emulator extends AppWrapper {
     // canvas.style.setProperty("max-width", `96vw`, "important");
 
     if (this.rotated) {
-      canvas.style.setProperty("max-height", `calc(96vh*${yxAr})`, "important");
-      canvas.style.setProperty("max-width", `calc(96vw*${xyAr})`, "important");
+      canvas.style.setProperty('max-height', `calc(96vh*${yxAr})`, 'important');
+      canvas.style.setProperty('max-width', `calc(96vw*${xyAr})`, 'important');
     } else {
-      canvas.style.setProperty("max-width", `calc(96vh*${xyAr})`, "important");
-      canvas.style.setProperty("max-height", `calc(96vw*${yxAr})`, "important");
+      canvas.style.setProperty('max-width', `calc(96vh*${xyAr})`, 'important');
+      canvas.style.setProperty('max-height', `calc(96vw*${yxAr})`, 'important');
     }
   }
 
   initVideo(canvas) {
     let { aspectX, aspectY, width, height, pixelCount } = this;
     this.canvas = canvas;
-    this.context = this.canvas.getContext("2d");
+    this.context = this.canvas.getContext('2d');
     this.image = this.context.getImageData(0, 0, width, height);
     this.imageData = this.image.data;
     this.clearImageData(this.image, this.imageData, pixelCount);
 
-    const className = "canvas" +
-      (this.rotated ? "-rotated" : "") +
-      (this.flipped ? "-flipped" : "" )
+    const className =
+      'canvas' +
+      (this.rotated ? '-rotated' : '') +
+      (this.flipped ? '-flipped' : '');
     canvas.classList.add(className);
 
     this.setAspectRatio(aspectX, aspectY);
@@ -759,10 +797,10 @@ export class Emulator extends AppWrapper {
       let index = 0;
       for (let i = 0; i < pixelCount; i++) {
         const offset = i << 1;
-        const color = ((b[offset + 1] << 8) & 0xFF00) | (b[offset] & 0xFF);
-        imageData[index++] = ((color >> 11) & 0x1F) << 3;
-        imageData[index++] = ((color >> 5) & 0x3F) << 2;
-        imageData[index++] = (color & 0x1F) << 3;
+        const color = ((b[offset + 1] << 8) & 0xff00) | (b[offset] & 0xff);
+        imageData[index++] = ((color >> 11) & 0x1f) << 3;
+        imageData[index++] = ((color >> 5) & 0x3f) << 2;
+        imageData[index++] = (color & 0x1f) << 3;
         index++;
       }
     } else {

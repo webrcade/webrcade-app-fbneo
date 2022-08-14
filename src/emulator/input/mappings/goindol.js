@@ -1,27 +1,32 @@
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class GoindolMapping extends BaseMapping {
-
-  getName() { return "goindol"; }
+  getName() {
+    return 'goindol';
+  }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(0, true, 1),
-    ];
+    return [new AnalogAdjustment(0, true, 1)];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Paddle',
-        'slider 0x4082 0x4083 speed 0x800 center 10', (emuInput.INP_B3 | emuInput.INP_B4),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Paddle',
+        'slider 0x4082 0x4083 speed 0x800 center 10',
+        emuInput.INP_B3 | emuInput.INP_B4,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

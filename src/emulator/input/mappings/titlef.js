@@ -1,8 +1,9 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class TitleFightMapping extends BaseMapping {
-
-  getName() { return "titlef"; }
+  getName() {
+    return 'titlef';
+  }
 
   getAnalogToDpadMap() {
     return [2, 3];
@@ -10,7 +11,7 @@ export class TitleFightMapping extends BaseMapping {
 
   getRemapList() {
     return [
-      ["Dip B", "constant 0x01"], // Single screen
-    ]
+      ['Dip B', 'constant 0x01'], // Single screen
+    ];
   }
 }

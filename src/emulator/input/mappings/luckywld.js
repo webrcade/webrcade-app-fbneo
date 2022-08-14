@@ -1,13 +1,11 @@
+import { CIDS } from '@webrcade/app-common';
 
-import {
-  CIDS,
-} from "@webrcade/app-common"
-
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class LuckyAndWildMapping extends BaseMapping {
-
-  getName() { return "luckywld"; }
+  getName() {
+    return 'luckywld';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -20,14 +18,14 @@ export class LuckyAndWildMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B3,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
     return [
       new AnalogAdjustment(0, true, 2),
       new AnalogAdjustment(0, false, 2),
-      new AnalogAdjustment(1, true, .5),
+      new AnalogAdjustment(1, true, 0.5),
     ];
   }
 
@@ -35,29 +33,39 @@ export class LuckyAndWildMapping extends BaseMapping {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Gun X',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Gun X',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
       new AnalogModeDetector(
-        0, 'P1 Gun Y',
-        'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-        'joyaxis 0 1', 0, false
-      )
+        0,
+        'P1 Gun Y',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
+      ),
     ];
   }
 
   getRemapList() {
     return [
-      ["P2 Gun X", "joyaxis 1 0"],
-      ["P2 Gun Y", "joyaxis 1 1"],
+      ['P2 Gun X', 'joyaxis 1 0'],
+      ['P2 Gun Y', 'joyaxis 1 1'],
       ['P1 Accelerator', 'switch 0x4081'],
-      ['P1 Brake', 'switch 0x4082'],      
-      ['P1 Steering', 'joyaxis 0 2']
+      ['P1 Brake', 'switch 0x4082'],
+      ['P1 Steering', 'joyaxis 0 2'],
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

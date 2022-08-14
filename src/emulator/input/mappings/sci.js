@@ -1,13 +1,11 @@
+import { CIDS } from '@webrcade/app-common';
 
-import {
-  CIDS,
-} from "@webrcade/app-common"
-
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class SpecialCriminalInvestigationMapping extends BaseMapping {
-
-  getName() { return "sci"; }
+  getName() {
+    return 'sci';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -21,22 +19,24 @@ export class SpecialCriminalInvestigationMapping extends BaseMapping {
       [CIDS.RTRIG]: emuInput.INP_B2,
       [CIDS.LBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(0, true, 1),
-    ];
+    return [new AnalogAdjustment(0, true, 1)];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'Steering',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'Steering',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
     ];
   }
@@ -47,9 +47,10 @@ export class SpecialCriminalInvestigationMapping extends BaseMapping {
   //   ];
   // }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
-
 
 // 0: (2) ['Coin 1', 'switch 0x06']
 // 1: (2) ['Start 1', 'switch 0x02']

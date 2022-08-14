@@ -1,8 +1,9 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class BlackWidowMapping extends BaseMapping {
-
-  getName() { return "bwidow"; }
+  getName() {
+    return 'bwidow';
+  }
 
   getAnalogToDpadMap() {
     return [1];

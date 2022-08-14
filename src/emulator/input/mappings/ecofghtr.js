@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class EcoFightersMapping extends BaseMapping {
-
-  getName() { return "ecofghtr"; }
+  getName() {
+    return 'ecofghtr';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -19,7 +18,7 @@ export class EcoFightersMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B3,
       [CIDS.LTRIG]: emuInput.INP_B1,
       [CIDS.RTRIG]: emuInput.INP_B3,
-    }
+    };
   }
 }
 

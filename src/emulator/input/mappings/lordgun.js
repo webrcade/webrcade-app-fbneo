@@ -1,8 +1,9 @@
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class LordOfGunMapping extends BaseMapping {
-
-  getName() { return "lordgun"; }
+  getName() {
+    return 'lordgun';
+  }
 
   getAnalogAdjustments() {
     return [
@@ -13,13 +14,13 @@ export class LordOfGunMapping extends BaseMapping {
 
   getRemapList() {
     return [
-      ["P1 Right / left", "joyaxis 0 0"],
-      ["P1 Up / Down", "joyaxis 0 1"],
+      ['P1 Right / left', 'joyaxis 0 0'],
+      ['P1 Up / Down', 'joyaxis 0 1'],
       ['P1 Button 1', 'switch 0x4080'],
-      ["P2 Right / left", "joyaxis 1 0"],
-      ["P2 Up / Down", "joyaxis 1 1"],
+      ['P2 Right / left', 'joyaxis 1 0'],
+      ['P2 Up / Down', 'joyaxis 1 1'],
       ['P2 Button 1', 'switch 0x4180'],
-    ]
+    ];
   }
 }
 

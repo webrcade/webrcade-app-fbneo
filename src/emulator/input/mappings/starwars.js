@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class StarWarsMapping extends BaseMapping {
-
-  getName() { return "starwars"; }
+  getName() {
+    return 'starwars';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -20,29 +19,37 @@ export class StarWarsMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B2,
       [CIDS.LTRIG]: emuInput.INP_B3,
       [CIDS.RTRIG]: emuInput.INP_B4,
-    }
-  }  
+    };
+  }
 
-  getAnalogAdjustments() { 
+  getAnalogAdjustments() {
     return [
       new AnalogAdjustment(0, true, 5),
       new AnalogAdjustment(0, false, 5),
-    ];  
+    ];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Stick X',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Stick X',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
       new AnalogModeDetector(
-        0, 'P1 Stick Y',
-        'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-        'joyaxis 0 1', 0, false
-      )
+        0,
+        'P1 Stick Y',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
+      ),
     ];
   }
 
@@ -51,9 +58,11 @@ export class StarWarsMapping extends BaseMapping {
   //     ["Dip A", "constant 0xB3"],
   //     ["Dip D", "constant 0x10"],
   //   ];
-  // }  
+  // }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

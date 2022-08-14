@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class ThunderCeptorMapping extends BaseMapping {
-
-  getName() { return "tceptor"; }
+  getName() {
+    return 'tceptor';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -20,41 +19,54 @@ export class ThunderCeptorMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B4,
       [CIDS.RTRIG]: emuInput.INP_B3,
-    }
-  }  
+    };
+  }
 
-  getAnalogAdjustments() { 
+  getAnalogAdjustments() {
     return [
       new AnalogAdjustment(0, true, 1),
       new AnalogAdjustment(0, false, 1),
       new AnalogAdjustment(1, false, -1),
-    ];  
+    ];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 X Axis',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 X Axis',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
       new AnalogModeDetector(
-        0, 'P1 Y Axis',
-        'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-        'joyaxis 0 1', 0, false
+        0,
+        'P1 Y Axis',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
       ),
       new AnalogModeDetector(
-        0, 'P1 Accelerator', 
-        'slider 0x4084 0x4085 speed 0x800 center 10', (emuInput.INP_B5 | emuInput.INP_B6),
-        'joyaxis 0 3', 1, false
-      )
+        0,
+        'P1 Accelerator',
+        'slider 0x4084 0x4085 speed 0x800 center 10',
+        emuInput.INP_B5 | emuInput.INP_B6,
+        'joyaxis 0 3',
+        1,
+        false,
+      ),
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 X Axis', 'slider 0x4000 0x4001 speed 0x800 center 10']

@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class ScrewLooseMapping extends BaseMapping {
-
-  getName() { return "screwloo"; }
+  getName() {
+    return 'screwloo';
+  }
 
   getAnalogToDpadMap() {
     return [1];
@@ -17,25 +16,23 @@ export class ScrewLooseMapping extends BaseMapping {
     return {
       ...emuInput.BUTTONMAP_BASE,
       [CIDS.A]: emuInput.INP_B1,
-      [CIDS.B]: emuInput.INP_B2,            
+      [CIDS.B]: emuInput.INP_B2,
       [CIDS.LBUMP]: emuInput.INP_B2,
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getRemapList() {
     return [
-      ["Right Stick Up", "switch 0x4102"],
-      ["Right Stick Down", "switch 0x4103"],
-      ["Right Stick Left", "switch 0x4100"],
-      ["Right Stick Right", "switch 0x4101"],
-    ]
+      ['Right Stick Up', 'switch 0x4102'],
+      ['Right Stick Down', 'switch 0x4103'],
+      ['Right Stick Left', 'switch 0x4100'],
+      ['Right Stick Right', 'switch 0x4101'],
+    ];
   }
 }
-
-
 
 // 0: (2) ['Coin 1', 'switch 0x06']
 // 1: (2) ['Coin 2', 'switch 0x07']

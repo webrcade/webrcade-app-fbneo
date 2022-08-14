@@ -1,8 +1,9 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class AngelKidsMapping extends BaseMapping {
-
-  getName() { return "angelkds"; }
+  getName() {
+    return 'angelkds';
+  }
 
   getAnalogToDpadMap() {
     return [2, 3];
@@ -25,7 +26,7 @@ export class AngelKidsMapping extends BaseMapping {
       ['P2 Right Stick Up', 'switch 0x4202'],
       ['P2 Right Stick Down', 'switch 0x4203'],
       ['P2 Right Stick Left', 'switch 0x4200'],
-      ['P2 Right Stick Right', 'switch 0x4201']
-    ]
+      ['P2 Right Stick Right', 'switch 0x4201'],
+    ];
   }
 }

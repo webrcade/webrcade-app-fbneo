@@ -1,13 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class HeavyweightChampMapping extends BaseMapping {
-
-  getName() { return "hwchamp"; }
-
+  getName() {
+    return 'hwchamp';
+  }
 
   getAnalogAdjustments() {
     return [
@@ -29,7 +27,7 @@ export class HeavyweightChampMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   // getAnalogModeDetectors() {
@@ -46,12 +44,14 @@ export class HeavyweightChampMapping extends BaseMapping {
   getRemapList() {
     return [
       ['Left/Right', 'joyaxis 0 0'],
-      ["Left", "joyaxis 0 1"],
-      ["Right", "joyaxis 0 3"],
+      ['Left', 'joyaxis 0 1'],
+      ['Right', 'joyaxis 0 3'],
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['Coin 1', 'switch 0x06']

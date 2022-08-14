@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class StadiumCrossMapping extends BaseMapping {
-
-  getName() { return "scross"; }
+  getName() {
+    return 'scross';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -20,22 +19,24 @@ export class StadiumCrossMapping extends BaseMapping {
       [CIDS.RTRIG]: emuInput.INP_UP,
       [CIDS.LBUMP]: emuInput.INP_B3,
       [CIDS.LTRIG]: emuInput.INP_B3,
-    }
+    };
   }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(0, true, 1),
-    ];
+    return [new AnalogAdjustment(0, true, 1)];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Steering',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Steering',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
     ];
   }
@@ -43,12 +44,14 @@ export class StadiumCrossMapping extends BaseMapping {
   getRemapList() {
     return [
       ['P1 Accelerate', 'slider 0x3C 0x4002 speed 0x800 center 10'],
-      ['Dip A', "constant 0x0F"],
+      ['Dip A', 'constant 0x0F'],
       ['Dip B', 'constant 0x01'],
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

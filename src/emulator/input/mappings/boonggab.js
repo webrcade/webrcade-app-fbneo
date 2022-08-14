@@ -1,19 +1,16 @@
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class BoongGaBoongGaMapping extends BaseMapping {
-
-  getName() { return "boonggab"; }
+  getName() {
+    return 'boonggab';
+  }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(1, true, 1),
-    ];
-  }  
+    return [new AnalogAdjustment(1, true, 1)];
+  }
 
   getRemapList() {
-    return [
-      ['P1 Paddle', 'joyaxis 0 2'],
-    ]
+    return [['P1 Paddle', 'joyaxis 0 2']];
   }
 }
 

@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class SpeedBallMapping extends BaseMapping {
-
-  getName() { return "spdball"; }
+  getName() {
+    return 'spdball';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -17,26 +16,25 @@ export class SpeedBallMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B1,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
-  }  
+    };
+  }
 
-  getAnalogAdjustments() { 
+  getAnalogAdjustments() {
     return [
       new AnalogAdjustment(0, true, 2),
       new AnalogAdjustment(0, false, 2),
-    ];  
+    ];
   }
 
   getRemapList() {
     return [
-      ["P1 Stick X", "joyaxis 0 2"],
-      ["P1 Stick Y", "joyaxis 0 3"],
-      ["P2 Stick X", "joyaxis 1 2"],
-      ["P2 Stick Y", "joyaxis 1 3"],
-    ]
+      ['P1 Stick X', 'joyaxis 0 2'],
+      ['P1 Stick Y', 'joyaxis 0 3'],
+      ['P2 Stick X', 'joyaxis 1 2'],
+      ['P2 Stick Y', 'joyaxis 1 3'],
+    ];
   }
 }
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Start', 'switch 0x02']

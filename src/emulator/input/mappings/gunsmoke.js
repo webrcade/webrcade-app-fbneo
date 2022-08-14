@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class GunsmokeMapping extends BaseMapping {
-
-  getName() { return "gunsmoke"; }
+  getName() {
+    return 'gunsmoke';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -16,6 +15,6 @@ export class GunsmokeMapping extends BaseMapping {
       [CIDS.A]: emuInput.INP_B2,
       [CIDS.Y]: emuInput.INP_B2,
       [CIDS.B]: emuInput.INP_B3,
-    }
+    };
   }
 }

@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class StarGuardsMapping extends BaseMapping {
-
-  getName() { return "stargrds"; }
+  getName() {
+    return 'stargrds';
+  }
 
   getAnalogToDpadMap() {
     return [2, 3];
@@ -21,23 +20,22 @@ export class StarGuardsMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_START,
       [CIDS.LTRIG]: emuInput.INP_START,
       [CIDS.RTRIG]: emuInput.INP_START,
-    }
+    };
   }
 
   getRemapList() {
     return [
-      ["P1 Right Stick Up", "switch 0x4202"],
-      ["P1 Right Stick Down", "switch 0x4203"],
-      ["P1 Right Stick Left", "switch 0x4200"],
-      ["P1 Right Stick Right", "switch 0x4201"],
-      ["P2 Right Stick Up", "switch 0x4302"],
-      ["P2 Right Stick Down", "switch 0x4303"],
-      ["P2 Right Stick Left", "switch 0x4300"],
-      ["P2 Right Stick Right", "switch 0x4301"],
-    ]
+      ['P1 Right Stick Up', 'switch 0x4202'],
+      ['P1 Right Stick Down', 'switch 0x4203'],
+      ['P1 Right Stick Left', 'switch 0x4200'],
+      ['P1 Right Stick Right', 'switch 0x4201'],
+      ['P2 Right Stick Up', 'switch 0x4302'],
+      ['P2 Right Stick Down', 'switch 0x4303'],
+      ['P2 Right Stick Left', 'switch 0x4300'],
+      ['P2 Right Stick Right', 'switch 0x4301'],
+    ];
   }
 }
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Start / Weapon', 'switch 0x02']

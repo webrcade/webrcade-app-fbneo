@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class ToobinMapping extends BaseMapping {
-
-  getName() { return "toobin"; }
+  getName() {
+    return 'toobin';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -20,7 +19,7 @@ export class ToobinMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B2,
       [CIDS.LTRIG]: emuInput.INP_B4,
       [CIDS.RTRIG]: emuInput.INP_B5,
-    }
+    };
   }
 }
 

@@ -1,60 +1,69 @@
-import {
-    CIDS,
-  } from "@webrcade/app-common"
-  
-  import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
-  
-  export class CabalMapping extends BaseMapping {
-  
-    getName() { return "cabaluk"; }
-  
-    getButtonMap() {
-      const { emuInput } = this;
-      return {
-        ...emuInput.BUTTONMAP_BASE,
-        [CIDS.A]: emuInput.INP_B1,
-        [CIDS.B]: emuInput.INP_B2,
-        [CIDS.X]: emuInput.INP_B3,
-        [CIDS.Y]: emuInput.INP_B3,
-        [CIDS.LBUMP]: emuInput.INP_B2,
-        [CIDS.RBUMP]: emuInput.INP_B1,
-        [CIDS.LTRIG]: emuInput.INP_B2,
-        [CIDS.RTRIG]: emuInput.INP_B1,
-      }
-    }
-  
-    getAnalogAdjustments() {
-      return [
-        new AnalogAdjustment(0, true, 1),
-        new AnalogAdjustment(0, false, 1),
-      ];
-    }
-  
-    getAnalogModeDetectors() {
-      const { emuInput } = this;
-      return [
-        new AnalogModeDetector(
-          0, 'P1 Trackball X',
-          'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-          'joyaxis 0 0', 0, true
-        ),
-        new AnalogModeDetector(
-          0, 'P1 Trackball Y',
-          'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-          'joyaxis 0 1', 0, false
-        )
-      ];
-    }
-  
-    getRemapList() {
-      return [
-        ["P2 Trackball X", "joyaxis 1 0"],
-        ["P2 Trackball Y", "joyaxis 1 1"],
-      ];
-    }
-  
-    isAnalogDpadEnabled() { return false; }
+import { CIDS } from '@webrcade/app-common';
+
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
+
+export class CabalMapping extends BaseMapping {
+  getName() {
+    return 'cabaluk';
   }
+
+  getButtonMap() {
+    const { emuInput } = this;
+    return {
+      ...emuInput.BUTTONMAP_BASE,
+      [CIDS.A]: emuInput.INP_B1,
+      [CIDS.B]: emuInput.INP_B2,
+      [CIDS.X]: emuInput.INP_B3,
+      [CIDS.Y]: emuInput.INP_B3,
+      [CIDS.LBUMP]: emuInput.INP_B2,
+      [CIDS.RBUMP]: emuInput.INP_B1,
+      [CIDS.LTRIG]: emuInput.INP_B2,
+      [CIDS.RTRIG]: emuInput.INP_B1,
+    };
+  }
+
+  getAnalogAdjustments() {
+    return [
+      new AnalogAdjustment(0, true, 1),
+      new AnalogAdjustment(0, false, 1),
+    ];
+  }
+
+  getAnalogModeDetectors() {
+    const { emuInput } = this;
+    return [
+      new AnalogModeDetector(
+        0,
+        'P1 Trackball X',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
+      ),
+      new AnalogModeDetector(
+        0,
+        'P1 Trackball Y',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
+      ),
+    ];
+  }
+
+  getRemapList() {
+    return [
+      ['P2 Trackball X', 'joyaxis 1 0'],
+      ['P2 Trackball Y', 'joyaxis 1 1'],
+    ];
+  }
+
+  isAnalogDpadEnabled() {
+    return false;
+  }
+}
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Start', 'switch 0x02']

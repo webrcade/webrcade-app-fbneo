@@ -1,8 +1,9 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class LibbleRablleMapping extends BaseMapping {
-
-  getName() { return "librabl"; }
+  getName() {
+    return 'librabl';
+  }
 
   getAnalogToDpadMap() {
     return [2, 3];

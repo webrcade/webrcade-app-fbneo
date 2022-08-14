@@ -1,8 +1,9 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class KnightmareMapping extends BaseMapping {
-
-  getName() { return "kngtmare"; }
+  getName() {
+    return 'kngtmare';
+  }
 
   getAnalogToDpadMap() {
     return [1];

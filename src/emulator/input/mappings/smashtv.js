@@ -1,8 +1,9 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class SmashTvMapping extends BaseMapping {
-
-  getName() { return "smashtv"; }
+  getName() {
+    return 'smashtv';
+  }
 
   getAnalogToDpadMap() {
     return [2, 3];

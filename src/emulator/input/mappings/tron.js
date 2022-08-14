@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class TronMapping extends BaseMapping {
-
-  getName() { return "tron"; }
+  getName() {
+    return 'tron';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -18,21 +17,21 @@ export class TronMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B1,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
-  getAnalogAdjustments() { 
+  getAnalogAdjustments() {
     return [
-      new AnalogAdjustment(1, true, .75),
-      new AnalogAdjustment(1, false, .75),
-    ];  
-  }  
+      new AnalogAdjustment(1, true, 0.75),
+      new AnalogAdjustment(1, false, 0.75),
+    ];
+  }
 
   getRemapList() {
     return [
-      ["P1 Dial", "joyaxis 0 2"],
-      ["P2 Dial", "joyaxis 1 2"],
-    ]
+      ['P1 Dial', 'joyaxis 0 2'],
+      ['P2 Dial', 'joyaxis 1 2'],
+    ];
   }
 }
 
