@@ -3,7 +3,7 @@ import {
   DisplayLoop,
   FetchAppData,
   ScriptAudioProcessor,
-  LOG,  
+  LOG,
   Unzip,
   Zip,
 } from "@webrcade/app-common"
@@ -54,9 +54,9 @@ export class Emulator extends AppWrapper {
   FS_NVRAM_SAVE = "nvram.nv";
 
   STATE_SAVE = "/state.fs";
-  HS_SAVE = "/hs.hi";  
+  HS_SAVE = "/hs.hi";
   NVRAM_SAVE = "/nvram.nv";
-  MEMCARD_SAVE = "/memcard.fc";  
+  MEMCARD_SAVE = "/memcard.fc";
 
   setRoms(roms) {
     this.roms = roms;
@@ -67,9 +67,9 @@ export class Emulator extends AppWrapper {
       if (rom.type === this.TYPE_PRIMARY) {
         this.primaryName = name.split(".")[0];
         this.fsStateName = `${this.FS_STATE_PREFIX}${this.primaryName}.fs`;
-        this.fsHsName = `${this.FS_HS_PREFIX}${this.primaryName}.hi`;        
+        this.fsHsName = `${this.FS_HS_PREFIX}${this.primaryName}.hi`;
       }
-    }    
+    }
   }
 
   getPrimaryName() {
@@ -85,10 +85,10 @@ export class Emulator extends AppWrapper {
   setSamples(samples) {
     this.samples = samples;
   }
-  
+
   createControllers() {
     return null;
-  }  
+  }
 
   setControllers(controllers) {
     this.controllers = controllers;
@@ -105,7 +105,7 @@ export class Emulator extends AppWrapper {
   }
 
   pause(resumeCallback) {
-    if (!this.started) return false;    
+    if (!this.started) return false;
 
     return super.pause(resumeCallback);
   }
@@ -118,7 +118,6 @@ export class Emulator extends AppWrapper {
     this.input.pollControls(this.controllers);
   }
 
-                             
   loadEmscriptenModule() {
     const { app, type } = this;
 
@@ -134,19 +133,19 @@ export class Emulator extends AppWrapper {
         script.src = 'js/fbneo-konami.js';
       } else if (type === 'fbneo-capcom') {
         script.src = 'js/fbneo-capcom.js';
-      } else {  
+      } else {
         script.src = 'js/fbneo-arcade.js';
       }
-      script.async = false;      
+      script.async = false;
       script.onerror = () => {
         reject("An error occurred attempting to load the FBNeo engine.");
       }
       script.onload = () => {
-        if (window.fbneo) {          
+        if (window.fbneo) {
           window.fbneo()
             .then(fbneoModule => {
               fbneoModule.onAbort = msg => app.exit(msg);
-              fbneoModule.onExit = () => app.exit();  
+              fbneoModule.onExit = () => app.exit();
               this.fbneoModule = fbneoModule;
               resolve();
             });
@@ -165,17 +164,71 @@ export class Emulator extends AppWrapper {
     console.log('destroy end')
   }
 
+
+  async migrateSaves() {
+    const { app, primaryName, storage, STATE_SAVE, HS_SAVE, NVRAM_SAVE, MEMCARD_SAVE } = this;
+
+    // Load old saves (if applicable)
+    const files = [];
+    const statePath = app.getStoragePath(`${primaryName}${STATE_SAVE}`);
+    const state = await storage.get(statePath);
+    if (state) {
+      files.push({
+        name: STATE_SAVE,
+        content: state,
+      });
+    }
+    const hsPath = app.getStoragePath(`${primaryName}${HS_SAVE}`);
+    const hs = await storage.get(hsPath);
+    if (hs) {
+      files.push({
+        name: HS_SAVE,
+        content: hs,
+      });
+    }
+    const nvramPath = app.getStoragePath(`${primaryName}${NVRAM_SAVE}`);
+    const nvram = await storage.get(nvramPath);
+    if (nvram) {
+      files.push({
+        name: NVRAM_SAVE,
+        content: nvram,
+      });
+    }
+    const memcardPath = app.getStoragePath(`${primaryName}${MEMCARD_SAVE}`);
+    const memcard = await storage.get(memcardPath);
+    if (memcard) {
+      files.push({
+        name: MEMCARD_SAVE,
+        content: memcard,
+      });
+    }
+
+    if (files.length > 0) {
+      LOG.info('Migrating local saves.');
+      const saveStatePath = app.getStoragePath(`${primaryName}/sav`);
+
+      await this.getSaveManager().saveLocal(saveStatePath, files);
+
+      // Delete old location (and info)
+      await storage.remove(statePath);
+      await storage.remove(hsPath);
+      await storage.remove(nvramPath);
+      await storage.remove(memcardPath);
+      await storage.remove(`${saveStatePath}/info`);
+    }
+  }
+
   async loadState() {
-    const { app, debug, fbneoModule, fsHsName, fsStateName, 
-      isNeoGeo, primaryName, storage, FS_MEMCARD_SAVE, FS_NVRAM_SAVE,
+    const { app, debug, fbneoModule, fsHsName, fsStateName,
+      isNeoGeo, primaryName, FS_MEMCARD_SAVE, FS_NVRAM_SAVE,
        HS_SAVE, MEMCARD_SAVE, NVRAM_SAVE, STATE_SAVE} = this;
-    const FS = fbneoModule.FS;      
+    const FS = fbneoModule.FS;
 
-    let path = null;
     let res = null;
-    let s = null;
 
-    try {        
+    try {
+      // Migrate old save format
+      await this.migrateSaves();
 
       const sramLookup = SRAM_TABLE[primaryName];
       let initSram = -1;
@@ -185,12 +238,38 @@ export class Emulator extends AppWrapper {
         initSramName = sramLookup[0];
       }
 
+      // Load save files
+      const saveStatePath = app.getStoragePath(`${primaryName}/sav`);
+      const files = await this.getSaveManager().load(
+        saveStatePath,
+        this.loadMessageCallback,
+      );
+
+      let sram = null;
+      let hs = null;
+      let memCard = null;
+      let nvram = null;
+
+      if (files) {
+        for (let i = 0; i < files.length; i++) {
+          const f = files[i];
+          if (f.name === STATE_SAVE) {
+            sram = f.content;
+          } else if (f.name === HS_SAVE) {
+            hs = f.content;
+          } else if (f.name === MEMCARD_SAVE) {
+            memCard = f.content;
+          } else if (f.name === NVRAM_SAVE) {
+            nvram = f.content;
+          }
+        }
+      }
+
       res = FS.analyzePath(fsStateName, true);
       if (!res.exists) {
-        path = app.getStoragePath(`${primaryName}${STATE_SAVE}`);
-        s = await storage.get(path);          
-        if (s) {
-          FS.writeFile(fsStateName, s);
+        if (sram) {
+          LOG.info("writing sram");
+          FS.writeFile(fsStateName, sram);
 
           // var blob = new Blob([s], {type: "application/octet-stream"});
           // var link = document.createElement('a');
@@ -203,8 +282,9 @@ export class Emulator extends AppWrapper {
           if (initSram === 0) {
             // Retrieve default SRAM file
             try {
-              s = await this.downloadFile(`sram/${initSramName}.sram`);
+              const s = await this.downloadFile(`sram/${initSramName}.sram`);
               if (s) {
+                LOG.info("writing default sram");
                 FS.writeFile(fsStateName, s);
               }
             } catch (e) {
@@ -216,26 +296,24 @@ export class Emulator extends AppWrapper {
 
       res = FS.analyzePath(fsHsName, true);
       if (!res.exists) {
-        path = app.getStoragePath(`${primaryName}${HS_SAVE}`);
-        s = await storage.get(path);          
-        if (s) {
-          FS.writeFile(fsHsName, s);
+        if (hs) {
+          LOG.info("writing high score");
+          FS.writeFile(fsHsName, hs);
         }
       }
 
-      res = FS.analyzePath(FS_NVRAM_SAVE, true);        
+      res = FS.analyzePath(FS_NVRAM_SAVE, true);
       if (!res.exists) {
-        path = app.getStoragePath(`${primaryName}${NVRAM_SAVE}`);
-        s = await storage.get(path);        
-        if (s) {
-          LOG.info("NVRAM from storage.");
-          FS.writeFile(FS_NVRAM_SAVE, s)
+        if (nvram) {
+          LOG.info("writing nvram");
+          FS.writeFile(FS_NVRAM_SAVE, nvram)
         } else {
           if (initSram === 1) {
             // Retrieve default NVRAM file
             try {
-              s = await this.downloadFile(`sram/${initSramName}.nv`);
+              const s = await this.downloadFile(`sram/${initSramName}.nv`);
               if (s) {
+                LOG.info("writing default nvram");
                 FS.writeFile(FS_NVRAM_SAVE, s);
               }
             } catch (e) {
@@ -247,16 +325,14 @@ export class Emulator extends AppWrapper {
 
       if (isNeoGeo) {
         let u8array = null;
-        res = FS.analyzePath(FS_MEMCARD_SAVE, true);        
+        res = FS.analyzePath(FS_MEMCARD_SAVE, true);
         if (!res.exists) {
-          path = app.getStoragePath(`${primaryName}${MEMCARD_SAVE}`);
-          s = await storage.get(path);        
-          if (s) {
-            LOG.info("Memory card from storage.");
+          if (memCard) {
+            LOG.info("writing memcard");
             // Retrieved from storage
             const uz = new Unzip().setDebug(debug);
-            const blob = await uz.unzip(new Blob([s.buffer]), [], []);
-            u8array = new Uint8Array(await new Response(blob).arrayBuffer());            
+            const blob = await uz.unzip(new Blob([memCard.buffer]), [], []);
+            u8array = new Uint8Array(await new Response(blob).arrayBuffer());
           } else {
             // Download new memory card
             LOG.info("New memory card.");
@@ -268,20 +344,21 @@ export class Emulator extends AppWrapper {
         }
       }
     } catch(e) {
-      LOG.error(e);
+      LOG.error('Error loading save state: ' + e);
     }
   }
 
-  async saveState() {    
-    const { app, fbneoModule, fsHsName, fsStateName, isNeoGeo, 
-      primaryName, storage, FS_MEMCARD_SAVE, FS_NVRAM_SAVE, HS_SAVE,
+  async saveState() {
+    const { app, fbneoModule, fsHsName, fsStateName, isNeoGeo,
+      primaryName, FS_MEMCARD_SAVE, FS_NVRAM_SAVE, HS_SAVE,
       MEMCARD_SAVE, NVRAM_SAVE, STATE_SAVE} = this;
-    const FS = fbneoModule.FS;      
-    
+    const FS = fbneoModule.FS;
+
     if (!this.started) return;
 
-    let found = false;
     let path = "";
+
+    const files = []
 
     try {
       // Force saves to occur
@@ -292,45 +369,45 @@ export class Emulator extends AppWrapper {
       path = app.getStoragePath(`${primaryName}${STATE_SAVE}`);
       let res = FS.analyzePath(fsStateName, true);
       if (res.exists) {
-        s = FS.readFile(fsStateName);              
-        if (s) {          
-          found = true;
-          await this.saveStateToStorage(path, s, false);          
+        s = FS.readFile(fsStateName);
+        if (s) {
+          //await this.saveStateToStorage(path, s, false);
+          files.push({
+            name: STATE_SAVE,
+            content: s,
+          });
         }
-      }         
-      if (!s) {
-        await storage.remove(path);
-      } 
+      }
 
       // High score
       s = null;
       path = app.getStoragePath(`${primaryName}${HS_SAVE}`);
       res = FS.analyzePath(fsHsName, true);
       if (res.exists) {
-        s = FS.readFile(fsHsName);              
-        if (s) {          
-          found = true;
-          await this.saveStateToStorage(path, s, false);          
+        s = FS.readFile(fsHsName);
+        if (s) {
+          //await this.saveStateToStorage(path, s, false);
+          files.push({
+            name: HS_SAVE,
+            content: s,
+          });
         }
-      }         
-      if (!s) {
-        await storage.remove(path);
-      } 
+      }
 
       // NV RAM
       s = null;
       path = app.getStoragePath(`${primaryName}${NVRAM_SAVE}`);
       res = FS.analyzePath(FS_NVRAM_SAVE, true);
       if (res.exists) {
-        s = FS.readFile(FS_NVRAM_SAVE);              
-        if (s) {          
-          found = true;
-          await this.saveStateToStorage(path, s, false);
+        s = FS.readFile(FS_NVRAM_SAVE);
+        if (s) {
+          //await this.saveStateToStorage(path, s, false);
+          files.push({
+            name: NVRAM_SAVE,
+            content: s,
+          });
         }
-      }         
-      if (!s) {
-        await storage.remove(path);
-      } 
+      }
 
       // Neo Geom Memory Card
       if (isNeoGeo) {
@@ -341,31 +418,41 @@ export class Emulator extends AppWrapper {
         path = app.getStoragePath(`${primaryName}${MEMCARD_SAVE}`);
         res = FS.analyzePath(FS_MEMCARD_SAVE, true);
         if (res.exists) {
-          s = FS.readFile(FS_MEMCARD_SAVE);              
-          if (s) {          
-            found = true;
-            const zip = new Zip();            
+          s = FS.readFile(FS_MEMCARD_SAVE);
+          if (s) {
+            const zip = new Zip();
             const blob = await zip.zip(new Blob([s.buffer]), FS_MEMCARD_SAVE);
-            await this.saveStateToStorage(path, 
-              new Uint8Array(await new Response(blob).arrayBuffer()), 
-              false);          
+            // await this.saveStateToStorage(path,
+            //   new Uint8Array(await new Response(blob).arrayBuffer()),
+            //   false);
+            files.push({
+              name: MEMCARD_SAVE,
+              content: new Uint8Array(await new Response(blob).arrayBuffer()),
+            });
           }
-        }         
-        if (!s) {
-          await storage.remove(path);
-        } 
+        }
       }
-              
+
       path = app.getStoragePath(`${primaryName}/sav`);
-      if (found) {      
-        await this.saveStateToStorage(path, null);
+      // if (found) {
+      //   await this.saveStateToStorage(path, null);
+      // } else {
+      //   await storage.remove(path);
+      // }
+      const found = files.length > 0;
+      if (found) {
+        await this.getSaveManager().save(
+          path,
+          files,
+          this.saveMessageCallback,
+        );
       } else {
-        await storage.remove(path);
+        await this.getSaveManager().delete(path);
       }
 
       LOG.info("Saved: " + found);
     } catch(e) {
-      LOG.error(e);
+      LOG.error('Error persisting save state: ' + e);
     }
   }
 
@@ -385,10 +472,10 @@ export class Emulator extends AppWrapper {
 
     try {
       // FS
-      const FS = fbneoModule.FS;      
+      const FS = fbneoModule.FS;
 
       // Set the canvas for the module
-      fbneoModule.canvas = canvas; 
+      fbneoModule.canvas = canvas;
 
       // Create directories
       FS.mkdir("/libsdl");
@@ -397,12 +484,12 @@ export class Emulator extends AppWrapper {
       FS.mkdir("roms");
       FS.mkdir("support");
       FS.mkdir("support/hiscores");
-      FS.mkdir("support/samples");      
+      FS.mkdir("support/samples");
 
       // Download, unzip, and copy high score file
       const u8array = await this.downloadFile("hiscore.zip");
       FS.writeFile("support/hiscores/hiscore.dat", u8array);
-                
+
       // Load save state
       await this.loadState();
 
@@ -426,7 +513,7 @@ export class Emulator extends AppWrapper {
         if (bios) {
           const b = parseInt(bios);
           if (b > 0) {
-            fbneoModule._forceNeoGeoBios(b - 1);  
+            fbneoModule._forceNeoGeoBios(b - 1);
           }
         }
 
@@ -439,7 +526,7 @@ export class Emulator extends AppWrapper {
 
       const startMain = fbneoModule.cwrap('startMain', 'number', ['string']);
       if(startMain(primaryName) === 2) {
-        app.exit("'" + primaryName + "' is not a recognized game."); 
+        app.exit("'" + primaryName + "' is not a recognized game.");
       }
 
       // Start the inputs
@@ -447,7 +534,7 @@ export class Emulator extends AppWrapper {
 
       // Output the game inputs
       let inputs = this.collectGameInputs();
-      if (this.debug) {        
+      if (this.debug) {
         LOG.info(inputs);
       }
 
@@ -455,7 +542,7 @@ export class Emulator extends AppWrapper {
       if (isNeoGeo) {
         fbneoModule._memCardInsert();
       }
-      
+
       // Check archives
       if (this.debug) LOG.info(this.archives);
       let notFound = "";
@@ -490,19 +577,19 @@ export class Emulator extends AppWrapper {
       this.displayLoop = new DisplayLoop(this.refreshRate, true, debug);
 
       // Start the audio processor
-      this.audioProcessor.start();      
+      this.audioProcessor.start();
 
       // Mark that the loop is starting
       this.started = true;
 
       let audioArray = null;
-      window.audioCallback = (offset, length) => {        
+      window.audioCallback = (offset, length) => {
         audioArray = new Int16Array(fbneoModule.HEAP16.buffer, offset, 4096);
         this.audioProcessor.storeSoundCombinedInput(audioArray, 2, length, 0, 32768);
       }
 
-      this.displayLoop.start(() => {        
-        try {          
+      this.displayLoop.start(() => {
+        try {
           fbneoModule._doLoop();
           this.pollControls();
         } catch (e) {
@@ -538,9 +625,9 @@ export class Emulator extends AppWrapper {
       typeStr += " sound";
     typeStr += " ROM";
     typeStr = typeStr.trim();
-    
+
     this.files.push({
-      name: fbneoModule.UTF8ToString(file), 
+      name: fbneoModule.UTF8ToString(file),
       type: typeStr,
       found: loaded === 0 ? true : false,
       essential: essential
@@ -608,28 +695,36 @@ export class Emulator extends AppWrapper {
       imageData[i++] = 0xFF;
     }
     this.context.putImageData(image, 0, 0);
-  }  
+  }
 
   setVisibleSize(width, height) {
     const { canvas } = this;
     LOG.info("### visible size: " + width + "x" + height);
     canvas.width = width;
-    canvas.height = height;    
+    canvas.height = height;
 
     // this.width = width;
     // this.height = height;
     // this.pixelCount = width * height;
     // this.context = this.canvas.getContext("2d");
     // this.image = this.context.getImageData(0, 0, width, height);
-    // this.imageData = this.image.data;    
+    // this.imageData = this.image.data;
     // this.clearImageData(this.image, this.imageData, this.pixelCount);
   }
 
   setAspectRatio(aspectX, aspectY) {
     const { canvas } = this;
-    LOG.info("### aspect ratio: " + aspectX + "x" + aspectY);    
+    LOG.info("### aspect ratio: " + aspectX + "x" + aspectY);
     const xyAr = (aspectX/aspectY).toFixed(3);
     const yxAr = (aspectY/aspectX).toFixed(3);
+
+
+    // canvas.style.setProperty("height", `96vh`, "important");
+    // canvas.style.setProperty("width", `96vw`, "important");
+    // canvas.style.setProperty("min-height", `96vh`, "important");
+    // canvas.style.setProperty("min-width", `96vw*`, "important");
+    // canvas.style.setProperty("max-height", `96vh`, "important");
+    // canvas.style.setProperty("max-width", `96vw`, "important");
 
     if (this.rotated) {
       canvas.style.setProperty("max-height", `calc(96vh*${yxAr})`, "important");
@@ -637,7 +732,7 @@ export class Emulator extends AppWrapper {
     } else {
       canvas.style.setProperty("max-width", `calc(96vh*${xyAr})`, "important");
       canvas.style.setProperty("max-height", `calc(96vw*${yxAr})`, "important");
-    }        
+    }
   }
 
   initVideo(canvas) {
@@ -648,23 +743,23 @@ export class Emulator extends AppWrapper {
     this.imageData = this.image.data;
     this.clearImageData(this.image, this.imageData, pixelCount);
 
-    const className = "canvas" + 
-      (this.rotated ? "-rotated" : "") + 
+    const className = "canvas" +
+      (this.rotated ? "-rotated" : "") +
       (this.flipped ? "-flipped" : "" )
-    canvas.classList.add(className); 
+    canvas.classList.add(className);
 
     this.setAspectRatio(aspectX, aspectY);
     this.setVisibleSize(width, height);
   }
 
   drawScreen(buff) {
-    const { fbneoModule, image, imageData, pixelCount, vidBits } = this;    
+    const { fbneoModule, image, imageData, pixelCount, vidBits } = this;
     if (vidBits === 16) {
       const b = new Uint8Array(fbneoModule.HEAP8.buffer, buff, pixelCount << 1);
       let index = 0;
       for (let i = 0; i < pixelCount; i++) {
         const offset = i << 1;
-        const color = ((b[offset + 1] << 8) & 0xFF00) | (b[offset] & 0xFF); 
+        const color = ((b[offset + 1] << 8) & 0xFF00) | (b[offset] & 0xFF);
         imageData[index++] = ((color >> 11) & 0x1F) << 3;
         imageData[index++] = ((color >> 5) & 0x3F) << 2;
         imageData[index++] = (color & 0x1F) << 3;
@@ -677,7 +772,7 @@ export class Emulator extends AppWrapper {
         const offset = i << 2;
         imageData[index++] = b[offset + 2];
         imageData[index++] = b[offset + 1];
-        imageData[index++] = b[offset];            
+        imageData[index++] = b[offset];
         index++;
       }
     }
