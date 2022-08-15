@@ -1,6 +1,7 @@
 import {
   blobToStr,
   md5,
+  setMessageAnchorId,
   settings,
   FetchAppData,
   Resources,
@@ -102,6 +103,9 @@ class App extends WebrcadeApp {
 
   componentDidMount() {
     super.componentDidMount();
+
+    // Set anchor for messages
+    setMessageAnchorId('canvas');
 
     const { appProps, ModeEnum } = this;
 

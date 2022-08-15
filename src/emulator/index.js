@@ -770,6 +770,8 @@ export class Emulator extends AppWrapper {
       canvas.style.setProperty('max-width', `calc(96vh*${xyAr})`, 'important');
       canvas.style.setProperty('max-height', `calc(96vw*${yxAr})`, 'important');
     }
+
+    this.setShowMessageEnabled(true);
   }
 
   initVideo(canvas) {
