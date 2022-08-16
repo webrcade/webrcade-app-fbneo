@@ -282,6 +282,9 @@ export class Emulator extends AppWrapper {
             nvram = f.content;
           }
         }
+
+        // Cache the initial files
+        await this.getSaveManager().checkFilesChanged(files);
       }
 
       res = FS.analyzePath(fsStateName, true);
@@ -470,12 +473,18 @@ export class Emulator extends AppWrapper {
       // }
       const found = files.length > 0;
       if (found) {
-        await this.getSaveManager().save(path, files, this.saveMessageCallback);
+        if (await this.getSaveManager().checkFilesChanged(files)) {
+          await this.getSaveManager().save(
+            path,
+            files,
+            this.saveMessageCallback,
+          );
+          LOG.info('Saved: ' + found);
+        }
       } else {
         await this.getSaveManager().delete(path);
+        LOG.info('Saved: ' + found);
       }
-
-      LOG.info('Saved: ' + found);
     } catch (e) {
       LOG.error('Error persisting save state: ' + e);
     }
