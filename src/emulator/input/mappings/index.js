@@ -626,7 +626,7 @@ export function findMapping(emuInput) {
     return new MaxRpmMapping(emuInput);
   }
   /* Mortal Kombat */
-  if (isName(['mk', 'mk2', 'mk3'])) {
+  if (isName(['mk', 'mk2', 'mk3', 'umk3'])) {
     return new MkMapping(emuInput);
   }
   /* Centipede, Millipede */
