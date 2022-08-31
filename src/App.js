@@ -67,7 +67,7 @@ class App extends WebrcadeApp {
             // TODO: Move to common
             const disposition = headers['content-disposition'];
             if (disposition) {
-              const matches = /.*filename="(.*)".*/gim.exec(disposition);
+              const matches = /filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/gim.exec(disposition);
               if (matches.length > 1) {
                 let match = matches[1];
                 match = match.trim().toLowerCase();
