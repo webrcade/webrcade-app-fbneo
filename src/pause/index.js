@@ -111,6 +111,7 @@ export class NeoPauseScreen extends Component {
       exitCallback,
       inputs,
       isEditor,
+      isStandalone,
       keyInputs,
     } = this.props;
     const { mode } = this.state;
@@ -121,6 +122,7 @@ export class NeoPauseScreen extends Component {
         closeCallback={closeCallback}
         exitCallback={exitCallback}
         isEditor={isEditor}
+        isStandalone={isStandalone}
         additionalButtonRefs={ADDITIONAL_BUTTON_REFS}
         additionalButtons={[
           <PauseScreenButton
