@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class LaserGhostMapping extends BaseMapping {
-
-  getName() { return "lghost"; }
+  getName() {
+    return 'lghost';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -18,7 +17,7 @@ export class LaserGhostMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
@@ -32,30 +31,40 @@ export class LaserGhostMapping extends BaseMapping {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 X-Axis',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 X-Axis',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
       new AnalogModeDetector(
-        0, 'P1 Y-Axis',
-        'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-        'joyaxis 0 1', 0, false
-      )
+        0,
+        'P1 Y-Axis',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
+      ),
     ];
   }
 
   getRemapList() {
     return [
-      ["P1 Fire 1", "switch 0x4080"],
-      ["P1 Fire 2", "switch 0x4081"],
-      ["P2 X-Axis", "joyaxis 1 0"],
-      ["P2 Y-Axis", "joyaxis 1 1"],
-      ["P3 X-Axis", "joyaxis 2 0"],
-      ["P3 Y-Axis", "joyaxis 2 1"],
+      ['P1 Fire 1', 'switch 0x4080'],
+      ['P1 Fire 2', 'switch 0x4081'],
+      ['P2 X-Axis', 'joyaxis 1 0'],
+      ['P2 Y-Axis', 'joyaxis 1 1'],
+      ['P3 X-Axis', 'joyaxis 2 0'],
+      ['P3 Y-Axis', 'joyaxis 2 1'],
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['Coin 1', 'switch 0x06']

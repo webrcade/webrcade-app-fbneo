@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class ActionFighterMapping extends BaseMapping {
-
-  getName() { return "afighterb"; }
+  getName() {
+    return 'afighterb';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -20,12 +19,12 @@ export class ActionFighterMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B2,
       [CIDS.LTRIG]: emuInput.INP_B3,
       [CIDS.RTRIG]: emuInput.INP_B4,
-    }
+    };
   }
 
   getAnalogAdjustments() {
     return [
-      new AnalogAdjustment(0, true, -.4),
+      new AnalogAdjustment(0, true, -0.4),
       new AnalogAdjustment(1, false, 2),
     ];
   }
@@ -34,22 +33,25 @@ export class ActionFighterMapping extends BaseMapping {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'Steering',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'Steering',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
     ];
   }
 
   getRemapList() {
-    return [
-      ["Accelerate", "joyaxis 0 3"],
-    ];
+    return [['Accelerate', 'joyaxis 0 3']];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
-
 
 // 0: (2) ['Coin 1', 'switch 0x06']
 // 1: (2) ['Start 1', 'switch 0x02']

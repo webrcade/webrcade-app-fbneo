@@ -1,13 +1,14 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class WorldPkSoccerV2Mapping extends BaseMapping {
+  getName() {
+    return 'wpksocv2';
+  }
 
-  getName() { return "wpksocv2"; }
- 
   getRemapList() {
     return [
-      ["P1 Kick", "joyaxis 0 3"],
-      ["P1 Select", "switch 0x4080"],
+      ['P1 Kick', 'joyaxis 0 3'],
+      ['P1 Select', 'switch 0x4080'],
     ];
   }
 }

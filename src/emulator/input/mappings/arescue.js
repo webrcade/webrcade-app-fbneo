@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class AirRescueMapping extends BaseMapping {
-
-  getName() { return "arescue"; }
+  getName() {
+    return 'arescue';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -15,12 +14,12 @@ export class AirRescueMapping extends BaseMapping {
       [CIDS.A]: emuInput.INP_B1,
       [CIDS.B]: emuInput.INP_B2,
       [CIDS.X]: emuInput.INP_B3,
-      [CIDS.Y]: emuInput.INP_B4,      
+      [CIDS.Y]: emuInput.INP_B4,
       [CIDS.LBUMP]: emuInput.INP_B2,
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
-      [CIDS.RTRIG]: emuInput.INP_B1,      
-    }
+      [CIDS.RTRIG]: emuInput.INP_B1,
+    };
   }
 
   getAnalogAdjustments() {
@@ -34,26 +33,39 @@ export class AirRescueMapping extends BaseMapping {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Left / Right',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Left / Right',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
       new AnalogModeDetector(
-        0, 'P1 Up / Down',
-        'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-        'joyaxis 0 1', 0, false
+        0,
+        'P1 Up / Down',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
       ),
       new AnalogModeDetector(
-        0, 'P1 Throttle',
-        'slider 0x4082 0x4083 speed 0x800 center 10', (emuInput.INP_B3 | emuInput.INP_B4),
-        'joyaxis 0 3', 1, false
-      )
+        0,
+        'P1 Throttle',
+        'slider 0x4082 0x4083 speed 0x800 center 10',
+        emuInput.INP_B3 | emuInput.INP_B4,
+        'joyaxis 0 3',
+        1,
+        false,
+      ),
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Button 1', 'switch 0x4080']

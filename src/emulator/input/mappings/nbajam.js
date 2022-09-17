@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class NbaJamMapping extends BaseMapping {
-
-  getName() { return "nbajam"; }
+  getName() {
+    return 'nbajam';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -16,6 +15,6 @@ export class NbaJamMapping extends BaseMapping {
       [CIDS.A]: emuInput.INP_B2,
       [CIDS.LBUMP]: emuInput.INP_B1,
       [CIDS.RBUMP]: emuInput.INP_B1,
-    }
+    };
   }
 }

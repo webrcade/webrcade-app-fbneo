@@ -1,13 +1,12 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class SpaceDuelMapping extends BaseMapping {
-
-  getName() { return "spacduel"; }
+  getName() {
+    return 'spacduel';
+  }
 
   getRemapList() {
-    return [
-      ["P1 Select", "switch 0x4083"],
-    ]
+    return [['P1 Select', 'switch 0x4083']];
   }
 }
 

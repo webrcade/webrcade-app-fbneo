@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class PuzzLoop2Mapping extends BaseMapping {
-
-  getName() { return "pzloop2"; }
+  getName() {
+    return 'pzloop2';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -17,23 +16,20 @@ export class PuzzLoop2Mapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B1,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(1, true, 1),
-    ];
+    return [new AnalogAdjustment(1, true, 1)];
   }
 
   getRemapList() {
     return [
-      ["P1 Paddle", "joyaxis 0 2"],
-      ["P2 Paddle", "joyaxis 1 2"],
+      ['P1 Paddle', 'joyaxis 0 2'],
+      ['P2 Paddle', 'joyaxis 1 2'],
     ];
   }
 }
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Start', 'switch 0x02']

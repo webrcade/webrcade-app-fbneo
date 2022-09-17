@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class SearchAndRescueMapping extends BaseMapping {
-
-  getName() { return "searchar"; }
+  getName() {
+    return 'searchar';
+  }
 
   getAnalogToDpadMap() {
     return [2, 3];
@@ -24,19 +23,18 @@ export class SearchAndRescueMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getRemapList() {
     return [
-      ["P1 Rotate Left", "switch 0x4200"],
-      ["P1 Rotate Right", "switch 0x4201"],
-      ["P2 Rotate Left", "switch 0x4300"],
-      ["P2 Rotate Right", "switch 0x4301"],
-    ]
+      ['P1 Rotate Left', 'switch 0x4200'],
+      ['P1 Rotate Right', 'switch 0x4201'],
+      ['P2 Rotate Left', 'switch 0x4300'],
+      ['P2 Rotate Right', 'switch 0x4301'],
+    ];
   }
 }
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Start', 'switch 0x02']

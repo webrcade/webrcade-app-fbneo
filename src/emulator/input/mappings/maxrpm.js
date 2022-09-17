@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class MaxRpmMapping extends BaseMapping {
-
-  getName() { return "maxrpm"; }
+  getName() {
+    return 'maxrpm';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -17,29 +16,31 @@ export class MaxRpmMapping extends BaseMapping {
       [CIDS.Y]: emuInput.INP_B3,
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(0, true, 1),
-    ];
+    return [new AnalogAdjustment(0, true, 1)];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Wheel',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Wheel',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
     ];
   }
 
   getRemapList() {
     return [
-      ['P2 Wheel', "joyaxis 1 0"],
+      ['P2 Wheel', 'joyaxis 1 0'],
       ['P1 Shift Up', 'switch 0x4082'],
       ['P1 Shift Down', 'switch 0x4083'],
       ['P2 Shift Up', 'switch 0x4182'],
@@ -47,7 +48,9 @@ export class MaxRpmMapping extends BaseMapping {
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

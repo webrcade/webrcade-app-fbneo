@@ -1,8 +1,9 @@
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class MajorLeagueMapping extends BaseMapping {
-
-  getName() { return "mjleague"; }
+  getName() {
+    return 'mjleague';
+  }
 
   getAnalogAdjustments() {
     return [
@@ -13,8 +14,8 @@ export class MajorLeagueMapping extends BaseMapping {
 
   getRemapList() {
     return [
-      ["P1 Bat Swing", "joyaxis 0 3"],
-      ["P2 Bat Swing", "joyaxis 1 3"],
+      ['P1 Bat Swing', 'joyaxis 0 3'],
+      ['P2 Bat Swing', 'joyaxis 1 3'],
     ];
   }
 }

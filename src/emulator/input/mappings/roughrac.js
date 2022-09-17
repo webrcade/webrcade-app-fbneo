@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class RoughRacerMapping extends BaseMapping {
-
-  getName() { return "hotroughracrod"; }
+  getName() {
+    return 'hotroughracrod';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -20,22 +19,24 @@ export class RoughRacerMapping extends BaseMapping {
       [CIDS.RTRIG]: emuInput.INP_B2,
       [CIDS.LBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(0, true, .5)
-    ];
+    return [new AnalogAdjustment(0, true, 0.5)];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Wheel',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Wheel',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
     ];
   }
@@ -47,10 +48,10 @@ export class RoughRacerMapping extends BaseMapping {
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
-
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Start', 'switch 0x02']

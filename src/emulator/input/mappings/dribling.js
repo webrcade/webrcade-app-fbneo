@@ -1,8 +1,9 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class DribblingMapping extends BaseMapping {
-
-  getName() { return "dribling"; }
+  getName() {
+    return 'dribling';
+  }
 
   getAnalogToDpadMap() {
     return [2, 3];

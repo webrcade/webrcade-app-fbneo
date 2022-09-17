@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class ReturnOfIshtarMapping extends BaseMapping {
-
-  getName() { return "roishtar"; }
+  getName() {
+    return 'roishtar';
+  }
 
   getAnalogToDpadMap() {
     return [1];
@@ -22,10 +21,9 @@ export class ReturnOfIshtarMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B2,
       [CIDS.LTRIG]: emuInput.INP_B1,
       [CIDS.RTRIG]: emuInput.INP_B2,
-    }
+    };
   }
 }
-
 
 // 0: (2) ['Coin A', 'switch 0x06']
 // 1: (2) ['Coin B', 'switch 0x07']

@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class IrritatingMazeMapping extends BaseMapping {
-
-  getName() { return "irrmaze"; }
+  getName() {
+    return 'irrmaze';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -18,22 +17,22 @@ export class IrritatingMazeMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B2,
-    }
-  }  
+    };
+  }
 
   getAnalogAdjustments() {
     return [
-      new AnalogAdjustment(0, true, .75),
-      new AnalogAdjustment(0, false, .75),
+      new AnalogAdjustment(0, true, 0.75),
+      new AnalogAdjustment(0, false, 0.75),
     ];
   }
 
   getRemapList() {
     return [
-      ["P1 X Axis", "joyaxis 0 0"],
-      ["P1 Y Axis", "joyaxis 0 1"],
+      ['P1 X Axis', 'joyaxis 0 0'],
+      ['P1 Y Axis', 'joyaxis 0 1'],
       ['P1 Button A', 'switch 0x4080'],
-      ['P1 Button B', 'switch 0x4081']
+      ['P1 Button B', 'switch 0x4081'],
     ];
   }
 }

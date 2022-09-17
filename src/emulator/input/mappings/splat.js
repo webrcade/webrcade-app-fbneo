@@ -1,8 +1,9 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class SplatMapping extends BaseMapping {
-
-  getName() { return "splat"; }
+  getName() {
+    return 'splat';
+  }
 
   getAnalogToDpadMap() {
     return [2, 3];

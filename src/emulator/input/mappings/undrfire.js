@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class UnderFireMapping extends BaseMapping {
-
-  getName() { return "undrfire"; }
+  getName() {
+    return 'undrfire';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -15,12 +14,12 @@ export class UnderFireMapping extends BaseMapping {
       [CIDS.A]: emuInput.INP_B1,
       [CIDS.B]: emuInput.INP_B2,
       [CIDS.X]: emuInput.INP_B3,
-      [CIDS.Y]: emuInput.INP_B3,      
+      [CIDS.Y]: emuInput.INP_B3,
       [CIDS.LBUMP]: emuInput.INP_B3,
       [CIDS.RBUMP]: emuInput.INP_B3,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
@@ -34,26 +33,36 @@ export class UnderFireMapping extends BaseMapping {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Gun X',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Gun X',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
       new AnalogModeDetector(
-        0, 'P1 Gun Y',
-        'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-        'joyaxis 0 1', 0, false
-      )
+        0,
+        'P1 Gun Y',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
+      ),
     ];
   }
 
   getRemapList() {
     return [
-      ["P2 Gun X", "joyaxis 1 0"],
-      ["P2 Gun Y", "joyaxis 1 1"],
+      ['P2 Gun X', 'joyaxis 1 0'],
+      ['P2 Gun Y', 'joyaxis 1 1'],
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

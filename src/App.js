@@ -1,15 +1,17 @@
 import {
   blobToStr,
   md5,
+  setMessageAnchorId,
+  settings,
   FetchAppData,
   Resources,
   Unzip,
   UrlUtil,
   WebrcadeApp,
   LOG,
-  TEXT_IDS
-} from '@webrcade/app-common'
-import { Emulator } from './emulator'
+  TEXT_IDS,
+} from '@webrcade/app-common';
+import { Emulator } from './emulator';
 import { NeoPauseScreen } from './pause';
 
 import './App.scss';
@@ -18,12 +20,12 @@ class App extends WebrcadeApp {
   emulator = null;
 
   async fetchFiles(files) {
-    const results = []
+    const results = [];
     for (let i = 0; i < files.length; i++) {
       const f = files[i];
       const url = f.url;
       const type = f.type;
-      if (this.debug) console.log("fetching: " + url);
+      if (this.debug) console.log('fetching: ' + url);
       try {
         const fad = new FetchAppData(url);
         const res = await fad.fetch();
@@ -55,7 +57,7 @@ class App extends WebrcadeApp {
           if (!name) {
             let fname = UrlUtil.getFileName(url);
             fname = fname.toLowerCase();
-            if (fname.endsWith(".zip")) {
+            if (fname.endsWith('.zip')) {
               name = fname;
             }
           }
@@ -65,18 +67,18 @@ class App extends WebrcadeApp {
             // TODO: Move to common
             const disposition = headers['content-disposition'];
             if (disposition) {
-              const matches = /.*filename="(.*)".*/gmi.exec(disposition);
+              const matches = /filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/gim.exec(disposition);
               if (matches.length > 1) {
                 let match = matches[1];
                 match = match.trim().toLowerCase();
-                if (match.length > 0 && match.endsWith(".zip")) {
+                if (match.length > 0 && match.endsWith('.zip')) {
                   name = match;
                 }
               }
             }
           }
           if (!name) {
-            throw Error("Unknown ROM file (" + md5Hash + ").");
+            throw Error('Unknown ROM file (' + md5Hash + ').');
           }
         }
 
@@ -89,10 +91,10 @@ class App extends WebrcadeApp {
           name: name,
           filenames: filenames,
           md5: md5Hash,
-          u8array: u8array
+          u8array: u8array,
         });
       } catch (e) {
-        throw Error(e + "\n" + url);
+        throw Error(e + '\n' + url);
       }
     }
 
@@ -101,6 +103,9 @@ class App extends WebrcadeApp {
 
   componentDidMount() {
     super.componentDidMount();
+
+    // Set anchor for messages
+    setMessageAnchorId('canvas');
 
     const { appProps, ModeEnum } = this;
 
@@ -122,18 +127,18 @@ class App extends WebrcadeApp {
           files.push({
             type: emulator.TYPE_BIOS,
             url: bios,
-            name: "neogeo.zip"
+            name: 'neogeo.zip',
           });
         }
       }
 
       // Get the ROM location that was specified
       const rom = appProps.rom;
-      if (!rom) throw new Error("A ROM file was not specified.");
+      if (!rom) throw new Error('A ROM file was not specified.');
       files.push({
         type: emulator.TYPE_PRIMARY,
         url: rom,
-      })
+      });
 
       const additionalRoms = appProps.additionalRoms;
       if (additionalRoms) {
@@ -141,8 +146,8 @@ class App extends WebrcadeApp {
           files.push({
             type: emulator.TYPE_ADDITIONAL,
             url: rom,
-          })
-        })
+          });
+        });
       }
 
       const samples = appProps.samples;
@@ -151,20 +156,26 @@ class App extends WebrcadeApp {
         samplesFile.push({
           type: emulator.TYPE_SAMPLES,
           url: samples,
-        })
+        });
       }
 
       // Load Emscripten and ROMs
-      emulator.loadEmscriptenModule()
+      emulator
+        .loadEmscriptenModule()
+        .then(() => settings.load())
+        // .then(() => settings.setBilinearFilterEnabled(true))
+        // .then(() => settings.setVsyncEnabled(false))
         .then(() => this.fetchFiles(files))
         .then((roms) => emulator.setRoms(roms))
         .then(() => this.fetchFiles(samplesFile))
         .then((s) => emulator.setSamples(s))
         .then(() => this.setState({ mode: ModeEnum.LOADED }))
-        .catch(msg => {
+        .catch((msg) => {
           LOG.error(msg);
-          this.exit(msg ? msg : Resources.getText(TEXT_IDS.ERROR_RETRIEVING_GAME));
-        })
+          this.exit(
+            msg ? msg : Resources.getText(TEXT_IDS.ERROR_RETRIEVING_GAME),
+          );
+        });
     } catch (e) {
       this.exit(e);
     }
@@ -174,7 +185,9 @@ class App extends WebrcadeApp {
     try {
       await super.onPreExit();
       if (this.emulator) {
-        await this.emulator.saveState();
+        if (!this.isExitFromPause()) {
+          await this.emulator.saveState();
+        }
         await this.emulator.destroy();
       }
     } catch (e) {
@@ -200,8 +213,9 @@ class App extends WebrcadeApp {
       <NeoPauseScreen
         appProps={appProps}
         closeCallback={() => this.resume()}
-        exitCallback={() => this.exit()}
+        exitCallback={() => this.exitFromPause()}
         isEditor={this.isEditor}
+        isStandalone={this.isStandalone}
         inputs={this.emulator.input.collectGamepadInfo()}
         keyInputs={this.emulator.input.collectKeyboardInfo()}
       />
@@ -210,7 +224,13 @@ class App extends WebrcadeApp {
 
   renderCanvas() {
     return (
-      <canvas ref={canvas => { this.canvas = canvas; }} id="canvas"></canvas>
+      <canvas
+        style={this.getCanvasStyles()}
+        ref={(canvas) => {
+          this.canvas = canvas;
+        }}
+        id="canvas"
+      ></canvas>
     );
   }
 
@@ -223,7 +243,9 @@ class App extends WebrcadeApp {
         {super.render()}
         {mode === ModeEnum.LOADING ? this.renderLoading() : null}
         {mode === ModeEnum.PAUSE ? this.renderPauseScreen() : null}
-        {mode === ModeEnum.LOADED || mode === ModeEnum.PAUSE ? this.renderCanvas() : null}
+        {mode === ModeEnum.LOADED || mode === ModeEnum.PAUSE
+          ? this.renderCanvas()
+          : null}
       </>
     );
   }

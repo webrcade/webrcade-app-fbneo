@@ -1,8 +1,9 @@
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class FoodFightMapping extends BaseMapping {
-
-  getName() { return "ffight"; }
+  getName() {
+    return 'ffight';
+  }
 
   getAnalogAdjustments() {
     return [
@@ -15,26 +16,36 @@ export class FoodFightMapping extends BaseMapping {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Stick X',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Stick X',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
       new AnalogModeDetector(
-        0, 'P1 Stick Y',
-        'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-        'joyaxis 0 1', 0, false
-      )
+        0,
+        'P1 Stick Y',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
+      ),
     ];
   }
 
   getRemapList() {
     return [
-      ["P2 Stick X", "joyaxis 1 0"],
-      ["P2 Stick Y", "joyaxis 1 1"],
+      ['P2 Stick X', 'joyaxis 1 0'],
+      ['P2 Stick Y', 'joyaxis 1 1'],
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

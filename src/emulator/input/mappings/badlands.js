@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class BadlandsMapping extends BaseMapping {
-
-  getName() { return "badlands"; }
+  getName() {
+    return 'badlands';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -18,33 +17,35 @@ export class BadlandsMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(0, true, 1),
-    ];
-  }  
+    return [new AnalogAdjustment(0, true, 1)];
+  }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Steering',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
-      )
-    ];
-  }
-  
-  getRemapList() {
-    return [
-      ['P2 Steering', "joyaxis 1 0"],
+        0,
+        'P1 Steering',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
+      ),
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  getRemapList() {
+    return [['P2 Steering', 'joyaxis 1 0']];
+  }
+
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

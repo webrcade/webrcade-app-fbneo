@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class ForgottenWorldsMapping extends BaseMapping {
-
-  getName() { return "forgottn"; }
+  getName() {
+    return 'forgottn';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -19,19 +18,17 @@ export class ForgottenWorldsMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B1,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
-  }  
+    };
+  }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(1, false, -2),
-    ];
+    return [new AnalogAdjustment(1, false, -2)];
   }
 
   getRemapList() {
     return [
-      ["P1 Turn (analog)", "joyaxis 0 3"],
-      ["P2 Turn (analog)", "joyaxis 1 3"],
+      ['P1 Turn (analog)', 'joyaxis 0 3'],
+      ['P2 Turn (analog)', 'joyaxis 1 3'],
     ];
   }
 }

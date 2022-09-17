@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class RadMobileMapping extends BaseMapping {
-
-  getName() { return "radm"; }
+  getName() {
+    return 'radm';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -20,22 +19,24 @@ export class RadMobileMapping extends BaseMapping {
       [CIDS.RTRIG]: emuInput.INP_UP,
       [CIDS.LBUMP]: emuInput.INP_DOWN,
       [CIDS.LTRIG]: emuInput.INP_DOWN,
-    }
+    };
   }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(0, true, 1)
-    ];
+    return [new AnalogAdjustment(0, true, 1)];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Steering',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Steering',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
     ];
   }
@@ -47,7 +48,9 @@ export class RadMobileMapping extends BaseMapping {
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 //

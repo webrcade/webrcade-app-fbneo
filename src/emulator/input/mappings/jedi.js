@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class ReturnOfTheJediMapping extends BaseMapping {
-
-  getName() { return "jedi"; }
+  getName() {
+    return 'jedi';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -19,13 +18,13 @@ export class ReturnOfTheJediMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B2,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B2,
-    }
-  }  
+    };
+  }
 
   getAnalogAdjustments() {
     return [
-      new AnalogAdjustment(0, true, .6),
-      new AnalogAdjustment(0, false, .6),
+      new AnalogAdjustment(0, true, 0.6),
+      new AnalogAdjustment(0, false, 0.6),
     ];
   }
 
@@ -33,19 +32,29 @@ export class ReturnOfTheJediMapping extends BaseMapping {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Stick X',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Stick X',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
       new AnalogModeDetector(
-        0, 'P1 Stick Y',
-        'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-        'joyaxis 0 1', 0, false
-      )
+        0,
+        'P1 Stick Y',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
+      ),
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

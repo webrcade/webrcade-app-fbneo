@@ -1,29 +1,38 @@
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class ArgusMapping extends BaseMapping {
+  getName() {
+    return 'argusg';
+  }
 
-  getName() { return "argusg"; }
-
-  getAnalogAdjustments() { 
+  getAnalogAdjustments() {
     return [
-      new AnalogAdjustment(0, true, .5),
-      new AnalogAdjustment(0, false, .5),
-    ];  
+      new AnalogAdjustment(0, true, 0.5),
+      new AnalogAdjustment(0, false, 0.5),
+    ];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Trackball X',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Trackball X',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
       new AnalogModeDetector(
-        0, 'P1 Trackball Y',
-        'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-        'joyaxis 0 1', 0, false
-      )
+        0,
+        'P1 Trackball Y',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
+      ),
     ];
   }
 
@@ -32,9 +41,11 @@ export class ArgusMapping extends BaseMapping {
   //     ["Dip A", "constant 0xB3"],
   //     ["Dip D", "constant 0x10"],
   //   ];
-  // }  
+  // }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

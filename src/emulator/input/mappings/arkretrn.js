@@ -2,11 +2,12 @@
 //   CIDS,
 // } from "@webrcade/app-common"
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class ArkanoidReturnsMapping extends BaseMapping {
-
-  getName() { return "arkretrn"; }
+  getName() {
+    return 'arkretrn';
+  }
 
   // getButtonMap() {
   //   const { emuInput } = this;
@@ -19,31 +20,32 @@ export class ArkanoidReturnsMapping extends BaseMapping {
   // }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(0, true, .4)
-    ];
+    return [new AnalogAdjustment(0, true, 0.4)];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Analog Dial',
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT | emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Analog Dial',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
     ];
   }
 
   getRemapList() {
-    return [
-      ['P2 Analog Dial', 'joyaxis 1 0']
-    ];
+    return [['P2 Analog Dial', 'joyaxis 1 0']];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Start', 'switch 0x02']

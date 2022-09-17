@@ -2,11 +2,12 @@
 //   CIDS,
 // } from "@webrcade/app-common"
 
-import { AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogModeDetector, BaseMapping } from './base';
 
 export class DynamicCountryClubMapping extends BaseMapping {
-
-  getName() { return "dcclub"; }
+  getName() {
+    return 'dcclub';
+  }
 
   // getButtonMap() {
   //   const { emuInput } = this;
@@ -27,24 +28,28 @@ export class DynamicCountryClubMapping extends BaseMapping {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Wheel',
-        'slider 0x4002 0x4003 speed 0x800 center 10', (emuInput.INP_UP | emuInput.INP_DOWN),
-        'joyaxis 0 1', 0, false
-      )
+        0,
+        'P1 Wheel',
+        'slider 0x4002 0x4003 speed 0x800 center 10',
+        emuInput.INP_UP | emuInput.INP_DOWN,
+        'joyaxis 0 1',
+        0,
+        false,
+      ),
     ];
   }
 
   getRemapList() {
     return [
-      ["P2 Wheel", "joyaxis 1 1"],
-      ["P3 Wheel", "joyaxis 2 1"],
+      ['P2 Wheel', 'joyaxis 1 1'],
+      ['P3 Wheel', 'joyaxis 2 1'],
     ];
   }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
-
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Start', 'switch 0x02']

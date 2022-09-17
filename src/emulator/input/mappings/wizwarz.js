@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class WizWarzMapping extends BaseMapping {
-
-  getName() { return "wizwarz"; }
+  getName() {
+    return 'wizwarz';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -17,23 +16,25 @@ export class WizWarzMapping extends BaseMapping {
       [CIDS.X]: emuInput.INP_B3,
       [CIDS.LBUMP]: emuInput.INP_B1,
       [CIDS.RBUMP]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(0, true, 1),
-    ];
+    return [new AnalogAdjustment(0, true, 1)];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Trackball X',
-        'slider 0x4081 0x4082 speed 0x800 center 10', (emuInput.INP_B2 | emuInput.INP_B3),
-        'joyaxis 0 2', 1, true
-      )
+        0,
+        'P1 Trackball X',
+        'slider 0x4081 0x4082 speed 0x800 center 10',
+        emuInput.INP_B2 | emuInput.INP_B3,
+        'joyaxis 0 2',
+        1,
+        true,
+      ),
     ];
   }
 }

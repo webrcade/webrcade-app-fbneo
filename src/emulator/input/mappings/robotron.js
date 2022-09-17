@@ -1,8 +1,9 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class RobotronMapping extends BaseMapping {
-
-  getName() { return "robotron"; }
+  getName() {
+    return 'robotron';
+  }
 
   getAnalogToDpadMap() {
     return [1];

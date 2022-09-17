@@ -1,27 +1,32 @@
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class LunarLanderMapping extends BaseMapping {
-
-  getName() { return "llander"; }
+  getName() {
+    return 'llander';
+  }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(1, false, 2),
-    ];
-  }  
+    return [new AnalogAdjustment(1, false, 2)];
+  }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Thrust',
-        'slider 0x4080 0x4081 speed 0x800 center 10', (emuInput.INP_B1 | emuInput.INP_B2),
-        'joyaxis 0 3', 1, false
-      )
+        0,
+        'P1 Thrust',
+        'slider 0x4080 0x4081 speed 0x800 center 10',
+        emuInput.INP_B1 | emuInput.INP_B2,
+        'joyaxis 0 3',
+        1,
+        false,
+      ),
     ];
   }
 
-  isAnalogDpadEnabled() { return true; }
+  isAnalogDpadEnabled() {
+    return true;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']

@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogModeDetector, BaseMapping } from './base';
 
 export class DirtFoxMapping extends BaseMapping {
-
-  getName() { return "dirtfoxj"; }
+  getName() {
+    return 'dirtfoxj';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -20,32 +19,37 @@ export class DirtFoxMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
-  }  
+    };
+  }
 
-  getAnalogModeDetectors() { 
+  getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'Steering', 
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT |  emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
-      )
+        0,
+        'Steering',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
+      ),
     ];
   }
 
-getRemapList() {
-  return [
-    ['Accelerator', 'switch 0x4080'],
-    ['Brake', 'switch 0x4081'],
-    ['Gear Up', 'switch 0x4082'],
-    ['Gear Down', 'switch 0x4083']
-  ];
-}
+  getRemapList() {
+    return [
+      ['Accelerator', 'switch 0x4080'],
+      ['Brake', 'switch 0x4081'],
+      ['Gear Up', 'switch 0x4082'],
+      ['Gear Down', 'switch 0x4083'],
+    ];
+  }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
-
 
 // 0: (2) ['Coin', 'switch 0x06']
 // 1: (2) ['Steering', 'slider 0x4000 0x4001 speed 0x800 center 10']

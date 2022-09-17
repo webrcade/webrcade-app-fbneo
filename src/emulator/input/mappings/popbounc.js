@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class PopNBounceMapping extends BaseMapping {
-
-  getName() { return "popbounc"; }
+  getName() {
+    return 'popbounc';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -15,24 +14,21 @@ export class PopNBounceMapping extends BaseMapping {
       [CIDS.A]: emuInput.INP_B1,
       [CIDS.LBUMP]: emuInput.INP_B1,
       [CIDS.RBUMP]: emuInput.INP_B4,
-    }
+    };
   }
 
-  getAnalogAdjustments() { 
-    return [
-      new AnalogAdjustment(1, true, .75),
-    ];  
-  }  
+  getAnalogAdjustments() {
+    return [new AnalogAdjustment(1, true, 0.75)];
+  }
 
   getRemapList() {
     return [
-      ["P1 Paddle", "joyaxis 0 2"],
-      ["P2 Paddle", "joyaxis 1 2"],
-      ['P1 Button D', "switch 0x4083"],
-    ]
+      ['P1 Paddle', 'joyaxis 0 2'],
+      ['P2 Paddle', 'joyaxis 1 2'],
+      ['P1 Button D', 'switch 0x4083'],
+    ];
   }
 }
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Start', 'switch 0x02']

@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class Vindicators2Mapping extends BaseMapping {
-
-  getName() { return "vindctr2"; }
+  getName() {
+    return 'vindctr2';
+  }
 
   getAnalogToDpadMap() {
     return [2, 3];
@@ -19,12 +18,12 @@ export class Vindicators2Mapping extends BaseMapping {
       [CIDS.A]: emuInput.INP_B1,
       [CIDS.B]: emuInput.INP_B2,
       [CIDS.X]: emuInput.INP_B3,
-      [CIDS.Y]: emuInput.INP_B4,      
+      [CIDS.Y]: emuInput.INP_B4,
       [CIDS.LBUMP]: emuInput.INP_B1,
       [CIDS.RBUMP]: emuInput.INP_B3,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B4,
-    }
+    };
   }
 
   getRemapList() {
@@ -44,8 +43,7 @@ export class Vindicators2Mapping extends BaseMapping {
       ['P2 Up', 'undefined'],
       ['P2 Down', 'undefined'],
       ['P2 Left', 'undefined'],
-      ['P2 Right', 'undefined']
+      ['P2 Right', 'undefined'],
     ];
   }
 }
-

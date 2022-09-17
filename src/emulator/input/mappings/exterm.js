@@ -1,12 +1,11 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class ExterminatorMapping extends BaseMapping {
-
-  getName() { return "exterm"; }
+  getName() {
+    return 'exterm';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -18,34 +17,32 @@ export class ExterminatorMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
-    return [
-      new AnalogAdjustment(1, true, 1),
-    ];
+    return [new AnalogAdjustment(1, true, 1)];
   }
 
   getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Spinner',
-        'slider 0x4082 0x4083 speed 0x800 center 10', (emuInput.INP_B3 | emuInput.INP_B4),
-        'joyaxis 0 2', 1, true
-      )
+        0,
+        'P1 Spinner',
+        'slider 0x4082 0x4083 speed 0x800 center 10',
+        emuInput.INP_B3 | emuInput.INP_B4,
+        'joyaxis 0 2',
+        1,
+        true,
+      ),
     ];
   }
 
   getRemapList() {
-    return [
-      ["P2 Spinner", "joyaxis 1 2"],
-    ]
-  }  
+    return [['P2 Spinner', 'joyaxis 1 2']];
+  }
 }
-
-
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
 // 1: (2) ['P1 Start', 'switch 0x02']

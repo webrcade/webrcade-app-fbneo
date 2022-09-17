@@ -1,8 +1,9 @@
-import { BaseMapping } from "./base";
+import { BaseMapping } from './base';
 
 export class FaceoffMapping extends BaseMapping {
-
-  getName() { return "faceoff"; }
+  getName() {
+    return 'faceoff';
+  }
 
   getAnalogToDpadMap() {
     return [2, 3];

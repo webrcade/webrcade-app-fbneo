@@ -1,13 +1,11 @@
+import { CIDS } from '@webrcade/app-common';
 
-import {
-  CIDS,
-} from "@webrcade/app-common"
-
-import { AnalogAdjustment, BaseMapping } from "./base";
+import { AnalogAdjustment, BaseMapping } from './base';
 
 export class GunbusterMapping extends BaseMapping {
-
-  getName() { return "gunbustr"; }
+  getName() {
+    return 'gunbustr';
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -19,7 +17,7 @@ export class GunbusterMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
+    };
   }
 
   getAnalogAdjustments() {
@@ -31,10 +29,10 @@ export class GunbusterMapping extends BaseMapping {
 
   getRemapList() {
     return [
-      ["P1 Gun X", "joyaxis 0 2"],
-      ["P1 Gun Y", "joyaxis 0 3"],
-      ["P2 Gun X", "joyaxis 1 2"],
-      ["P2 Gun Y", "joyaxis 1 3"],
+      ['P1 Gun X', 'joyaxis 0 2'],
+      ['P1 Gun Y', 'joyaxis 0 3'],
+      ['P2 Gun X', 'joyaxis 1 2'],
+      ['P2 Gun Y', 'joyaxis 1 3'],
     ];
   }
 }

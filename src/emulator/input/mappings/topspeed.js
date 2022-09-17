@@ -1,19 +1,15 @@
-import {
-  CIDS,
-} from "@webrcade/app-common"
+import { CIDS } from '@webrcade/app-common';
 
-import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from "./base";
+import { AnalogAdjustment, AnalogModeDetector, BaseMapping } from './base';
 
 export class TopSpeedMapping extends BaseMapping {
+  getName() {
+    return 'topspeed';
+  }
 
-  getName() { return "topspeed"; }
-
-
-  getAnalogAdjustments() { 
-    return [
-      new AnalogAdjustment(0, true, .5),
-    ];  
-  }  
+  getAnalogAdjustments() {
+    return [new AnalogAdjustment(0, true, 0.5)];
+  }
 
   getButtonMap() {
     const { emuInput } = this;
@@ -27,28 +23,34 @@ export class TopSpeedMapping extends BaseMapping {
       [CIDS.RBUMP]: emuInput.INP_B1,
       [CIDS.LTRIG]: emuInput.INP_B2,
       [CIDS.RTRIG]: emuInput.INP_B1,
-    }
-  }  
+    };
+  }
 
-  getAnalogModeDetectors() { 
+  getAnalogModeDetectors() {
     const { emuInput } = this;
     return [
       new AnalogModeDetector(
-        0, 'P1 Steering', 
-        'slider 0x4000 0x4001 speed 0x800 center 10', (emuInput.INP_LEFT |  emuInput.INP_RIGHT),
-        'joyaxis 0 0', 0, true
+        0,
+        'P1 Steering',
+        'slider 0x4000 0x4001 speed 0x800 center 10',
+        emuInput.INP_LEFT | emuInput.INP_RIGHT,
+        'joyaxis 0 0',
+        0,
+        true,
       ),
     ];
   }
-  
+
   getRemapList() {
     return [
-      ["Dip 1", "constant 0xFE"],
-      ["Dip 2", "constant 0xFF"],
+      ['Dip 1', 'constant 0xFE'],
+      ['Dip 2', 'constant 0xFF'],
     ];
-  }  
+  }
 
-  isAnalogDpadEnabled() { return false; }
+  isAnalogDpadEnabled() {
+    return false;
+  }
 }
 
 // 0: (2) ['P1 Coin', 'switch 0x06']
