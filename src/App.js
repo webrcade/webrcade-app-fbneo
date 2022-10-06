@@ -143,10 +143,12 @@ class App extends WebrcadeApp {
       const additionalRoms = appProps.additionalRoms;
       if (additionalRoms) {
         additionalRoms.forEach((rom) => {
-          files.push({
-            type: emulator.TYPE_ADDITIONAL,
-            url: rom,
-          });
+          if (rom.trim().length > 0) {
+            files.push({
+              type: emulator.TYPE_ADDITIONAL,
+              url: rom,
+            });
+          }
         });
       }
 
