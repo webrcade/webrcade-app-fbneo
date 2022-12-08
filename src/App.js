@@ -214,6 +214,7 @@ class App extends WebrcadeApp {
     return (
       <NeoPauseScreen
         appProps={appProps}
+        emulator={this.emulator}
         closeCallback={() => this.resume()}
         exitCallback={() => this.exitFromPause()}
         isEditor={this.isEditor}
