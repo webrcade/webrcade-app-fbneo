@@ -514,10 +514,23 @@ export class Emulator extends AppWrapper {
       } catch (e) {}
 
       if (s) {
+        const imageProps = {
+          aspectRatio: `${this.aspectX / this.aspectY}`
+        };
+
+        if (this.flipped || this.rotated) {
+          imageProps.transform =
+            this.flipped && this.rotated ? "rotate(90deg)" :
+              this.flipped ? "rotate(180deg)" : "rotate(270deg)"
+        }
+
         await this.getSaveManager().saveState(
           this.saveStatePrefix, slot, s,
           fbneoModule.canvas,
-          this.saveMessageCallback);
+          this.saveMessageCallback,
+          null,
+          imageProps
+        );
       }
     } catch (e) {
       LOG.error('Error saving state: ' + e);
