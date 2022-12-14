@@ -40,6 +40,8 @@ export class Emulator extends AppWrapper {
     this.vidBits = 32;
     this.refreshRate = 59.18;
     this.fsStateName = '';
+    this.fsAllStateName = '';
+    this.saveStatePrefix = '';
     this.isNeoGeo = false;
   }
 
@@ -67,7 +69,9 @@ export class Emulator extends AppWrapper {
       if (rom.type === this.TYPE_PRIMARY) {
         this.primaryName = name.split('.')[0];
         this.fsStateName = `${this.FS_STATE_PREFIX}${this.primaryName}.fs`;
+        this.fsAllStateName = `${this.FS_STATE_PREFIX}${this.primaryName}.fs.all`;
         this.fsHsName = `${this.FS_HS_PREFIX}${this.primaryName}.hi`;
+        this.saveStatePrefix = this.app.getStoragePath(`${this.primaryName}/`);
       }
     }
   }
@@ -488,6 +492,79 @@ export class Emulator extends AppWrapper {
     } catch (e) {
       LOG.error('Error persisting save state: ' + e);
     }
+  }
+
+  async getStateSlots(showStatus = true) {
+    return await this.getSaveManager().getStateSlots(
+      this.saveStatePrefix, showStatus ? this.saveMessageCallback : null
+    );
+  }
+
+  async saveStateForSlot(slot) {
+    const { fbneoModule } = this;
+
+    fbneoModule._saveAllState(1);
+
+    let s = null;
+    try {
+
+      const FS = fbneoModule.FS;
+      try {
+        s = FS.readFile(this.fsAllStateName);
+      } catch (e) {}
+
+      if (s) {
+        const imageProps = {
+          aspectRatio: `${this.aspectX / this.aspectY}`
+        };
+
+        if (this.flipped || this.rotated) {
+          imageProps.transform =
+            this.flipped && this.rotated ? "rotate(90deg)" :
+              this.flipped ? "rotate(180deg)" : "rotate(270deg)"
+        }
+
+        await this.getSaveManager().saveState(
+          this.saveStatePrefix, slot, s,
+          fbneoModule.canvas,
+          this.saveMessageCallback,
+          null,
+          imageProps
+        );
+      }
+    } catch (e) {
+      LOG.error('Error saving state: ' + e);
+    }
+
+    return true;
+  }
+
+  async loadStateForSlot(slot) {
+    const { fbneoModule } = this;
+
+    try {
+      const state = await this.getSaveManager().loadState(
+        this.saveStatePrefix, slot, this.saveMessageCallback);
+
+      if (state) {
+        const FS = fbneoModule.FS;
+        FS.writeFile(this.fsAllStateName, state);
+        fbneoModule._saveAllState(0);
+      }
+    } catch (e) {
+      LOG.error('Error loading state: ' + e);
+    }
+    return true;
+  }
+
+  async deleteStateForSlot(slot, showStatus = true) {
+    try {
+      await this.getSaveManager().deleteState(
+        this.saveStatePrefix, slot, showStatus ? this.saveMessageCallback : null);
+    } catch (e) {
+      LOG.error('Error deleting state: ' + e);
+    }
+    return true;
   }
 
   async downloadFile(file) {
