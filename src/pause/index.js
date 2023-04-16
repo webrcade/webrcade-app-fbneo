@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 
 import {
+  AppSettingsEditor,
   ControlsTab,
   CustomPauseScreen,
   EditorScreen,
@@ -15,6 +16,7 @@ import {
   Resources,
   SaveStatesEditor,
   SaveWhiteImage,
+  SettingsAppWhiteImage,
   TEXT_IDS,
 } from '@webrcade/app-common';
 
@@ -107,10 +109,11 @@ export class NeoPauseScreen extends Component {
   ModeEnum = {
     PAUSE: 'pause',
     CONTROLS: 'controls',
+    SETTINGS: 'settings',
     STATE: 'state',
   };
 
-  ADDITIONAL_BUTTON_REFS = [React.createRef(), React.createRef()];
+  ADDITIONAL_BUTTON_REFS = [React.createRef(), React.createRef(), React.createRef()];
 
   componentDidMount() {
     const { loaded } = this.state;
@@ -161,17 +164,32 @@ export class NeoPauseScreen extends Component {
         onClick={() => {
           this.setState({ mode: ModeEnum.CONTROLS });
         }}
-      />
+      />,
+      <PauseScreenButton
+        imgSrc={SettingsAppWhiteImage}
+        buttonRef={ADDITIONAL_BUTTON_REFS[1]}
+        label={
+          type === 'fbneo-capcom' ? "Capcom Settings" :
+            type === 'fbneo-konami' ? "Konami Settings" :
+              type === 'fbneo-neogeo' ? "Neo Geo Settings" : "Arcade Settings"
+        }
+        onHandlePad={(focusGrid, e) =>
+          focusGrid.moveFocus(e.type, ADDITIONAL_BUTTON_REFS[1])
+        }
+        onClick={() => {
+          this.setState({ mode: ModeEnum.SETTINGS });
+        }}
+      />,
     ];
 
     if (cloudEnabled) {
       additionalButtons.push(
         <PauseScreenButton
           imgSrc={SaveWhiteImage}
-          buttonRef={ADDITIONAL_BUTTON_REFS[1]}
+          buttonRef={ADDITIONAL_BUTTON_REFS[2]}
           label={Resources.getText(TEXT_IDS.SAVE_STATES)}
           onHandlePad={(focusGrid, e) =>
-            focusGrid.moveFocus(e.type, ADDITIONAL_BUTTON_REFS[1])
+            focusGrid.moveFocus(e.type, ADDITIONAL_BUTTON_REFS[2])
           }
           onClick={() => {
             this.setState({ mode: ModeEnum.STATE });
@@ -211,6 +229,12 @@ export class NeoPauseScreen extends Component {
             },
           ]}
         />
+      ) : null}
+      {mode === ModeEnum.SETTINGS ? (
+          <AppSettingsEditor
+            emulator={emulator}
+            onClose={closeCallback}
+          />
       ) : null}
       {mode === ModeEnum.STATE ? (
         <SaveStatesEditor
