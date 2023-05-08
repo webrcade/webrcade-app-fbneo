@@ -836,11 +836,26 @@ export class Emulator extends AppWrapper {
     // this.clearImageData(this.image, this.imageData, this.pixelCount);
   }
 
+  getDefaultAspectRatio() {
+    return this.aspectX / this.aspectY;
+  }
+
+  isScreenRotated() {
+    return this.rotated;
+  }
+
   setAspectRatio(aspectX, aspectY) {
-    const { canvas } = this;
+    // const { canvas } = this;
     LOG.info('### aspect ratio: ' + aspectX + 'x' + aspectY);
-    const xyAr = (aspectX / aspectY).toFixed(3);
-    const yxAr = (aspectY / aspectX).toFixed(3);
+    // const xyAr = (aspectX / aspectY).toFixed(3);
+    // const yxAr = (aspectY / aspectX).toFixed(3);
+
+    this.aspectX = aspectX;
+    this.aspectY = aspectY;
+
+
+    this.updateScreenSize();
+
 
     // canvas.style.setProperty("height", `96vh`, "important");
     // canvas.style.setProperty("width", `96vw`, "important");
@@ -849,13 +864,13 @@ export class Emulator extends AppWrapper {
     // canvas.style.setProperty("max-height", `96vh`, "important");
     // canvas.style.setProperty("max-width", `96vw`, "important");
 
-    if (this.rotated) {
-      canvas.style.setProperty('max-height', `calc(96vh*${yxAr})`, 'important');
-      canvas.style.setProperty('max-width', `calc(96vw*${xyAr})`, 'important');
-    } else {
-      canvas.style.setProperty('max-width', `calc(96vh*${xyAr})`, 'important');
-      canvas.style.setProperty('max-height', `calc(96vw*${yxAr})`, 'important');
-    }
+    // if (this.rotated) {
+    //   canvas.style.setProperty('max-height', `calc(96vh*${yxAr})`, 'important');
+    //   canvas.style.setProperty('max-width', `calc(96vw*${xyAr})`, 'important');
+    // } else {
+    //   canvas.style.setProperty('max-width', `calc(96vh*${xyAr})`, 'important');
+    //   canvas.style.setProperty('max-height', `calc(96vw*${yxAr})`, 'important');
+    // }
 
     this.setShowMessageEnabled(true);
   }
