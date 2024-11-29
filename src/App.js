@@ -56,9 +56,11 @@ class App extends WebrcadeApp {
           // name via url
           if (!name) {
             let fname = UrlUtil.getFileName(url);
-            fname = fname.toLowerCase();
-            if (fname.endsWith('.zip')) {
-              name = fname;
+            if (fname) {
+              fname = fname.toLowerCase();
+              if (fname.endsWith('.zip')) {
+                name = fname;
+              }
             }
           }
           // via content disposition
