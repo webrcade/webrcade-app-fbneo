@@ -56,9 +56,11 @@ class App extends WebrcadeApp {
           // name via url
           if (!name) {
             let fname = UrlUtil.getFileName(url);
-            fname = fname.toLowerCase();
-            if (fname.endsWith('.zip')) {
-              name = fname;
+            if (fname) {
+              fname = fname.toLowerCase();
+              if (fname.endsWith('.zip')) {
+                name = fname;
+              }
             }
           }
           // via content disposition
@@ -94,6 +96,7 @@ class App extends WebrcadeApp {
           u8array: u8array,
         });
       } catch (e) {
+        console.log(e);
         throw Error(e + '\n' + url);
       }
     }
@@ -154,10 +157,10 @@ class App extends WebrcadeApp {
 
       const samples = appProps.samples;
       let samplesFile = [];
-      if (samples) {
+      if (samples && samples.length > 0) {
         samplesFile.push({
           type: emulator.TYPE_SAMPLES,
-          url: samples,
+          url: samples[0],
         });
       }
 
