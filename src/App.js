@@ -157,11 +157,16 @@ class App extends WebrcadeApp {
 
       const samples = appProps.samples;
       let samplesFile = [];
-      if (samples && samples.length > 0) {
-        samplesFile.push({
-          type: emulator.TYPE_SAMPLES,
-          url: samples[0],
-        });
+
+      if (samples) {
+        const sampleArray = Array.isArray(samples) ? samples : [samples];
+        const validSamples = sampleArray.filter(s => typeof s === 'string' && s.trim() !== '');
+        if (validSamples.length > 0) {
+          samplesFile.push({
+            type: emulator.TYPE_SAMPLES,
+            url: validSamples[0],
+          });
+        }
       }
 
       // Load Emscripten and ROMs
