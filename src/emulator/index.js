@@ -1,5 +1,5 @@
 import {
-  AppWrapper,
+  BasicAppWrapper,
   DisplayLoop,
   FetchAppData,
   ScriptAudioProcessor,
@@ -13,7 +13,7 @@ import SRAM_TABLE from './sram';
 
 window.audioCallback = null;
 
-export class Emulator extends AppWrapper {
+export class Emulator extends BasicAppWrapper {
   constructor(app, type, debug = false) {
     super(app, debug);
 
@@ -119,6 +119,12 @@ export class Emulator extends AppWrapper {
   async onShowPauseMenu() {
     await this.saveState();
   }
+
+  // Base class default pauses on any tap anywhere on screen -- redundant
+  // (and disruptive) now that there's a dedicated Pause button in the
+  // touch overlay. Same override snes9x/fceux/parallel-n64/vba-m/javatari/
+  // js7800/Coleco/A5200/Jaguar use for the same reason.
+  createTouchListener() {}
 
   pollControls() {
     this.input.pollControls(this.controllers);
@@ -711,6 +717,7 @@ export class Emulator extends AppWrapper {
         try {
           fbneoModule._doLoop();
           this.pollControls();
+          this.onFrame();
         } catch (e) {
           app.exit(e);
         }

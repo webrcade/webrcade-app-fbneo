@@ -234,6 +234,7 @@ export class NeoPauseScreen extends Component {
           <AppSettingsEditor
             emulator={emulator}
             onClose={closeCallback}
+            showOnScreenControls={true}
           />
       ) : null}
       {mode === ModeEnum.STATE ? (
